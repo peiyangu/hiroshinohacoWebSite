@@ -1,0 +1,129 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.hero {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: $space-3xl $space-md;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__bgImage {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__bgImage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: $color-ivory;
+  opacity: 0.65;
+}
+
+@keyframes slowZoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+.hero__bgImage :global(img) {
+  object-fit: cover;
+  animation: slowZoom 15s ease-out forwards;
+}
+
+.hero__inner {
+  text-align: center;
+  width: min(100%, 800px);
+  position: relative;
+  z-index: 1;
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-2xl;
+}
+
+.hero__logoMark {
+  width: 120px;
+  height: 120px;
+}
+
+.hero__textGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+}
+
+.hero__kicker {
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  color: $color-text-sub;
+}
+
+.hero__logo {
+  font-family: $font-heading;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  letter-spacing: 0.1em;
+  line-height: 1.1;
+}
+
+.hero__messageGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+  margin-top: $space-md;
+}
+
+.hero__lead {
+  font-size: clamp(1.3rem, 1.2rem + 0.5vw, 1.6rem);
+  line-height: 2.2;
+  color: $color-text-main;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.hero__tagline {
+  color: $color-text-sub;
+  letter-spacing: 0.15em;
+  font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
+  font-family: $font-heading;
+  font-style: italic;
+}
+
+.hero__action {
+  margin-top: $space-lg;
+}
+
+.hero__button {
+  display: inline-block;
+  padding: $space-md $space-xl;
+  background-color: $color-text-main;
+  color: $color-ivory;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  border-radius: 4px;
+  transition: opacity 0.3s ease;
+}
+
+.hero__button:hover {
+  opacity: 0.8;
+}
+
+@include tablet {
+  .hero {
+    padding: calc($space-3xl + $space-md) $space-lg;
+  }
+
+  .hero__logoMark {
+    width: 160px;
+    height: 160px;
+  }
+}

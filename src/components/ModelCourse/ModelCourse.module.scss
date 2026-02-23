@@ -1,0 +1,67 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.course {
+  padding: $space-3xl $space-md;
+}
+
+.course__inner {
+  @include section-container;
+}
+
+.course__header {
+  text-align: center;
+  margin-bottom: $space-2xl;
+}
+
+.course__title {
+  font-family: $font-heading;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  color: $color-text-sub;
+  margin-bottom: $space-md;
+}
+
+.course__subtitle {
+  font-family: $font-heading;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+}
+
+.course__content {
+  display: grid;
+  gap: $space-xl;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.course__item {
+  padding: $space-xl;
+  border: 1px solid $color-line;
+}
+
+.course__itemTitle {
+  font-family: $font-heading;
+  font-size: 1.4rem;
+  margin-bottom: $space-md;
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+
+  span {
+    font-size: 1rem;
+    color: $color-text-sub;
+    letter-spacing: 0.1em;
+  }
+}
+
+.course__itemText {
+  line-height: 2;
+  font-size: 1.05rem;
+  color: $color-text-main;
+}
+
+@include tablet {
+  .course__content {
+    grid-template-columns: 1fr 1fr;
+  }
+}

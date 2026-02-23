@@ -1,0 +1,89 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.main {
+  padding: 120px 20px 80px;
+  background-color: $color-ivory;
+  min-height: 100vh;
+
+  @include tablet {
+    padding: 160px 40px 120px;
+  }
+}
+
+.inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: $font-heading;
+  font-size: 2.5rem;
+  color: $color-text-main;
+  margin-bottom: 8px;
+  text-align: center;
+  letter-spacing: 0.05em;
+
+  @include tablet {
+    font-size: 3rem;
+  }
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: $color-text-sub;
+  margin-bottom: 60px;
+  text-align: center;
+  letter-spacing: 0.1em;
+}
+
+.section {
+  margin-bottom: 60px;
+}
+
+.sectionTitle {
+  font-family: $font-heading;
+  font-size: 1.8rem;
+  color: $color-text-main;
+  margin-bottom: 32px;
+  border-bottom: 1px solid rgba($color-text-main, 0.1);
+  padding-bottom: 12px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  margin-bottom: 32px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.name {
+  font-size: 1.2rem;
+  color: $color-text-main;
+  font-weight: bold;
+}
+
+.price {
+  font-size: 1.1rem;
+  color: $color-text-sub;
+}
+
+.description {
+  font-size: 0.95rem;
+  color: $color-text-main;
+  line-height: 1.6;
+}

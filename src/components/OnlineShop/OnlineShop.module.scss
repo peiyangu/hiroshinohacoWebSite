@@ -1,0 +1,62 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+.onlineShop {
+  padding: 80px 20px;
+  background-color: $color-surface;
+  text-align: center;
+
+  @include tablet {
+    padding: 120px 40px;
+  }
+}
+
+.inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-family: $font-heading;
+  font-size: 2rem;
+  color: $color-text-main;
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+
+  @include tablet {
+    font-size: 2.5rem;
+  }
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: $color-text-sub;
+  margin-bottom: 40px;
+  letter-spacing: 0.1em;
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 2;
+  color: $color-text-main;
+  margin-bottom: 40px;
+}
+
+.buttonWrapper {
+  margin-top: 40px;
+}
+
+.button {
+  display: inline-block;
+  padding: 16px 40px;
+  background-color: $color-text-main;
+  color: $color-ivory;
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

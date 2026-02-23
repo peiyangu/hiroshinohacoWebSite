@@ -1,0 +1,74 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.lineup {
+  padding: $space-3xl $space-md;
+}
+
+.lineup__inner {
+  @include section-container;
+}
+
+.lineup__header {
+  text-align: center;
+  margin-bottom: $space-2xl;
+}
+
+.lineup__title {
+  font-family: $font-heading;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  color: $color-text-sub;
+  margin-bottom: $space-md;
+}
+
+.lineup__subtitle {
+  font-family: $font-heading;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+}
+
+.lineup__list {
+  display: grid;
+  gap: $space-md;
+  margin-bottom: $space-2xl;
+}
+
+.lineup__item {
+  padding: $space-lg;
+  border: 1px solid $color-line;
+  text-align: center;
+}
+
+.lineup__itemName {
+  font-family: $font-heading;
+  font-size: 1.4rem;
+  margin-bottom: $space-sm;
+}
+
+.lineup__itemDesc {
+  color: $color-text-sub;
+  font-size: 1rem;
+}
+
+.lineup__action {
+  text-align: center;
+}
+
+.lineup__button {
+  display: inline-block;
+  min-width: 240px;
+  border: 1px solid $color-text-main;
+  padding: $space-md $space-xl;
+  font-size: 1.1rem;
+  transition: opacity 0.6s ease;
+}
+
+.lineup__button:hover {
+  opacity: 0.74;
+}
+
+@include tablet {
+  .lineup__list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

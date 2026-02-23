@@ -1,0 +1,100 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.access {
+  padding: $space-3xl $space-md;
+}
+
+.access__inner {
+  @include section-container;
+}
+
+.access__header {
+  text-align: center;
+  margin-bottom: $space-2xl;
+}
+
+.access__title {
+  font-family: $font-heading;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  color: $color-text-sub;
+  margin-bottom: $space-md;
+}
+
+.access__subtitle {
+  font-family: $font-heading;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+}
+
+.access__content {
+  display: grid;
+  gap: $space-xl;
+}
+
+.access__info {
+  display: grid;
+  gap: $space-xl;
+}
+
+.access__list {
+  display: grid;
+  gap: $space-md;
+  font-size: 1.1rem;
+}
+
+.access__row {
+  display: grid;
+  gap: $space-xs;
+  padding-bottom: $space-md;
+  border-bottom: 1px solid $color-line;
+
+  dt {
+    font-weight: bold;
+    color: $color-text-sub;
+  }
+
+  dd {
+    line-height: 1.8;
+  }
+}
+
+.access__action {
+  text-align: left;
+}
+
+.access__button {
+  display: inline-block;
+  border: 1px solid $color-text-main;
+  padding: $space-sm $space-xl;
+  font-size: 1.05rem;
+  transition: opacity 0.6s ease;
+}
+
+.access__button:hover {
+  opacity: 0.74;
+}
+
+.access__map {
+  width: 100%;
+  height: 300px;
+  background-color: $color-line;
+}
+
+@include tablet {
+  .access__content {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    gap: $space-2xl;
+  }
+
+  .access__row {
+    grid-template-columns: 120px 1fr;
+    gap: $space-md;
+  }
+
+  .access__map {
+    height: 100%;
+    min-height: 400px;
+  }
+}

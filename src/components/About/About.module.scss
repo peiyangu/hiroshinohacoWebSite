@@ -1,0 +1,60 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.about {
+  padding: $space-3xl $space-md;
+}
+
+.about__inner {
+  @include section-container;
+}
+
+.about__header {
+  text-align: center;
+  margin-bottom: $space-2xl;
+}
+
+.about__title {
+  font-family: $font-heading;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  color: $color-text-sub;
+  margin-bottom: $space-md;
+}
+
+.about__subtitle {
+  font-family: $font-heading;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  line-height: 1.6;
+}
+
+.about__content {
+  display: grid;
+  gap: $space-xl;
+}
+
+.about__imageWrapper {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.about__imageWrapper :global(img) {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.about__text {
+  display: grid;
+  gap: $space-md;
+  line-height: 2;
+  font-size: clamp(1.05rem, 1rem + 0.2vw, 1.15rem);
+}
+
+@include tablet {
+  .about__content {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: $space-2xl;
+  }
+}
