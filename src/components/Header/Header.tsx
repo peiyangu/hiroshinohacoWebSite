@@ -1,31 +1,107 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
 import styles from "./Header.module.scss";
 
+const navItems = [
+  { label: "News", href: "/#news" },
+  { label: "About", href: "/#about" },
+  { label: "Line Up", href: "/lineup" },
+  { label: "Menu", href: "/menu" },
+  { label: "Schedule", href: "/#schedule" },
+  { label: "Online Shop", href: "/#online-shop" },
+];
+
 export function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  // メニューが開いているときスクロールをロック
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [isOpen]);
+
+  const close = () => setIsOpen(false);
+
   return (
-    <header className={styles.header}>
-      <div className={styles.header__inner}>
-        <div className={styles.header__logo}>
-          <Image
-            src="/images/logo/logo.png"
-            alt="hirosHi.no.haco"
-            width={60}
-            height={60}
-            priority
-          />
+    <>
+      <header className={styles.header}>
+        <div className={styles.header__inner}>
+          <a href="/" className={styles.header__logo} onClick={close}>
+            <Image
+              src="/images/logo/logo.png"
+              alt="hirosHi.no.haco"
+              width={60}
+              height={60}
+              priority
+            />
+          </a>
+
+          {/* PC ナビ */}
+          <nav className={styles.header__nav}>
+            <ul className={styles.header__list}>
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <a href={item.href}>{item.label}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* ハンバーガーボタン（モバイルのみ） */}
+          <button
+            className={`${styles.header__burger} ${isOpen ? styles["header__burger--open"] : ""}`}
+            onClick={() => setIsOpen((v) => !v)}
+            aria-label={isOpen ? "メニューを閉じる" : "メニューを開く"}
+            aria-expanded={isOpen}
+          >
+            <span className={styles.header__burgerLine} />
+            <span className={styles.header__burgerLine} />
+            <span className={styles.header__burgerLine} />
+          </button>
         </div>
-        <nav className={styles.header__nav}>
-          <ul className={styles.header__list}>
-            <li><a href="#news">News</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#lineup">Line Up</a></li>
-            <li><a href="#menu">Menu</a></li>
-            <li><a href="#schedule">Schedule</a></li>
-            <li><a href="#course">Model Course</a></li>
-            <li><a href="#online-shop">Online Shop</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+      </header>
+
+      {/* フルスクリーン オーバーレイメニュー */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className={styles.mobileMenu}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+          >
+            <nav className={styles.mobileMenu__nav}>
+              <ul className={styles.mobileMenu__list}>
+                {navItems.map((item, i) => (
+                  <motion.li
+                    key={item.href}
+                    className={styles.mobileMenu__item}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.3, delay: i * 0.06 }}
+                  >
+                    <a
+                      href={item.href}
+                      className={styles.mobileMenu__link}
+                      onClick={close}
+                    >
+                      {item.label}
+                    </a>
+                  </motion.li>
+                ))}
+              </ul>
+            </nav>
+            <p className={styles.mobileMenu__tagline}>
+              Warm break with peace of mind
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

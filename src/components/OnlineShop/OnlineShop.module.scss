@@ -2,61 +2,141 @@
 @use "@/styles/variables" as *;
 
 .onlineShop {
-  padding: 80px 20px;
-  background-color: $color-surface;
-  text-align: center;
+  padding: $space-2xl $space-md;
+  background-color: $color-ivory;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: "SHOP";
+    position: absolute;
+    bottom: -10%;
+    right: -5%;
+    font-family: $font-heading;
+    font-size: clamp(8rem, 14vw, 14rem);
+    color: rgba($color-text-sub, 0.04);
+    pointer-events: none;
+    white-space: nowrap;
+    font-style: italic;
+    display: none;
+  }
 
   @include tablet {
-    padding: 120px 40px;
+    padding: $space-3xl $space-xl;
+
+    &::before {
+      display: block;
+    }
+  }
+
+  @include desktop {
+    padding: $space-3xl $space-2xl;
   }
 }
 
 .inner {
-  max-width: 800px;
+  max-width: 1100px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: $space-xl;
+
+  @include tablet {
+    flex-direction: row;
+    align-items: center;
+    gap: $space-2xl;
+  }
+
+  @include desktop {
+    gap: $space-3xl;
+  }
+}
+
+// 左: 写真
+.imageWrapper {
+  width: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.07);
+
+  @include tablet {
+    width: 40%;
+  }
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+
+// 右: テキスト
+.textSide {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.label {
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  color: $color-text-sub;
+  display: block;
 }
 
 .title {
   font-family: $font-heading;
-  font-size: 2rem;
+  font-size: clamp(2rem, 8vw, 5rem);
   color: $color-text-main;
-  margin-bottom: 8px;
   letter-spacing: 0.05em;
-
-  @include tablet {
-    font-size: 2.5rem;
-  }
-}
-
-.subtitle {
-  font-size: 0.9rem;
-  color: $color-text-sub;
-  margin-bottom: 40px;
-  letter-spacing: 0.1em;
+  line-height: 1.1;
 }
 
 .description {
-  font-size: 1rem;
-  line-height: 2;
-  color: $color-text-main;
-  margin-bottom: 40px;
+  font-size: 1.05rem;
+  line-height: 2.2;
+  color: $color-text-sub;
+  letter-spacing: 0.05em;
 }
 
-.buttonWrapper {
-  margin-top: 40px;
+.actionSide {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
 }
 
 .button {
-  display: inline-block;
-  padding: 16px 40px;
-  background-color: $color-text-main;
-  color: $color-ivory;
-  text-decoration: none;
-  font-size: 0.9rem;
-  letter-spacing: 0.1em;
-  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 28px;
+  border: 1px solid $color-text-main;
+  color: $color-text-main;
+  font-size: 0.92rem;
+  letter-spacing: 0.12em;
+  transition: background-color 0.4s ease, color 0.4s ease;
 
   &:hover {
-    opacity: 0.8;
+    background-color: $color-text-main;
+    color: $color-ivory;
+
+    .buttonArrow {
+      transform: translateX(6px);
+    }
   }
+}
+
+.buttonArrow {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.note {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: $color-text-sub;
 }

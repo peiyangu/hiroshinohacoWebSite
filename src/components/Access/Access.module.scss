@@ -1,100 +1,360 @@
 @use "@/styles/variables" as *;
 @use "@/styles/mixins" as *;
 
+// ────────────────────────────
+// Section
+// ────────────────────────────
 .access {
-  padding: $space-3xl $space-md;
+  background-color: $color-ivory;
+  padding: $space-2xl $space-md;
+  position: relative;
+  overflow: hidden;
+
+  @include tablet {
+    padding: $space-3xl $space-xl;
+  }
+
+  @include desktop {
+    padding: $space-3xl $space-2xl;
+  }
+}
+
+.access__bgText {
+  display: none;
+
+  @include tablet {
+    display: block;
+    position: absolute;
+    top: 5%;
+    left: -5%;
+    font-family: $font-heading;
+    font-size: clamp(8rem, 14vw, 14rem);
+    color: rgba($color-text-sub, 0.03);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 0;
+  }
 }
 
 .access__inner {
-  @include section-container;
+  // section-container（960px）を上書きして広く使う
+  width: min(100%, 1100px);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2xl;
 }
 
+// ────────────────────────────
+// Header（centered）
+// ────────────────────────────
 .access__header {
   text-align: center;
-  margin-bottom: $space-2xl;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.access__label {
+  font-size: 0.85rem;
+  letter-spacing: 0.35em;
+  color: $color-text-sub;
+  display: block;
+  margin-bottom: 24px;
+  text-transform: uppercase;
 }
 
 .access__title {
   font-family: $font-heading;
-  font-size: 1.2rem;
-  letter-spacing: 0.1em;
+  font-size: clamp(2.2rem, 8vw, 5.5rem);
+  letter-spacing: 0.05em;
+  color: $color-text-main;
+  line-height: 1;
+  margin-bottom: 24px;
+}
+
+// デコレーター ——— text ———
+.access__divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.access__dividerLine {
+  flex: 1;
+  height: 1px;
+  background-color: $color-line;
+  display: block;
+}
+
+.access__dividerText {
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
   color: $color-text-sub;
-  margin-bottom: $space-md;
+  white-space: nowrap;
 }
 
-.access__subtitle {
-  font-family: $font-heading;
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
-}
-
-.access__content {
+// ────────────────────────────
+// Body 2カラム（画像 | 情報）
+// ────────────────────────────
+.access__body {
   display: grid;
-  gap: $space-xl;
+  grid-template-columns: 1fr;
+  gap: 56px;
+
+  @include tablet {
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  @include desktop {
+    gap: 100px;
+  }
 }
 
+// ────────────────────────────
+// 画像（左）
+// ────────────────────────────
+.access__imageWrapper {
+  width: 100%;
+  overflow: hidden;
+  order: 2; // モバイルでは情報の下
+
+  @include tablet {
+    order: 0; // デスクトップでは左
+    position: sticky;
+    top: 120px;
+    align-self: flex-start;
+  }
+}
+
+.access__image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+}
+
+// ────────────────────────────
+// 情報（右）
+// ────────────────────────────
 .access__info {
-  display: grid;
-  gap: $space-xl;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  order: 1;
 }
 
-.access__list {
-  display: grid;
-  gap: $space-md;
-  font-size: 1.1rem;
+// 各情報ブロック
+.access__infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.access__row {
+// "Address", "Hours" などの小ラベル
+.access__infoLabel {
+  font-family: $font-heading;
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: $color-text-sub;
+  padding-bottom: 12px;
+  border-bottom: 1px solid $color-line;
+  margin: 0;
+}
+
+.access__infoText {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: $color-text-main;
+  letter-spacing: 0.03em;
+  margin: 0;
+
+  &--sub {
+    color: $color-text-sub;
+    font-size: 1rem;
+    margin-top: -6px;
+  }
+}
+
+.access__infoNote {
+  font-size: 0.95rem;
+  color: $color-text-sub;
+  letter-spacing: 0.05em;
+  line-height: 1.7;
+  margin: 0;
+}
+
+// ────────────────────────────
+// 営業時間テーブル
+// ────────────────────────────
+.access__hoursTable {
+  display: flex;
+  flex-direction: column;
+}
+
+.access__hoursRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 0;
+  border-bottom: 1px solid $color-line;
+  gap: 16px;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.access__hoursDay {
+  font-size: 1rem;
+  color: $color-text-sub;
+  letter-spacing: 0.08em;
+}
+
+.access__hoursTime {
+  font-size: 1rem;
+  color: $color-text-main;
+  letter-spacing: 0.08em;
+  font-family: $font-heading;
+
+  &--closed {
+    color: $color-text-sub;
+    opacity: 0.55;
+  }
+}
+
+// ────────────────────────────
+// リンク
+// ────────────────────────────
+.access__links {
+  display: flex;
+  flex-direction: column;
+  padding-top: 4px;
+}
+
+.access__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: $color-text-main;
+  padding: 16px 0;
+  border-bottom: 1px solid $color-line;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+
+  &:first-child {
+    border-top: 1px solid $color-line;
+  }
+
+  &:hover {
+    opacity: 0.6;
+
+    .access__linkArrow {
+      transform: translateX(4px);
+    }
+  }
+}
+
+.access__linkArrow {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+// ────────────────────────────
+// Visit Guide（全幅）
+// ────────────────────────────
+.access__guide {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.access__guideTitle {
+  font-family: $font-heading;
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: $color-text-sub;
+  padding-bottom: 12px;
+  border-bottom: 1px solid $color-line;
+  margin: 0;
+}
+
+// 来店ガイドリンクカード
+.access__guideList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: grid;
-  gap: $space-xs;
-  padding-bottom: $space-md;
+  grid-template-columns: 1fr;
+  border-top: 1px solid $color-line;
+  border-left: 1px solid $color-line;
+
+  @include tablet {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.access__guideItem {
+  border-right: 1px solid $color-line;
   border-bottom: 1px solid $color-line;
 
-  dt {
-    font-weight: bold;
-    color: $color-text-sub;
-  }
-
-  dd {
-    line-height: 1.8;
+  @include tablet {
+    border-bottom: none;
   }
 }
 
-.access__action {
-  text-align: left;
-}
+.access__guideLink {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 24px 20px;
+  text-decoration: none;
+  height: 100%;
+  transition: background-color 0.3s ease;
 
-.access__button {
-  display: inline-block;
-  border: 1px solid $color-text-main;
-  padding: $space-sm $space-xl;
-  font-size: 1.05rem;
-  transition: opacity 0.6s ease;
-}
+  &:hover {
+    background-color: $color-surface;
 
-.access__button:hover {
-  opacity: 0.74;
-}
-
-.access__map {
-  width: 100%;
-  height: 300px;
-  background-color: $color-line;
-}
-
-@include tablet {
-  .access__content {
-    grid-template-columns: 1fr 1fr;
-    align-items: start;
-    gap: $space-2xl;
+    .access__guideArrow {
+      transform: translateX(4px);
+    }
   }
+}
 
-  .access__row {
-    grid-template-columns: 120px 1fr;
-    gap: $space-md;
-  }
+.access__guideLabelEn {
+  font-family: $font-heading;
+  font-size: 1.1rem;
+  color: $color-text-main;
+  letter-spacing: 0.05em;
+  line-height: 1.3;
+}
 
-  .access__map {
-    height: 100%;
-    min-height: 400px;
-  }
+.access__guideLabelJa {
+  font-size: 0.9rem;
+  color: $color-text-sub;
+  letter-spacing: 0.08em;
+  flex: 1;
+}
+
+.access__guideArrow {
+  font-size: 0.9rem;
+  color: $color-text-sub;
+  margin-top: auto;
+  transition: transform 0.3s ease;
 }

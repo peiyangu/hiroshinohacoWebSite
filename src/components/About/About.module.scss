@@ -2,59 +2,142 @@
 @use "@/styles/mixins" as *;
 
 .about {
-  padding: $space-3xl $space-md;
+  position: relative;
+  padding: $space-2xl $space-md;
+  background-color: $color-ivory;
+  overflow: hidden;
+
+  @include tablet {
+    padding: $space-3xl $space-lg;
+  }
+
+  @include desktop {
+    padding: $space-3xl $space-xl;
+  }
+}
+
+.about__bgText {
+  display: none;
+
+  @include tablet {
+    display: block;
+    position: absolute;
+    top: 5%;
+    left: -5%;
+    font-family: $font-heading;
+    font-size: clamp(8rem, 14vw, 14rem);
+    color: rgba($color-text-sub, 0.03);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 0;
+  }
 }
 
 .about__inner {
   @include section-container;
+  position: relative;
+  z-index: 1;
+}
+
+.about__content {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xl;
+
+  @include tablet {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-2xl;
+  }
+}
+
+.about__imageWrapper {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+
+  @include tablet {
+    width: 45%;
+    margin: 0;
+  }
+}
+
+.about__image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+}
+
+.about__textContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  @include tablet {
+    width: 50%;
+    justify-content: center;
+    gap: 40px;
+  }
 }
 
 .about__header {
-  text-align: center;
-  margin-bottom: $space-2xl;
+  display: flex;
+  flex-direction: column;
 }
 
 .about__title {
   font-family: $font-heading;
   font-size: 1.2rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.2em;
   color: $color-text-sub;
-  margin-bottom: $space-md;
+  margin-bottom: 16px;
+  display: block;
 }
 
 .about__subtitle {
   font-family: $font-heading;
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
-  line-height: 1.6;
-}
-
-.about__content {
-  display: grid;
-  gap: $space-xl;
-}
-
-.about__imageWrapper {
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.about__imageWrapper :global(img) {
-  width: 100%;
-  height: auto;
-  display: block;
+  font-size: clamp(1.7rem, 6vw, 3.2rem);
+  line-height: 1.7;
+  letter-spacing: 0.08em;
 }
 
 .about__text {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: $space-md;
   line-height: 2;
-  font-size: clamp(1.05rem, 1rem + 0.2vw, 1.15rem);
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  color: $color-text-main;
+
+  @include tablet {
+    font-size: 1.05rem;
+    gap: 40px;
+    line-height: 2.2;
+  }
 }
 
-@include tablet {
-  .about__content {
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    gap: $space-2xl;
-  }
+.about__neldripBlock {
+  border-top: 1px solid $color-line;
+  padding-top: $space-lg;
+}
+
+.about__neldripTitle {
+  font-family: $font-heading;
+  font-size: 0.95rem;
+  letter-spacing: 0.2em;
+  color: $color-text-sub;
+  margin-bottom: $space-sm;
+}
+
+.about__neldripText {
+  font-size: 0.9rem;
+  line-height: 2;
+  letter-spacing: 0.05em;
+  color: $color-text-sub;
 }

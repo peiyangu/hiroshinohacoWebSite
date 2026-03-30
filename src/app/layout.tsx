@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "@/styles/globals.scss";
+import { LoadingClient } from "@/components/Loading/LoadingClient";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://hiroshinohaco.jp"),
@@ -24,7 +25,10 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="ja">
-      <body>{children}</body>
+      <body>
+        <LoadingClient />
+        {children}
+      </body>
     </html>
   );
 }

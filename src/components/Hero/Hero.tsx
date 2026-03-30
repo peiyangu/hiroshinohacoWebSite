@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { FadeInSection } from "@/components/common/FadeInSection";
+import { StatusBadge } from "@/components/common/StatusBadge";
 import styles from "./Hero.module.scss";
 
 export function Hero() {
@@ -16,15 +17,6 @@ export function Hero() {
       </div>
       <div className={styles.hero__inner}>
         <FadeInSection className={styles.hero__content}>
-          <div className={styles.hero__logoMark}>
-            <Image
-              src="/images/logo/logo.png"
-              alt="hirosHi.no.haco ロゴ"
-              width={160}
-              height={160}
-              priority
-            />
-          </div>
           <div className={styles.hero__textGroup}>
             <p className={styles.hero__kicker}>ヒロシノハコ</p>
             <h1 className={styles.hero__logo}>hirosHi.no.haco</h1>
@@ -40,11 +32,17 @@ export function Hero() {
             </p>
           </div>
           <div className={styles.hero__action}>
+            <StatusBadge />
             <a href="#access" className={styles.hero__button}>
               店舗情報・アクセスを見る
             </a>
           </div>
         </FadeInSection>
+      </div>
+      <div className={styles.hero__verticalText}>since 2020 — Chikushino, Fukuoka</div>
+      <div className={styles.hero__scroll}>
+        <span className={styles.hero__scrollText}>SCROLL</span>
+        <span className={styles.hero__scrollLine}></span>
       </div>
     </section>
   );

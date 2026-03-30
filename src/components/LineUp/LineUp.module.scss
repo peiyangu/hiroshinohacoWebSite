@@ -2,52 +2,171 @@
 @use "@/styles/mixins" as *;
 
 .lineup {
-  padding: $space-3xl $space-md;
+  padding: 100px 20px;
+  background-color: $color-ivory;
+  position: relative;
+  overflow: hidden;
+
+  @include tablet {
+    padding: 140px 40px;
+  }
+
+  &--page {
+    padding-top: 0;
+
+    @include tablet {
+      padding-top: 0;
+    }
+  }
+}
+
+.lineup__label {
+  position: absolute;
+  top: 40px;
+  right: 30px;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: $color-line;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  z-index: 0;
 }
 
 .lineup__inner {
   @include section-container;
+  position: relative;
+  z-index: 1;
 }
 
 .lineup__header {
   text-align: center;
-  margin-bottom: $space-2xl;
+  margin-bottom: 60px;
 }
 
 .lineup__title {
   font-family: $font-heading;
-  font-size: 1.2rem;
-  letter-spacing: 0.1em;
-  color: $color-text-sub;
-  margin-bottom: $space-md;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  letter-spacing: 0.05em;
+  color: $color-text-main;
+  line-height: 1;
+  margin-bottom: 16px;
 }
 
 .lineup__subtitle {
-  font-family: $font-heading;
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  color: $color-text-sub;
 }
 
 .lineup__list {
-  display: grid;
-  gap: $space-md;
-  margin-bottom: $space-2xl;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 60px;
 }
 
 .lineup__item {
-  padding: $space-lg;
+  display: grid;
+  grid-template-columns: 60px 1fr 4px;
+  align-items: stretch;
+  padding: 40px 0;
+  border-top: 1px solid $color-line;
+  gap: 24px;
+  transition: background-color 0.4s ease;
+
+  &:last-child {
+    border-bottom: 1px solid $color-line;
+  }
+
+  &:hover {
+    background-color: $color-surface;
+
+    .lineup__itemBar {
+      background-color: $color-text-main;
+    }
+  }
+
+  @include tablet {
+    grid-template-columns: 80px 1fr 4px;
+    padding: 48px 24px;
+    gap: 40px;
+  }
+}
+
+.lineup__itemNumber {
+  font-family: $font-heading;
+  font-size: 1.8rem;
+  color: $color-line;
+  font-style: italic;
+  line-height: 1;
+  padding-top: 6px;
+  align-self: flex-start;
+
+  @include tablet {
+    font-size: 2rem;
+  }
+}
+
+.lineup__itemBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lineup__itemMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lineup__itemTag {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: $color-text-sub;
   border: 1px solid $color-line;
-  text-align: center;
+  padding: 2px 8px;
+  line-height: 1.8;
+}
+
+.lineup__itemPrice {
+  font-family: $font-heading;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  color: $color-text-sub;
+}
+
+.lineup__itemNameEn {
+  font-family: $font-heading;
+  font-size: 1.4rem;
+  font-style: italic;
+  color: $color-text-main;
+  letter-spacing: 0.05em;
+  font-weight: normal;
+
+  @include tablet {
+    font-size: 1.8rem;
+  }
 }
 
 .lineup__itemName {
-  font-family: $font-heading;
-  font-size: 1.4rem;
-  margin-bottom: $space-sm;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: $color-text-sub;
 }
 
 .lineup__itemDesc {
+  font-size: 0.95rem;
+  line-height: 2;
   color: $color-text-sub;
-  font-size: 1rem;
+  max-width: 600px;
+}
+
+.lineup__itemBar {
+  width: 3px;
+  background-color: transparent;
+  transition: background-color 0.4s ease;
+  border-radius: 2px;
+  align-self: stretch;
 }
 
 .lineup__action {
@@ -55,20 +174,26 @@
 }
 
 .lineup__button {
-  display: inline-block;
-  min-width: 240px;
-  border: 1px solid $color-text-main;
-  padding: $space-md $space-xl;
-  font-size: 1.1rem;
-  transition: opacity 0.6s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid $color-text-main;
+  padding-bottom: 8px;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  color: $color-text-main;
+  transition: gap 0.3s ease;
+
+  &:hover {
+    gap: 24px;
+  }
 }
 
-.lineup__button:hover {
-  opacity: 0.74;
-}
+.lineup__buttonArrow {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
 
-@include tablet {
-  .lineup__list {
-    grid-template-columns: repeat(3, 1fr);
+  .lineup__button:hover & {
+    transform: translateX(4px);
   }
 }

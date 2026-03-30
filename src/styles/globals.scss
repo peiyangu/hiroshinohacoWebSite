@@ -14,13 +14,22 @@ body {
 
 body {
   background-color: #fdf6ee;
-  background-image: linear-gradient(rgba(253, 246, 238, 0.9), rgba(253, 246, 238, 0.9)), url('/images/background/noise.png');
-  background-repeat: repeat;
-  background-size: 100px;
   color: #333;
   font-family: $font-body;
-  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  font-size: clamp(0.9375rem, 0.88rem + 0.3vw, 1.15rem);
   line-height: 1.75;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url('/images/background/noise.png');
+  background-repeat: repeat;
+  background-size: 100px;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 9999;
 }
 
 h1,
