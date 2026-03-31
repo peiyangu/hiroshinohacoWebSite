@@ -147,6 +147,12 @@ export function Access() {
                       <span className={styles.access__guideLabelJa}>{link.labelJa}</span>
                       <span className={styles.access__guideArrow} aria-hidden="true">→</span>
                     </a>
+                  ) : link.href.startsWith("/#") ? (
+                    <a href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${link.href}`} className={styles.access__guideLink}>
+                      <span className={styles.access__guideLabelEn}>{link.labelEn}</span>
+                      <span className={styles.access__guideLabelJa}>{link.labelJa}</span>
+                      <span className={styles.access__guideArrow} aria-hidden="true">→</span>
+                    </a>
                   ) : (
                     <Link href={link.href} className={styles.access__guideLink}>
                       <span className={styles.access__guideLabelEn}>{link.labelEn}</span>

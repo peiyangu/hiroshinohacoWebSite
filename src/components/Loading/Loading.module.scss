@@ -1,5 +1,10 @@
 @use "@/styles/variables" as *;
 
+/* 2回目以降のアクセスはローディングを即時非表示 */
+:global(html.has-loaded) .loading {
+  display: none !important;
+}
+
 .loading {
   position: fixed;
   inset: 0;

@@ -54,7 +54,11 @@ export function Header() {
             <ul className={styles.header__list}>
               {navItems.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href}>{item.label}</Link>
+                  {item.href.startsWith("/#") ? (
+                    <a href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${item.href}`}>{item.label}</a>
+                  ) : (
+                    <Link href={item.href}>{item.label}</Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -95,13 +99,23 @@ export function Header() {
                     exit={{ opacity: 0, y: 10 }}
                     transition={{ duration: 0.3, delay: i * 0.06 }}
                   >
-                    <Link
-                      href={item.href}
-                      className={styles.mobileMenu__link}
-                      onClick={close}
-                    >
-                      {item.label}
-                    </Link>
+                    {item.href.startsWith("/#") ? (
+                      <a
+                        href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${item.href}`}
+                        className={styles.mobileMenu__link}
+                        onClick={close}
+                      >
+                        {item.label}
+                      </a>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className={styles.mobileMenu__link}
+                        onClick={close}
+                      >
+                        {item.label}
+                      </Link>
+                    )}
                   </motion.li>
                 ))}
               </ul>

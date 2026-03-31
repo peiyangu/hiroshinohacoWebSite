@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useLayoutEffect, Fragment } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Loading.module.scss";
 
@@ -20,11 +20,15 @@ export function Loading() {
   const [visible, setVisible] = useState(true);
   const [cursorPos, setCursorPos] = useState<{ wi: number; ci: number } | null>(null);
 
-  useLayoutEffect(() => {
-    if (sessionStorage.getItem("hasLoaded")) {
-      setVisible(false);
-    } else {
-      sessionStorage.setItem("hasLoaded", "true");
+  useEffect(() => {
+    try {
+      if (sessionStorage.getItem("hasLoaded")) {
+        setVisible(false);
+      } else {
+        sessionStorage.setItem("hasLoaded", "true");
+      }
+    } catch {
+      // sessionStorage が利用できない環境ではロード画面を毎回表示
     }
   }, []);
 
