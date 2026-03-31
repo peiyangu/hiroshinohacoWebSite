@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import styles from "./Header.module.scss";
 
@@ -37,7 +38,7 @@ export function Header() {
     <>
       <header className={`${styles.header} ${scrolled ? styles["header--scrolled"] : ""}`}>
         <div className={styles.header__inner}>
-          <a href="/" className={styles.header__logo} onClick={close}>
+          <Link href="/" className={styles.header__logo} onClick={close}>
             <Image
               src="/images/logo/logo.png"
               alt="hirosHi.no.haco"
@@ -46,14 +47,14 @@ export function Header() {
               priority
               className={styles.header__logoImg}
             />
-          </a>
+          </Link>
 
           {/* PC ナビ */}
           <nav className={styles.header__nav}>
             <ul className={styles.header__list}>
               {navItems.map((item) => (
                 <li key={item.href}>
-                  <a href={item.href}>{item.label}</a>
+                  <Link href={item.href}>{item.label}</Link>
                 </li>
               ))}
             </ul>
@@ -94,13 +95,13 @@ export function Header() {
                     exit={{ opacity: 0, y: 10 }}
                     transition={{ duration: 0.3, delay: i * 0.06 }}
                   >
-                    <a
+                    <Link
                       href={item.href}
                       className={styles.mobileMenu__link}
                       onClick={close}
                     >
                       {item.label}
-                    </a>
+                    </Link>
                   </motion.li>
                 ))}
               </ul>

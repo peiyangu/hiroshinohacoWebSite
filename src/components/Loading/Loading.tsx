@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, Fragment } from "react";
+import { useState, useLayoutEffect, Fragment } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Loading.module.scss";
 
@@ -19,6 +19,14 @@ function getWordStartDelay(wordIndex: number): number {
 export function Loading() {
   const [visible, setVisible] = useState(true);
   const [cursorPos, setCursorPos] = useState<{ wi: number; ci: number } | null>(null);
+
+  useLayoutEffect(() => {
+    if (sessionStorage.getItem("hasLoaded")) {
+      setVisible(false);
+    } else {
+      sessionStorage.setItem("hasLoaded", "true");
+    }
+  }, []);
 
   const handleLastComplete = () => {
     setTimeout(() => setVisible(false), 1200);
