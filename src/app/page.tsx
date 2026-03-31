@@ -1,5 +1,6 @@
 import { About } from "@/components/About/About";
 import { Access } from "@/components/Access/Access";
+import { Footer } from "@/components/Footer/Footer";
 import { Header } from "@/components/Header/Header";
 import { Hero } from "@/components/Hero/Hero";
 import { Schedule } from "@/components/Schedule/Schedule";
@@ -18,6 +19,7 @@ export default function HomePage() {
         <OnlineShop />
         <Access />
       </main>
+      <Footer />
     </>
   );
 }

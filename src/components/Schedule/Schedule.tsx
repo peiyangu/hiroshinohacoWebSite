@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { FadeInSection } from "../common/FadeInSection";
+import { INSTAGRAM_URL } from "@/data/site";
 import styles from "./Schedule.module.scss";
 
 export const Schedule = () => {
@@ -18,7 +19,7 @@ export const Schedule = () => {
             <h2 className={styles.title}>Schedule</h2>
             <p className={styles.subtitle}>今月の予定</p>
             <a
-              href="https://www.instagram.com/"
+              href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.instagramLink}

@@ -1,14 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FadeInSection } from "@/components/common/FadeInSection";
+import {
+  ACCESS_HOURS,
+  BUSINESS_HOURS_NOTE,
+  INSTAGRAM_URL,
+  STORE_ADDRESS_LINES,
+} from "@/data/site";
 import styles from "./Access.module.scss";
-
-const hours = [
-  { day: "月・火", time: "定休日", closed: true },
-  { day: "水 〜 金", time: "11:00 – 18:00", closed: false },
-  { day: "水・日", time: "9:00〜（試運転中）", closed: false },
-  { day: "土", time: "11:00 – 18:00", closed: false },
-];
 
 const guideLinks = [
   {
@@ -26,11 +25,8 @@ const guideLinks = [
   {
     labelEn: "Instagram",
     labelJa: "最新情報はInstagramで",
-    href: "https://www.instagram.com/",
+    href: INSTAGRAM_URL,
     external: true,
-
-
-    
   },
 ];
 
@@ -73,8 +69,8 @@ export function Access() {
               <div className={styles.access__infoItem}>
                 <p className={styles.access__infoLabel}>Address</p>
                 <p className={styles.access__infoText}>
-                  〒818-0005<br />
-                  福岡県筑紫野市原６３３−１８
+                  {STORE_ADDRESS_LINES[0]}<br />
+                  {STORE_ADDRESS_LINES[1]}
                 </p>
               </div>
 
@@ -91,21 +87,21 @@ export function Access() {
               <div className={styles.access__infoItem}>
                 <p className={styles.access__infoLabel}>Hours</p>
                 <div className={styles.access__hoursTable}>
-                  {hours.map((h) => (
-                    <div key={h.day} className={styles.access__hoursRow}>
-                      <span className={styles.access__hoursDay}>{h.day}</span>
+                  {ACCESS_HOURS.map((hour) => (
+                    <div key={hour.day} className={styles.access__hoursRow}>
+                      <span className={styles.access__hoursDay}>{hour.day}</span>
                       <span
                         className={`${styles.access__hoursTime}${
-                          h.closed ? " " + styles["access__hoursTime--closed"] : ""
+                          hour.closed ? " " + styles["access__hoursTime--closed"] : ""
                         }`}
                       >
-                        {h.time}
+                        {hour.time}
                       </span>
                     </div>
                   ))}
                 </div>
                 <p className={styles.access__infoNote}>
-                  ※ 定休日：月曜・火曜（祝月曜は営業）
+                  {BUSINESS_HOURS_NOTE}
                 </p>
               </div>
 
@@ -122,7 +118,7 @@ export function Access() {
                 </a>
                 <a
                   className={styles.access__link}
-                  href="https://www.instagram.com/stories/highlights/18043771106203960/"
+                  href={INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

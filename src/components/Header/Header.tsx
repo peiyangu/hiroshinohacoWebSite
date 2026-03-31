@@ -16,6 +16,14 @@ const navItems = [
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // スクロール検知
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // メニューが開いているときスクロールをロック
   useEffect(() => {
@@ -27,15 +35,16 @@ export function Header() {
 
   return (
     <>
-      <header className={styles.header}>
+      <header className={`${styles.header} ${scrolled ? styles["header--scrolled"] : ""}`}>
         <div className={styles.header__inner}>
           <a href="/" className={styles.header__logo} onClick={close}>
             <Image
               src="/images/logo/logo.png"
               alt="hirosHi.no.haco"
-              width={60}
-              height={60}
+              width={64}
+              height={64}
               priority
+              className={styles.header__logoImg}
             />
           </a>
 

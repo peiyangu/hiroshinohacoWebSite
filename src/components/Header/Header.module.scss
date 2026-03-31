@@ -8,6 +8,14 @@
   width: 100%;
   z-index: 200;
   padding: $space-md $space-md;
+  transition: background-color 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+}
+
+.header--scrolled {
+  background-color: rgba($color-ivory, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 rgba($color-text-main, 0.06);
 }
 
 .header__inner {
@@ -21,11 +29,12 @@
   align-items: center;
   z-index: 210;
   position: relative;
+}
 
-  img {
-    width: 48px;
-    height: auto;
-  }
+.header__logoImg {
+  width: 48px !important;
+  height: 48px !important;
+  object-fit: contain;
 }
 
 // ───── PC ナビ ─────
@@ -145,8 +154,9 @@
     padding: $space-xl $space-lg;
   }
 
-  .header__logo img {
-    width: 60px;
+  .header__logoImg {
+    width: 60px !important;
+    height: 60px !important;
   }
 
   .header__nav {

@@ -16,6 +16,12 @@ export const OnlineShop = () => {
               height={800}
               className={styles.image}
             />
+            <div className={styles.imageOverlay} aria-hidden="true">
+              <span className={styles.overlayLabel}>— ONLINE SHOP</span>
+              <p className={styles.overlayTitle}>
+                Online<br />Shop
+              </p>
+            </div>
           </div>
           {/* 右: テキスト・ボタン */}
           <div className={styles.textSide}>

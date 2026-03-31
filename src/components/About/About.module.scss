@@ -3,7 +3,7 @@
 
 .about {
   position: relative;
-  padding: $space-2xl $space-md;
+  padding: $space-lg $space-md;
   background-color: $color-ivory;
   overflow: hidden;
 
@@ -58,6 +58,7 @@
   margin: 0 auto;
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  position: relative;
 
   @include tablet {
     width: 45%;
@@ -68,9 +69,13 @@
 .about__image {
   width: 100%;
   height: auto;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   display: block;
+
+  @include tablet {
+    aspect-ratio: 3 / 4;
+  }
 }
 
 .about__textContainer {
@@ -86,8 +91,12 @@
 }
 
 .about__header {
-  display: flex;
-  flex-direction: column;
+  display: none;
+
+  @include tablet {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .about__title {
@@ -140,4 +149,40 @@
   line-height: 2;
   letter-spacing: 0.05em;
   color: $color-text-sub;
+}
+
+// ── モバイル用 画像オーバーレイ ──
+.about__imageOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: $space-md;
+  background: linear-gradient(
+    to top,
+    rgba($color-text-main, 0.72) 0%,
+    rgba($color-text-main, 0.28) 55%,
+    transparent 100%
+  );
+
+  @include tablet {
+    display: none;
+  }
+}
+
+.about__overlayTitle {
+  font-family: $font-heading;
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  color: rgba($color-ivory, 0.7);
+  margin-bottom: 6px;
+}
+
+.about__overlaySubtitle {
+  font-family: $font-heading;
+  font-size: clamp(1.3rem, 5vw, 1.8rem);
+  line-height: 1.6;
+  letter-spacing: 0.08em;
+  color: $color-ivory;
 }

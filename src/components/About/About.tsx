@@ -17,6 +17,13 @@ export function About() {
               sizes="(min-width: 768px) 50vw, 100vw"
               className={styles.about__image}
             />
+            <div className={styles.about__imageOverlay} aria-hidden="true">
+              <p className={styles.about__overlayTitle}>ABOUT</p>
+              <p className={styles.about__overlaySubtitle}>
+                慌ただしい毎日に、<br />
+                やさしい余白を。
+              </p>
+            </div>
           </div>
           <div className={styles.about__textContainer}>
             <div className={styles.about__header}>

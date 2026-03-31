@@ -12,6 +12,7 @@ export default function MenuPage() {
           <p className={styles.subtitle}>店舗メニュー詳細</p>
           
           <div className={styles.section}>
+            <span className={styles.sectionLabel}>— Coffee</span>
             <h2 className={styles.sectionTitle}>Coffee</h2>
             <ul className={styles.list}>
               <li className={styles.item}>
@@ -45,6 +46,7 @@ export default function MenuPage() {
           </div>
 
           <div className={styles.section}>
+            <span className={styles.sectionLabel}>— Others</span>
             <h2 className={styles.sectionTitle}>Others</h2>
             <ul className={styles.list}>
               <li className={styles.item}>

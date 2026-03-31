@@ -2,12 +2,12 @@
 @use "@/styles/variables" as *;
 
 .main {
-  padding: 120px 20px 80px;
+  padding: 120px 20px 100px;
   background-color: $color-ivory;
   min-height: 100vh;
 
   @include tablet {
-    padding: 160px 40px 120px;
+    padding: 160px 40px 140px;
   }
 }
 
@@ -18,36 +18,44 @@
 
 .title {
   font-family: $font-heading;
-  font-size: 2.5rem;
+  font-size: clamp(2.8rem, 6vw, 4rem);
   color: $color-text-main;
   margin-bottom: 8px;
   text-align: center;
   letter-spacing: 0.05em;
-
-  @include tablet {
-    font-size: 3rem;
-  }
+  line-height: 1;
 }
 
 .subtitle {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: $color-text-sub;
-  margin-bottom: 60px;
+  margin-bottom: $space-3xl;
   text-align: center;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.2em;
 }
 
 .section {
-  margin-bottom: 60px;
+  margin-bottom: $space-3xl;
+}
+
+.sectionLabel {
+  font-size: 0.78rem;
+  letter-spacing: 0.35em;
+  color: $color-text-sub;
+  display: block;
+  margin-bottom: $space-sm;
+  text-transform: uppercase;
 }
 
 .sectionTitle {
   font-family: $font-heading;
-  font-size: 1.8rem;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
   color: $color-text-main;
-  margin-bottom: 32px;
-  border-bottom: 1px solid rgba($color-text-main, 0.1);
-  padding-bottom: 12px;
+  margin-bottom: $space-lg;
+  padding-bottom: $space-sm;
+  border-bottom: 1px solid $color-line;
+  letter-spacing: 0.05em;
+  line-height: 1;
 }
 
 .list {
@@ -57,10 +65,16 @@
 }
 
 .item {
-  margin-bottom: 32px;
+  padding: $space-md 0;
+  border-bottom: 1px solid rgba($color-line, 0.6);
+  transition: padding-left 0.3s ease;
 
   &:last-child {
-    margin-bottom: 0;
+    border-bottom: none;
+  }
+
+  &:hover {
+    padding-left: $space-xs;
   }
 }
 
@@ -68,22 +82,26 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
+  gap: $space-sm;
 }
 
 .name {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: $color-text-main;
-  font-weight: bold;
+  letter-spacing: 0.05em;
 }
 
 .price {
-  font-size: 1.1rem;
+  font-family: $font-heading;
+  font-size: 1rem;
   color: $color-text-sub;
+  white-space: nowrap;
 }
 
 .description {
-  font-size: 0.95rem;
-  color: $color-text-main;
-  line-height: 1.6;
+  font-size: 0.88rem;
+  color: $color-text-sub;
+  line-height: 1.7;
+  letter-spacing: 0.04em;
 }
