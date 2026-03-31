@@ -73,7 +73,7 @@
 
 .hero__logo {
   font-family: $font-heading;
-  font-size: clamp(2.2rem, 9vw, 4.5rem);
+  font-size: clamp(2.2rem, 5vw, 3rem);
   letter-spacing: 0.06em;
   line-height: 1.1;
   color: $color-text-main;
@@ -87,7 +87,7 @@
 }
 
 .hero__lead {
-  font-size: clamp(1rem, 4vw, 1.3rem);
+  font-size: clamp(1rem, 2vw, 1.1rem);
   line-height: 2;
   color: $color-text-main;
   letter-spacing: 0.08em;

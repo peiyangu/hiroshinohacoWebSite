@@ -1,11 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const Loading = dynamic(
-  () => import("./Loading").then((mod) => mod.Loading),
-  { ssr: false }
-);
+import { Loading } from "./Loading";
 
 export function LoadingClient() {
   return <Loading />;
