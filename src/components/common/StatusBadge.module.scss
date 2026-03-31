@@ -34,3 +34,8 @@
     height: 8px;
   }
 }
+
+.dot__closed {
+  background-color: $color-text-sub;
+  box-shadow: 0 0 0 3px rgba($color-text-sub, 0.2);
+}

@@ -12,7 +12,16 @@ export function StatusBadge() {
     setStatus(getTodayStatus());
   }, []);
 
-  if (!status || !status.isOpen) return null;
+  if (!status) return null;
+
+  if (!status.isOpen) {
+    return (
+      <div className={styles.badge}>
+        <span className={`${styles.dot} ${styles.dot__closed}`} aria-hidden="true" />
+        <span>休業日</span>
+      </div>
+    );
+  }
 
   let label = "本日営業中";
   if (status.isEvent) {
@@ -20,8 +29,9 @@ export function StatusBadge() {
     if (status.eventName) parts.push(status.eventName);
     if (status.hours) parts.push(status.hours);
     label = parts.join(" — ");
-  } else if (status.hours) {
-    label += `  ${status.hours}`;
+  } else {
+    if (status.hours) label += `  ${status.hours}`;
+    if (status.note) label += `  ${status.note}`;
   }
 
   return (

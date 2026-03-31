@@ -8,6 +8,9 @@
  * 【通常営業の上書き】
  *   "2026-03-20": { isOpen: true, hours: "11:00-18:00" },
  *
+ * 【メモ付き営業】
+ *   "2026-04-05": { isOpen: true, note: "パン販売日！" },
+ *
  * 【イベント出店】
  *   "2026-03-08": { isOpen: true, hours: "10:00-16:00", isEvent: true, eventName: "筑紫野マルシェ" },
  *
@@ -22,6 +25,7 @@ export type DayStatus = {
   isEvent?: boolean;
   eventName?: string;
   eventLocation?: string;
+  note?: string;
 };
 
 const defaultStatusByDay: Record<number, DayStatus> = {
