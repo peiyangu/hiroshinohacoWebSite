@@ -5,6 +5,5 @@ export default function imageLoader({
   width: number;
   quality?: number;
 }): string {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-  return `${basePath}${src}`;
+  return `/hiroshinohacoWebSite${src}`;
 }
