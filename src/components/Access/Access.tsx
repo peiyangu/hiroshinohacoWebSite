@@ -54,7 +54,7 @@ export function Access() {
             {/* 左: 店内写真 */}
             <div className={styles.access__imageWrapper}>
               <Image
-                src="/images/hero/store.jpg"
+                src="/images/access/storeImage.png"
                 alt="ヒロシノハコ 店舗"
                 width={600}
                 height={800}

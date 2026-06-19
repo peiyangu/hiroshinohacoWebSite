@@ -10,7 +10,7 @@ export const OnlineShop = () => {
           {/* 左: 写真枚（TODO: 商品パッケージ・豆袋の写真に差し替える） */}
           <div className={styles.imageWrapper}>
             <Image
-              src="/images/coffee/neldrip.jpg"
+              src="/images/coffee/coffeebeans.png"
               alt="ネルドリップで淡れたコーヒー"
               width={640}
               height={800}

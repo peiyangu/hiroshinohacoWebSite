@@ -1,24 +1,62 @@
 import { FadeInSection } from "../common/FadeInSection";
 import styles from "./Menu.module.scss";
 
-const menuCategories = [
+type MenuItem = {
+  name: string;
+  price?: string;
+  note: string;
+};
+
+type MenuCategory = {
+  id: string;
+  titleEn: string;
+  titleJa: string;
+  items: MenuItem[];
+};
+
+const menuCategories: MenuCategory[] = [
   {
     id: "coffee",
     titleEn: "Coffee",
     titleJa: "コーヒー",
     items: [
-      { name: "ヒロシノハコ ブレンド", price: "¥500", note: "果実味を感じる看板ブレンド" },
-      { name: "シングルオリジン", price: "¥600〜", note: "季節ごとに変わる産地の個性" },
-      { name: "カフェラテ", price: "¥550", note: "エスプレッソとミルクの調和" },
+      { name: "ネルドリップコーヒー", note: "苦くない/澄んだ一杯。豆を選べます。" },
     ],
   },
   {
-    id: "others",
-    titleEn: "Others",
-    titleJa: "その他",
+    id: "milk",
+    titleEn: "Milk",
+    titleJa: "ミルク",
     items: [
-      { name: "自家製レモネード", price: "¥500", note: "国産レモンの爽やかな一杯" },
-      { name: "季節の焼き菓子", price: "¥350〜", note: "コーヒーに合わせた日替わり" },
+      { name: "カフェラテ", note: "手しぼりエスプレッソ。優しいコク" },
+      { name: "オーツミルクラテ", note: "オーツ麦の自然な甘み。軽やかに" },
+    ],
+  },
+  {
+    id: "tonic",
+    titleEn: "Tonic",
+    titleJa: "トニック",
+    items: [
+      { name: "エスプレッソトニック", note: "トニックの爽快感に果実味の余韻" },
+      { name: "はちみつレモントニック", note: "自家製はちみつレモンで、シュワっと" },
+    ],
+  },
+  {
+    id: "specials",
+    titleEn: "Specials",
+    titleJa: "スペシャル",
+    items: [
+      { name: "エスプレッソバナナシェイク", note: "濃厚バナナ1.5本×エスプレッソ" },
+    ],
+  },
+  {
+    id: "non-coffee",
+    titleEn: "Non Coffee",
+    titleJa: "ノンコーヒー",
+    items: [
+      { name: "ホットはちみつレモン", note: "あったかい、甘酸っぱい一息" },
+      { name: "ミルクココア", note: "ほっと甘い時間。" },
+      { name: "キッズコーヒー", note: "同じ量でご用意します。" },
     ],
   },
 ];
@@ -44,8 +82,12 @@ export const Menu = () => {
                     <li key={item.name} className={styles.item}>
                       <div className={styles.itemMain}>
                         <span className={styles.name}>{item.name}</span>
-                        <span className={styles.dots}></span>
-                        <span className={styles.price}>{item.price}</span>
+                        {item.price && (
+                          <>
+                            <span className={styles.dots}></span>
+                            <span className={styles.price}>{item.price}</span>
+                          </>
+                        )}
                       </div>
                       <p className={styles.note}>{item.note}</p>
                     </li>

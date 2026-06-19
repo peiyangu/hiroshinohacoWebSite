@@ -4,8 +4,8 @@ import { LineUp } from "@/components/LineUp/LineUp";
 import styles from "./page.module.scss";
 
 export const metadata = {
-  title: "Line Up | ヒロシノハコ",
-  description: "ヒロシノハコの商品ラインナップをご紹介します。",
+  title: "Coffee Beans | ヒロシノハコ",
+  description: "ヒロシノハコのコーヒー豆ラインナップ。自家焙煎のブレンド・シングルオリジンなど。",
 };
 
 export default function LineupPage() {
@@ -14,9 +14,9 @@ export default function LineupPage() {
       <Header />
       <main className={styles.main}>
         <div className={styles.hero}>
-          <span className={styles.hero__label}>— LINE UP</span>
-          <h1 className={styles.hero__title}>LINE UP</h1>
-          <p className={styles.hero__subtitle}>商品ラインナップ</p>
+          <span className={styles.hero__label}>— COFFEE BEANS</span>
+          <h1 className={styles.hero__title}>COFFEE BEANS</h1>
+          <p className={styles.hero__subtitle}>コーヒー豆 ラインナップ</p>
         </div>
         <LineUp hideHeader />
       </main>

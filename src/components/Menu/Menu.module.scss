@@ -53,6 +53,10 @@
     grid-template-columns: 1fr 1fr;
     gap: $space-2xl;
   }
+
+  @include desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .categoryHeader {

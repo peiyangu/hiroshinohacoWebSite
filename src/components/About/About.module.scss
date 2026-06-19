@@ -69,13 +69,9 @@
 .about__image {
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
   display: block;
-
-  @include tablet {
-    aspect-ratio: 3 / 4;
-  }
 }
 
 .about__textContainer {

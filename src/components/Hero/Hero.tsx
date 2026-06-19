@@ -8,7 +8,7 @@ export function Hero() {
     <section className={styles.hero}>
       <div className={styles.hero__bgImage}>
         <Image
-          src="/images/hero/store.jpg"
+          src="/images/hero/DSC_0938.jpg"
           alt="hirosHi.no.haco 店舗風景"
           fill
           priority

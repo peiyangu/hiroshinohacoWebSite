@@ -2,106 +2,196 @@
 @use "@/styles/variables" as *;
 
 .main {
-  padding: 120px 20px 100px;
   background-color: $color-ivory;
   min-height: 100vh;
+  padding-top: 72px;
 
   @include tablet {
-    padding: 160px 40px 140px;
+    padding-top: 100px;
   }
 }
 
-.inner {
-  max-width: 800px;
-  margin: 0 auto;
+/* ---- Page Header ---- */
+.pageHeader {
+  padding: $space-xl $space-md $space-lg;
+
+  @include tablet {
+    padding: $space-3xl $space-xl $space-xl;
+  }
 }
 
-.title {
-  font-family: $font-heading;
-  font-size: clamp(2.8rem, 6vw, 4rem);
-  color: $color-text-main;
-  margin-bottom: 8px;
-  text-align: center;
-  letter-spacing: 0.05em;
-  line-height: 1;
+.pageHeader__inner {
+  @include section-container;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $space-xs;
+  margin-bottom: $space-lg;
+
+  @include tablet {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: $space-lg;
+    margin-bottom: $space-xl;
+  }
 }
 
-.subtitle {
-  font-size: 0.9rem;
+.pageHeader__label {
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
   color: $color-text-sub;
-  margin-bottom: $space-3xl;
-  text-align: center;
-  letter-spacing: 0.2em;
+  padding-bottom: 0.25rem;
+}
+
+.pageHeader__title {
+  font-family: $font-heading;
+  font-size: clamp(3rem, 14vw, 7rem);
+  font-style: italic;
+  font-weight: 500;
+  color: $color-text-main;
+  letter-spacing: -0.01em;
+  line-height: 0.9;
+}
+
+.pageHeader__rule {
+  display: block;
+  max-width: 960px;
+  margin: 0 auto;
+  height: 1px;
+  background-color: $color-line;
+  border: none;
+}
+
+/* ---- Sections ---- */
+.sections {
+  @include section-container;
+  padding-top: $space-2xl;
+  padding-bottom: $space-3xl;
 }
 
 .section {
-  margin-bottom: $space-3xl;
-}
-
-.sectionLabel {
-  font-size: 0.78rem;
-  letter-spacing: 0.35em;
-  color: $color-text-sub;
-  display: block;
-  margin-bottom: $space-sm;
-  text-transform: uppercase;
-}
-
-.sectionTitle {
-  font-family: $font-heading;
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
-  color: $color-text-main;
-  margin-bottom: $space-lg;
-  padding-bottom: $space-sm;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-md;
+  padding: $space-lg 0;
   border-bottom: 1px solid $color-line;
-  letter-spacing: 0.05em;
-  line-height: 1;
-}
 
-.list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+  @include tablet {
+    grid-template-columns: 220px 1fr;
+    gap: $space-xl;
+    align-items: start;
+    padding: $space-2xl 0;
+  }
 
-.item {
-  padding: $space-md 0;
-  border-bottom: 1px solid rgba($color-line, 0.6);
-  transition: padding-left 0.3s ease;
+  &:first-child {
+    padding-top: 0;
+  }
 
   &:last-child {
     border-bottom: none;
   }
-
-  &:hover {
-    padding-left: $space-xs;
-  }
 }
 
-.itemHeader {
+.section__head {
   display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 6px;
+  align-items: flex-start;
   gap: $space-sm;
 }
 
-.name {
-  font-size: 1.1rem;
-  color: $color-text-main;
-  letter-spacing: 0.05em;
-}
-
-.price {
+.section__num {
   font-family: $font-heading;
-  font-size: 1rem;
-  color: $color-text-sub;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: $color-line;
+  letter-spacing: 0.1em;
+  padding-top: 0.3rem;
+  line-height: 1;
   white-space: nowrap;
 }
 
-.description {
-  font-size: 0.88rem;
+.section__titles {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.section__en {
+  font-family: $font-heading;
+  font-size: clamp(1.4rem, 5vw, 2.2rem);
+  font-style: italic;
+  font-weight: 500;
+  color: $color-text-main;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.section__ja {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
   color: $color-text-sub;
-  line-height: 1.7;
-  letter-spacing: 0.04em;
+}
+
+/* ---- Items ---- */
+.section__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.item {
+  padding: $space-sm 0;
+  border-bottom: 1px solid rgba($color-line, 0.5);
+  transition: padding-left 0.3s ease;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  @include tablet {
+    padding: $space-md 0;
+
+    &:hover {
+      padding-left: $space-xs;
+    }
+  }
+}
+
+.item__name {
+  display: block;
+  font-size: 1.05rem;
+  color: $color-text-main;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+
+.item__desc {
+  font-size: 0.85rem;
+  color: $color-text-sub;
+  letter-spacing: 0.05em;
+  line-height: 1.8;
+}
+
+/* ---- Note ---- */
+.note {
+  @include section-container;
+  padding-bottom: $space-2xl;
+  font-size: 0.78rem;
+  color: $color-text-sub;
+  letter-spacing: 0.08em;
+  line-height: 2;
+  border-top: 1px solid $color-line;
+  padding-top: $space-lg;
+
+  @include tablet {
+    padding-bottom: $space-3xl;
+  }
 }

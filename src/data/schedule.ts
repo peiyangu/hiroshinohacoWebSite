@@ -47,6 +47,9 @@ const schedule: Record<string, DayStatus> = {
   "2026-02-26": { isOpen: true, hours: "9:00〜試運転" },
   "2026-02-27": { isOpen: true, hours: "11:00-18:00" },
   "2026-02-28": { isOpen: true, hours: "9:00〜試運転" },
+
+  // ── 2026年3月 ──────────────────────────────────
+  "2026-03-31": { isOpen: true, hours: "10:00-16:00", isEvent: true, eventName: "まちつどin宗像", eventLocation: "宗像ユリックス" },
 };
 
 function formatDateKey(date: Date): string {

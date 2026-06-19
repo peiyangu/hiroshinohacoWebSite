@@ -2,13 +2,13 @@
 @use "@/styles/mixins" as *;
 
 .lineup {
-  padding: 100px 20px;
+  padding: 80px 20px;
   background-color: $color-ivory;
   position: relative;
   overflow: hidden;
 
   @include tablet {
-    padding: 140px 40px;
+    padding: 120px 40px;
   }
 
   &--page {
@@ -40,7 +40,7 @@
 
 .lineup__header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 56px;
 }
 
 .lineup__title {
@@ -58,117 +58,199 @@
   color: $color-text-sub;
 }
 
-.lineup__list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  margin-bottom: 60px;
+// ─── カードグリッド ───
+.lineup__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-bottom: 64px;
+
+  @include tablet {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .lineup__item {
-  display: grid;
-  grid-template-columns: 60px 1fr 4px;
-  align-items: stretch;
-  padding: 40px 0;
-  border-top: 1px solid $color-line;
-  gap: 24px;
-  transition: background-color 0.4s ease;
+  // wrapper
+}
 
-  &:last-child {
-    border-bottom: 1px solid $color-line;
-  }
+// ─── カード ───
+.lineup__card {
+  display: block;
+  background-color: $color-surface;
+  overflow: hidden;
+  transition: opacity 0.3s ease;
+  height: 100%;
 
   &:hover {
-    background-color: $color-surface;
+    opacity: 0.88;
 
-    .lineup__itemBar {
-      background-color: $color-text-main;
+    .lineup__cardPhotoImg {
+      transform: scale(1.04);
+    }
+
+    .lineup__cardLink {
+      letter-spacing: 0.18em;
     }
   }
 
-  @include tablet {
-    grid-template-columns: 80px 1fr 4px;
-    padding: 48px 24px;
-    gap: 40px;
+  &--soldout {
+    cursor: default;
   }
 }
 
-.lineup__itemNumber {
-  font-family: $font-heading;
-  font-size: 1.8rem;
-  color: $color-line;
-  font-style: italic;
-  line-height: 1;
-  padding-top: 6px;
-  align-self: flex-start;
-
-  @include tablet {
-    font-size: 2rem;
-  }
+// ─── 写真エリア ───
+.lineup__cardPhoto {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background-color: $color-line;
 }
 
-.lineup__itemBody {
+.lineup__cardPhotoImg {
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.8s ease;
+}
+
+.lineup__cardPhotoPlaceholder {
+  position: absolute;
+  inset: 0;
+  background-color: $color-line;
+}
+
+// タグ + SOLD OUT バッジ（写真の上）
+.lineup__cardOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 12px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
   gap: 8px;
 }
 
-.lineup__itemMeta {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
 .lineup__itemTag {
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  color: $color-text-sub;
-  border: 1px solid $color-line;
-  padding: 2px 8px;
+  font-size: 0.55rem;
+  letter-spacing: 0.14em;
+  color: $color-ivory;
+  background-color: rgba($color-text-main, 0.65);
+  padding: 3px 7px;
   line-height: 1.8;
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+
+  @include tablet {
+    font-size: 0.6rem;
+  }
 }
 
-.lineup__itemPrice {
+.lineup__soldOut {
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  color: $color-ivory;
+  background-color: rgba($color-text-sub, 0.72);
+  padding: 3px 7px;
+  line-height: 1.8;
+  backdrop-filter: blur(4px);
+
+  @include tablet {
+    font-size: 0.6rem;
+  }
+}
+
+// ─── テキストエリア ───
+.lineup__cardBody {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  @include tablet {
+    padding: 20px 24px 24px;
+    gap: 8px;
+  }
+}
+
+.lineup__cardNumber {
   font-family: $font-heading;
-  font-size: 0.85rem;
-  letter-spacing: 0.05em;
-  color: $color-text-sub;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: rgba($color-text-sub, 0.5);
+  font-style: italic;
+  display: block;
 }
 
 .lineup__itemNameEn {
   font-family: $font-heading;
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   font-style: italic;
   color: $color-text-main;
-  letter-spacing: 0.05em;
   font-weight: normal;
+  line-height: 1.2;
 
   @include tablet {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
   }
 }
 
 .lineup__itemName {
-  font-size: 0.8rem;
-  letter-spacing: 0.15em;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
   color: $color-text-sub;
+  line-height: 1.6;
+  // 長い名前を2行でクリップ
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .lineup__itemDesc {
-  font-size: 0.95rem;
-  line-height: 2;
+  font-size: 0.82rem;
+  line-height: 1.85;
   color: $color-text-sub;
-  max-width: 600px;
+  display: none;
+
+  @include tablet {
+    display: block;
+    margin-top: 4px;
+  }
 }
 
-.lineup__itemBar {
-  width: 3px;
-  background-color: transparent;
-  transition: background-color 0.4s ease;
-  border-radius: 2px;
-  align-self: stretch;
+.lineup__cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid $color-line;
+  margin-top: 8px;
+  flex-wrap: wrap;
+  gap: 4px;
 }
 
+.lineup__itemPrice {
+  font-family: $font-heading;
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  color: $color-text-sub;
+
+  @include tablet {
+    font-size: 0.85rem;
+  }
+}
+
+.lineup__cardLink {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: $color-text-sub;
+  transition: letter-spacing 0.3s ease;
+}
+
+// ─── アクション ───
 .lineup__action {
   text-align: center;
 }
