@@ -7,14 +7,34 @@ export const metadata = {
   description: "ヒロシノハコの店舗メニュー。ネルドリップコーヒーからエスプレッソドリンクまで。",
 };
 
-const menuSections = [
+type MenuItem = {
+  name: string;
+  description: string;
+  price: string;
+  note?: string;
+};
+
+type MenuSection = {
+  id: string;
+  num: string;
+  labelEn: string;
+  labelJa: string;
+  items: MenuItem[];
+};
+
+const menuSections: MenuSection[] = [
   {
     id: "coffee",
     num: "01",
     labelEn: "Coffee",
     labelJa: "コーヒー",
     items: [
-      { name: "ネルドリップコーヒー", description: "苦くない / 澄んだ一杯。豆を選べます。" },
+      {
+        name: "ネルドリップコーヒー",
+        description: "苦くない / 澄んだ一杯。豆を選べます。",
+        price: "HOT ¥550 / ICE ¥600",
+        note: "※豆表からお選びください。",
+      },
     ],
   },
   {
@@ -23,18 +43,37 @@ const menuSections = [
     labelEn: "Milk",
     labelJa: "ミルク",
     items: [
-      { name: "カフェラテ", description: "手しぼりエスプレッソ。優しいコク" },
-      { name: "オーツミルクラテ", description: "オーツ麦の自然な甘み。軽やかに" },
+      {
+        name: "カフェラテ",
+        description: "手しぼりエスプレッソ。やさしいコク。",
+        price: "HOT / ICE ¥650",
+      },
+      {
+        name: "オーツミルクラテ",
+        description: "オーツ麦の自然な甘み。軽やかに。",
+        price: "HOT / ICE ¥700",
+        note: "※カフェインレスにもできます。",
+      },
     ],
   },
   {
     id: "tonic",
     num: "03",
     labelEn: "Tonic",
-    labelJa: "トニック",
+    labelJa: "トニック（炭酸・ノンアル）",
     items: [
-      { name: "エスプレッソトニック", description: "トニックの爽快感に果実味の余韻" },
-      { name: "はちみつレモントニック", description: "自家製はちみつレモンで、シュワっと" },
+      {
+        name: "エスプレッソトニック",
+        description: "トニックの爽快感に、果実味の余韻。",
+        price: "¥650",
+        note: "※カフェインレスにもできます。",
+      },
+      {
+        name: "はちみつレモントニック",
+        description: "自家製はちみつレモンで、シュワっと。",
+        price: "¥650",
+        note: "※アルコールは入っていません。",
+      },
     ],
   },
   {
@@ -43,7 +82,12 @@ const menuSections = [
     labelEn: "Specials",
     labelJa: "スペシャル",
     items: [
-      { name: "エスプレッソバナナシェイク", description: "濃厚バナナ 1.5本 × エスプレッソ" },
+      {
+        name: "エスプレッソバナナシェイク",
+        description: "濃厚バナナ 1.5本 × エスプレッソ",
+        price: "¥850",
+        note: "※カフェインレスにもできます。",
+      },
     ],
   },
   {
@@ -52,9 +96,21 @@ const menuSections = [
     labelEn: "Non Coffee",
     labelJa: "ノンコーヒー",
     items: [
-      { name: "ホットはちみつレモン", description: "あったかい、甘酸っぱい一息" },
-      { name: "ミルクココア", description: "ほっと甘い時間。" },
-      { name: "キッズコーヒー", description: "同じ量でご用意します。" },
+      {
+        name: "ホットはちみつレモン",
+        description: "あたたかい、甘酸っぱい一息。",
+        price: "¥600",
+      },
+      {
+        name: "ミルクココア",
+        description: "ホッと甘い時間。",
+        price: "HOT / ICE ¥450",
+      },
+      {
+        name: "キッズコア（中学生まで）",
+        description: "同じ量でご用意します。",
+        price: "HOT / ICE ¥250",
+      },
     ],
   },
 ];
@@ -88,8 +144,14 @@ export default function MenuPage() {
               <ul className={styles.section__list}>
                 {section.items.map((item) => (
                   <li key={item.name} className={styles.item}>
-                    <span className={styles.item__name}>{item.name}</span>
+                    <div className={styles.item__top}>
+                      <span className={styles.item__name}>{item.name}</span>
+                      <span className={styles.item__price}>{item.price}</span>
+                    </div>
                     <p className={styles.item__desc}>{item.description}</p>
+                    {item.note && (
+                      <p className={styles.item__note}>{item.note}</p>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -98,7 +160,8 @@ export default function MenuPage() {
         </div>
 
         <p className={styles.note}>
-          価格は店頭にてご確認ください。メニューは季節により変更になる場合がございます。
+          自家焙煎豆・ドリップバッグも販売しています（レジショーケース）<br />
+          コーヒーに合う「おやつ」もどうぞ。ご注文はレジにて承ります。
         </p>
       </main>
       <Footer />

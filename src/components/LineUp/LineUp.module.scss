@@ -61,9 +61,13 @@
 // ─── カードグリッド ───
 .lineup__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 2px;
   margin-bottom: 64px;
+
+  @include tablet {
+    grid-template-columns: 1fr 1fr;
+  }
 
   @include tablet {
     grid-template-columns: repeat(3, 1fr);

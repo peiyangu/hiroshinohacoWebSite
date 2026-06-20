@@ -1,26 +1,6 @@
+import { newsData } from "@/data/news";
 import { FadeInSection } from "../common/FadeInSection";
 import styles from "./News.module.scss";
-
-const newsData = [
-  {
-    id: 1,
-    date: "2026.02.20",
-    category: "NEW",
-    title: "春の新作ブレンド「Spring Breeze」販売開始のお知らせ",
-  },
-  {
-    id: 2,
-    date: "2026.02.10",
-    category: "INFO",
-    title: "3月の営業日と臨時休業について",
-  },
-  {
-    id: 3,
-    date: "2026.01.25",
-    category: "SHOP",
-    title: "オンラインショップでのギフトラッピング対応開始",
-  },
-];
 
 export const News = () => {
   return (
@@ -49,6 +29,17 @@ export const News = () => {
               </li>
             ))}
           </ul>
+          <div className={styles.footer}>
+            <a
+              href="https://www.instagram.com/hiroshi.no.haco_/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.instagramLink}
+            >
+              最新情報はInstagramで確認する
+              <span aria-hidden="true"> →</span>
+            </a>
+          </div>
         </div>
       </FadeInSection>
     </section>

@@ -6,6 +6,7 @@ import { Hero } from "@/components/Hero/Hero";
 import { Schedule } from "@/components/Schedule/Schedule";
 import { OnlineShop } from "@/components/OnlineShop/OnlineShop";
 import { News } from "@/components/News/News";
+import { LineUpPreview } from "@/components/LineUpPreview/LineUpPreview";
 
 export default function HomePage() {
   return (
@@ -15,6 +16,7 @@ export default function HomePage() {
         <Hero />
         <News />
         <About />
+        <LineUpPreview />
         <Schedule />
         <OnlineShop />
         <Access />

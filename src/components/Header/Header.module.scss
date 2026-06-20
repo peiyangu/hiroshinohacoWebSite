@@ -130,7 +130,7 @@
     left: 0;
     width: 0;
     height: 1px;
-    background-color: $color-text-sub;
+    background-color: $color-accent;
     transition: width 0.3s ease;
   }
 
@@ -145,7 +145,7 @@
   font-style: italic;
   font-size: 0.85rem;
   letter-spacing: 0.2em;
-  color: $color-text-sub;
+  color: $color-accent;
 }
 
 // ───── タブレット以上 ─────

@@ -6,7 +6,7 @@
  * このファイルに "YYYY-MM-DD" 形式で登録してください。
  *
  * 【通常営業の上書き】
- *   "2026-03-20": { isOpen: true, hours: "11:00-18:00" },
+ *   "2026-03-20": { isOpen: true, hours: "12:00-19:00" },
  *
  * 【メモ付き営業】
  *   "2026-04-05": { isOpen: true, note: "パン販売日！" },
@@ -29,27 +29,25 @@ export type DayStatus = {
 };
 
 const defaultStatusByDay: Record<number, DayStatus> = {
-  0: { isOpen: true, hours: "11:00-18:00" },
-  1: { isOpen: false },
-  2: { isOpen: false },
-  3: { isOpen: true, hours: "11:00-18:00" },
-  4: { isOpen: true, hours: "9:00〜試運転" },
-  5: { isOpen: true, hours: "11:00-18:00" },
-  6: { isOpen: true, hours: "9:00〜試運転" },
+  0: { isOpen: true,  hours: "12:00-19:00" }, // 日
+  1: { isOpen: false },                         // 月
+  2: { isOpen: false },                         // 火
+  3: { isOpen: true,  hours: "12:00-19:00" }, // 水
+  4: { isOpen: true,  hours: "12:00-19:00" }, // 木
+  5: { isOpen: true,  hours: "12:00-19:00" }, // 金
+  6: { isOpen: true,  hours: "12:00-19:00" }, // 土
 };
 
 const schedule: Record<string, DayStatus> = {
-  // 祝日の月曜営業やイベント出店など、例外だけを追加してください。
-  // ── 2026年2月 ──────────────────────────────────
-  "2026-02-23": { isOpen: true, hours: "11:00-18:00" },
-  "2026-02-24": { isOpen: false },
-  "2026-02-25": { isOpen: false },
-  "2026-02-26": { isOpen: true, hours: "9:00〜試運転" },
-  "2026-02-27": { isOpen: true, hours: "11:00-18:00" },
-  "2026-02-28": { isOpen: true, hours: "9:00〜試運転" },
-
-  // ── 2026年3月 ──────────────────────────────────
-  "2026-03-31": { isOpen: true, hours: "10:00-16:00", isEvent: true, eventName: "まちつどin宗像", eventLocation: "宗像ユリックス" },
+  // ── 2026年6月 ──────────────────────────────────
+  "2026-06-03": { isOpen: true,  hours: "12:00-19:00", note: "パン販売" },
+  "2026-06-12": { isOpen: true,  hours: "12:00-19:00", note: "パン販売" },
+  "2026-06-13": { isOpen: true,  hours: "12:00-19:00", note: "パン販売" },
+  "2026-06-14": { isOpen: false },
+  "2026-06-19": { isOpen: true,  hours: "12:00-16:00"},
+  "2026-06-25": { isOpen: true,  hours: "09:00-17:00"},
+  "2026-06-27": { isOpen: true,  hours: "12:00-16:00"},
+  "2026-06-28": { isOpen: false, hours: "12:00-19:00", isEvent:true, eventName:"GetAny2026"},
 };
 
 function formatDateKey(date: Date): string {

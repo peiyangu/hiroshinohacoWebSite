@@ -48,24 +48,25 @@ export function Access() {
             </div>
           </header>
 
-          {/* ボディ（2カラム）*/}
+          {/* ボディ（画像 + 情報） */}
           <div className={styles.access__body}>
 
-            {/* 左: 店内写真 */}
-            <div className={styles.access__imageWrapper}>
-              <Image
-                src="/images/access/storeImage.png"
-                alt="ヒロシノハコ 店舗"
-                width={600}
-                height={800}
-                className={styles.access__image}
-              />
+            {/* 左: 縦長画像＋装飾フレーム */}
+            <div className={styles.access__imageFrame}>
+              <div className={styles.access__imageWrapper}>
+                <Image
+                  src="/images/access/storeImage.png"
+                  alt="ヒロシノハコ 店舗"
+                  width={570}
+                  height={836}
+                  className={styles.access__image}
+                />
+              </div>
             </div>
 
             {/* 右: 情報 */}
             <div className={styles.access__info}>
 
-              {/* 住所 */}
               <div className={styles.access__infoItem}>
                 <p className={styles.access__infoLabel}>Address</p>
                 <p className={styles.access__infoText}>
@@ -74,7 +75,6 @@ export function Access() {
                 </p>
               </div>
 
-              {/* アクセス */}
               <div className={styles.access__infoItem}>
                 <p className={styles.access__infoLabel}>Access</p>
                 <p className={styles.access__infoText}>西鉄太宰府駅より徒歩約20分</p>
@@ -83,7 +83,6 @@ export function Access() {
                 </p>
               </div>
 
-              {/* 営業時間 */}
               <div className={styles.access__infoItem}>
                 <p className={styles.access__infoLabel}>Hours</p>
                 <div className={styles.access__hoursTable}>
@@ -103,9 +102,20 @@ export function Access() {
                 <p className={styles.access__infoNote}>
                   {BUSINESS_HOURS_NOTE}
                 </p>
+                <p className={styles.access__infoNote}>
+                  ※ 最新の営業情報は{" "}
+                  <a
+                    href={INSTAGRAM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.access__infoNoteLink}
+                  >
+                    Instagram
+                  </a>
+                  {" "}をご確認ください
+                </p>
               </div>
 
-              {/* リンク */}
               <div className={styles.access__links}>
                 <a
                   className={styles.access__link}
@@ -118,7 +128,7 @@ export function Access() {
                 </a>
                 <a
                   className={styles.access__link}
-                  href={INSTAGRAM_URL}
+                  href="https://www.instagram.com/stories/highlights/18043771106203960/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -127,8 +137,8 @@ export function Access() {
                 </a>
               </div>
 
-            </div>{/* /.access__info */}
-          </div>{/* /.access__body */}
+            </div>
+          </div>
 
           {/* Visit Guide（全幅） */}
           <div className={styles.access__guide}>
@@ -170,6 +180,3 @@ export function Access() {
     </section>
   );
 }
-
-
-

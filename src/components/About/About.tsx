@@ -8,21 +8,23 @@ export function About() {
       <div className={styles.about__bgText}>ABOUT</div>
       <FadeInSection className={styles.about__inner}>
         <div className={styles.about__content}>
-          <div className={styles.about__imageWrapper}>
-            <Image
-              src="/images/coffee/neldrip.jpg"
-              alt="コーヒー豆のイメージ"
-              width={640}
-              height={853}
-              sizes="(min-width: 768px) 50vw, 100vw"
-              className={styles.about__image}
-            />
-            <div className={styles.about__imageOverlay} aria-hidden="true">
-              <p className={styles.about__overlayTitle}>ABOUT</p>
-              <p className={styles.about__overlaySubtitle}>
-                慌ただしい毎日に、<br />
-                やさしい余白を。
-              </p>
+          <div className={styles.about__imageFrame}>
+            <div className={styles.about__imageWrapper}>
+              <Image
+                src="/images/coffee/neldrip.jpg"
+                alt="コーヒー豆のイメージ"
+                width={640}
+                height={853}
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className={styles.about__image}
+              />
+              <div className={styles.about__imageOverlay} aria-hidden="true">
+                <p className={styles.about__overlayTitle}>ABOUT</p>
+                <p className={styles.about__overlaySubtitle}>
+                  慌ただしい毎日に、<br />
+                  やさしい余白を。
+                </p>
+              </div>
             </div>
           </div>
           <div className={styles.about__textContainer}>

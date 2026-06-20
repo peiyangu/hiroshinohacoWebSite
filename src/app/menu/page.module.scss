@@ -165,12 +165,27 @@
   }
 }
 
+.item__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: $space-md;
+  margin-bottom: 6px;
+}
+
 .item__name {
-  display: block;
   font-size: 1.05rem;
   color: $color-text-main;
   letter-spacing: 0.06em;
-  margin-bottom: 6px;
+  flex-shrink: 0;
+}
+
+.item__price {
+  font-family: $font-heading;
+  font-size: 0.9rem;
+  color: $color-text-sub;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
 }
 
 .item__desc {
@@ -178,6 +193,13 @@
   color: $color-text-sub;
   letter-spacing: 0.05em;
   line-height: 1.8;
+}
+
+.item__note {
+  font-size: 0.75rem;
+  color: rgba($color-text-sub, 0.7);
+  letter-spacing: 0.06em;
+  margin-top: 4px;
 }
 
 /* ---- Note ---- */

@@ -14,7 +14,7 @@ body {
 
 body {
   background-color: #fdf6ee;
-  color: #333;
+  color: $color-text-main;
   font-family: $font-body;
   font-size: clamp(0.9375rem, 0.88rem + 0.3vw, 1.15rem);
   line-height: 1.75;
