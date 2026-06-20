@@ -13,8 +13,8 @@ export function About() {
               <Image
                 src="/images/coffee/neldrip.jpg"
                 alt="コーヒー豆のイメージ"
-                width={640}
-                height={853}
+                width={800}
+                height={1200}
                 sizes="(min-width: 768px) 50vw, 100vw"
                 className={styles.about__image}
               />
