@@ -6,6 +6,7 @@ type MenuItem = {
   price?: string;
   note: string;
   subNote?: string;
+  image?: string;
 };
 
 type MenuCategory = {
