@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FadeInSection } from "../common/FadeInSection";
 import styles from "./Menu.module.scss";
 
