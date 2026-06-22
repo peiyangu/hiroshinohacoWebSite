@@ -94,10 +94,14 @@
 .about__image {
   width: 100%;
   height: auto;
-  aspect-ratio: 2 / 3;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   display: block;
   transition: transform 0.8s ease;
+
+  @include tablet {
+    aspect-ratio: 2 / 3;
+  }
 
   .about__imageWrapper:hover & {
     transform: scale(1.03);

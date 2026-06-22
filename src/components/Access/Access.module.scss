@@ -38,9 +38,13 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: $space-2xl;
+  gap: $space-lg;
   position: relative;
   z-index: 1;
+
+  @include tablet {
+    gap: $space-2xl;
+  }
 }
 
 // ────────────────────────────
@@ -197,9 +201,10 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: $space-md;
 
   @include tablet {
+    gap: 36px;
     padding-top: 8px;
   }
 }
@@ -207,7 +212,11 @@
 .access__infoItem {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
+
+  @include tablet {
+    gap: 16px;
+  }
 }
 
 .access__infoLabel {
@@ -266,9 +275,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 13px 0;
+  padding: 8px 0;
   border-bottom: 1px solid $color-line;
   gap: 16px;
+
+  @include tablet {
+    padding: 13px 0;
+  }
 
   &:first-child {
     padding-top: 0;
@@ -384,11 +397,16 @@
 .access__guideLink {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 24px 20px;
+  gap: 4px;
+  padding: 14px 16px;
   text-decoration: none;
   height: 100%;
   transition: background-color 0.3s ease;
+
+  @include tablet {
+    gap: 6px;
+    padding: 24px 20px;
+  }
 
   &:hover {
     background-color: $color-surface;

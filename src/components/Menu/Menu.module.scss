@@ -1,11 +1,10 @@
-﻿@use "@/styles/mixins" as *;
+@use "@/styles/mixins" as *;
 @use "@/styles/variables" as *;
 
 .menu {
   padding: $space-xl $space-md;
   background-color: $color-text-main;
   color: $color-ivory;
-  position: relative;
 
   @include tablet {
     padding: $space-3xl $space-xl;
@@ -44,149 +43,107 @@
   color: rgba($color-ivory, 0.5);
 }
 
-.groups {
-  display: flex;
-  flex-direction: column;
-  gap: $space-xl;
-  margin-bottom: $space-lg;
-
-  @include tablet {
-    gap: $space-3xl;
-    margin-bottom: $space-xl;
-  }
-}
-
-.group {
-  // container
-}
-
-.groupLabel {
-  font-family: $font-heading;
-  font-size: 0.8rem;
-  letter-spacing: 0.35em;
-  color: rgba($color-ivory, 0.3);
-  margin-bottom: $space-lg;
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgba($color-ivory, 0.1);
-}
-
-.groupInner {
-  // container
-}
-
-.groupContent {
-  // container
-}
-
-
+// モバイル: 横並びカード / タブレット以上: 3カラムグリッド
 .grid {
-  display: grid;
-  gap: $space-xl;
-
-  @include tablet {
-    grid-template-columns: 1fr 1fr;
-    gap: $space-2xl;
-  }
-
-  @include desktop {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.categoryHeader {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-  margin-bottom: 32px;
-}
-
-.categoryTitleEn {
-  font-family: $font-heading;
-  font-size: 1.8rem;
-  font-style: italic;
-  color: $color-ivory;
-  font-weight: normal;
-  letter-spacing: 0.05em;
-}
-
-.categoryTitleJa {
-  font-size: 0.9rem;
-  color: rgba($color-ivory, 0.5);
-  letter-spacing: 0.15em;
-}
-
-.list {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 $space-xl;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  @include tablet {
+    flex-direction: row;
+    gap: $space-lg;
+    align-items: flex-start;
+  }
 }
 
 .item {
-  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  padding: $space-md 0;
   border-bottom: 1px solid rgba($color-ivory, 0.1);
 
   &:last-child {
     border-bottom: none;
   }
+
+  @include tablet {
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    border-bottom: none;
+    gap: $space-sm;
+  }
 }
 
-.itemWithImage {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-}
-
-.itemImage {
+.imageWrapper {
+  position: relative;
+  width: 88px;
+  height: 88px;
   flex-shrink: 0;
-  width: 68px;
-  height: 68px;
-  object-fit: cover;
+  overflow: hidden;
   border-radius: 4px;
-  margin-left: $space-sm;
+
+  @include tablet {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    border-radius: 0;
+    margin-bottom: $space-xs;
+  }
 }
 
-.itemText {
+.image {
+  object-fit: cover;
+}
+
+.body {
   flex: 1;
   min-width: 0;
 }
 
-.itemMain {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 6px;
+.nameEn {
+  font-family: $font-heading;
+  font-size: 0.8rem;
+  color: rgba($color-ivory, 0.4);
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+
+  @include tablet {
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+  }
 }
 
 .name {
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: $color-ivory;
   letter-spacing: 0.05em;
-  white-space: nowrap;
-}
-
-.dots {
-  flex: 1;
-  border-bottom: 1px dotted rgba($color-ivory, 0.2);
+  margin-bottom: 4px;
 }
 
 .price {
-  font-size: 0.95rem;
-  color: rgba($color-ivory, 0.7);
-  white-space: nowrap;
   font-family: $font-heading;
-}
-
-.note {
-  font-size: 0.9rem;
-  color: rgba($color-ivory, 0.4);
+  font-size: 0.85rem;
+  color: rgba($color-ivory, 0.6);
   letter-spacing: 0.05em;
 }
 
-.subNote {
-  font-size: 0.78rem;
-  color: rgba($color-ivory, 0.22);
-  letter-spacing: 0.03em;
-  margin-top: 4px;
+.description {
+  display: none;
+
+  @include tablet {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.85rem;
+    color: rgba($color-ivory, 0.4);
+    letter-spacing: 0.03em;
+    line-height: 1.6;
+  }
 }
 
 .footer {

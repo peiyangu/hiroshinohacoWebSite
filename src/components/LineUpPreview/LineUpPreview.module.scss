@@ -101,8 +101,8 @@
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: $space-md;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-sm;
 
   @include tablet {
     grid-template-columns: repeat(3, 1fr);
@@ -130,9 +130,13 @@
 
 .photoWrapper {
   position: relative;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   margin-bottom: $space-sm;
+
+  @include tablet {
+    aspect-ratio: 3 / 4;
+  }
 }
 
 .photo {
