@@ -44,10 +44,39 @@
   color: rgba($color-ivory, 0.5);
 }
 
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3xl;
+  margin-bottom: $space-xl;
+}
+
+.group {
+  // container
+}
+
+.groupLabel {
+  font-family: $font-heading;
+  font-size: 0.8rem;
+  letter-spacing: 0.35em;
+  color: rgba($color-ivory, 0.3);
+  margin-bottom: $space-lg;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba($color-ivory, 0.1);
+}
+
+.groupInner {
+  // container
+}
+
+.groupContent {
+  // container
+}
+
+
 .grid {
   display: grid;
   gap: $space-xl;
-  margin-bottom: $space-xl;
 
   @include tablet {
     grid-template-columns: 1fr 1fr;
@@ -96,6 +125,25 @@
   }
 }
 
+.itemWithImage {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.itemImage {
+  flex-shrink: 0;
+  width: 68px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.itemText {
+  flex: 1;
+  min-width: 0;
+}
+
 .itemMain {
   display: flex;
   align-items: center;
@@ -126,6 +174,13 @@
   font-size: 0.9rem;
   color: rgba($color-ivory, 0.4);
   letter-spacing: 0.05em;
+}
+
+.subNote {
+  font-size: 0.78rem;
+  color: rgba($color-ivory, 0.22);
+  letter-spacing: 0.03em;
+  margin-top: 4px;
 }
 
 .footer {
