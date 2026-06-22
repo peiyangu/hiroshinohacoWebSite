@@ -45,8 +45,12 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: $space-2xl;
+  margin-bottom: $space-lg;
   gap: $space-md;
+
+  @include tablet {
+    margin-bottom: $space-2xl;
+  }
 }
 
 .headerText {
@@ -179,9 +183,13 @@
 
 // 下部ボタン
 .action {
-  margin-top: $space-2xl;
+  margin-top: $space-lg;
   display: flex;
   justify-content: center;
+
+  @include tablet {
+    margin-top: $space-2xl;
+  }
 }
 
 .button {

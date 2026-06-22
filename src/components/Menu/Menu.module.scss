@@ -47,8 +47,13 @@
 .groups {
   display: flex;
   flex-direction: column;
-  gap: $space-3xl;
-  margin-bottom: $space-xl;
+  gap: $space-xl;
+  margin-bottom: $space-lg;
+
+  @include tablet {
+    gap: $space-3xl;
+    margin-bottom: $space-xl;
+  }
 }
 
 .group {
@@ -137,6 +142,7 @@
   height: 68px;
   object-fit: cover;
   border-radius: 4px;
+  margin-left: $space-sm;
 }
 
 .itemText {

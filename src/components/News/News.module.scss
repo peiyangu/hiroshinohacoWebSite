@@ -44,7 +44,11 @@
 }
 
 .header {
-  margin-bottom: $space-2xl;
+  margin-bottom: $space-lg;
+
+  @include tablet {
+    margin-bottom: $space-2xl;
+  }
 }
 
 .label {
@@ -142,8 +146,13 @@
 }
 
 .footer {
-  margin-top: $space-2xl;
-  padding-top: $space-lg;
+  margin-top: $space-lg;
+  padding-top: $space-md;
+
+  @include tablet {
+    margin-top: $space-2xl;
+    padding-top: $space-lg;
+  }
   border-top: 1px solid $color-line;
   display: flex;
   justify-content: flex-end;
