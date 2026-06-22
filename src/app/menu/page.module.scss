@@ -66,8 +66,11 @@
 /* ---- Groups ---- */
 .groups {
   @include section-container;
-  padding-top: $space-2xl;
-  padding-bottom: $space-3xl;
+  padding: $space-lg $space-md $space-3xl;
+
+  @include tablet {
+    padding: $space-2xl $space-xl $space-3xl;
+  }
 }
 
 .group {
@@ -212,23 +215,38 @@
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: $space-md;
+  gap: $space-sm;
   margin-bottom: 6px;
+  flex-wrap: wrap;
+
+  @include tablet {
+    gap: $space-md;
+    flex-wrap: nowrap;
+  }
 }
 
 .item__name {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   color: $color-text-main;
-  letter-spacing: 0.06em;
-  flex-shrink: 0;
+  letter-spacing: 0.04em;
+
+  @include tablet {
+    font-size: 1.05rem;
+    letter-spacing: 0.06em;
+  }
 }
 
 .item__price {
   font-family: $font-heading;
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   color: $color-text-sub;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   white-space: nowrap;
+
+  @include tablet {
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+  }
 }
 
 .item__desc {
@@ -248,15 +266,14 @@
 /* ---- Note ---- */
 .note {
   @include section-container;
-  padding-bottom: $space-2xl;
+  padding: $space-lg $space-md $space-2xl;
   font-size: 0.78rem;
   color: $color-text-sub;
   letter-spacing: 0.08em;
   line-height: 2;
   border-top: 1px solid $color-line;
-  padding-top: $space-lg;
 
   @include tablet {
-    padding-bottom: $space-3xl;
+    padding: $space-lg $space-xl $space-3xl;
   }
 }

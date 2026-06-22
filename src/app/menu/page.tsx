@@ -232,8 +232,8 @@ export default function MenuPage() {
         </div>
 
         <p className={styles.note}>
-          自家焙煎豆・ドリップバッグも販売しています（レジショーケース）<br />
-          コーヒー豆100gご購入ごとにドリンク¥100 OFF（有効期限1ヶ月）
+          ・自家焙煎豆・ドリップバッグも販売しています<br /> （レジショーケース）<br />
+          ・コーヒー豆100gご購入ごとにドリンク¥100 OFF<br /> （有効期限1ヶ月）
         </p>
       </main>
       <Footer />
