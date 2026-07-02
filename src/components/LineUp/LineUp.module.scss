@@ -188,6 +188,19 @@
   display: block;
 }
 
+.lineup__highlight {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  color: $color-accent;
+  font-weight: 600;
+
+  @include tablet {
+    font-size: 0.75rem;
+  }
+}
+
 .lineup__itemNameEn {
   font-family: $font-heading;
   font-size: 1.1rem;

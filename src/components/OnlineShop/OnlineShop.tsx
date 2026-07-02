@@ -34,7 +34,7 @@ export const OnlineShop = () => {
             </p>
             <div className={styles.actionSide}>
               <a
-                href="https://hiroshinohaco.base.shop/"
+                href="https://hirohaco.base.shop/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.button}

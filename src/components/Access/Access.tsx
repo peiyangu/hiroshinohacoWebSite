@@ -81,6 +81,11 @@ export function Access() {
                 <p className={`${styles.access__infoText} ${styles["access__infoText--sub"]}`}>
                   駐車場：店舗前 2台
                 </p>
+                <p className={`${styles.access__infoText} ${styles["access__infoText--sub"]}`}>
+                  太宰府天満宮・九州国立博物館から車で約4〜5分。
+                  <br />
+                  お出かけの途中や、日々のひと休みにお立ち寄りください。
+                </p>
               </div>
 
               <div className={styles.access__infoItem}>

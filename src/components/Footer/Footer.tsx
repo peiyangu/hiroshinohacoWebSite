@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./Footer.module.scss";
 import {
   BUSINESS_HOURS_SUMMARY,
@@ -27,7 +28,18 @@ export function Footer() {
           <ul className={styles.footer__list}>
             {footerLinks.map((item) => (
               <li key={item.href}>
-                <a href={item.href} className={styles.footer__link}>{item.label}</a>
+                {item.href.startsWith("/#") ? (
+                  <a
+                    href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${item.href}`}
+                    className={styles.footer__link}
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link href={item.href} className={styles.footer__link}>
+                    {item.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
@@ -54,7 +66,7 @@ export function Footer() {
             Instagram
           </a>
           <a
-            href="https://hiroshinohaco.base.shop/"
+            href="https://hirohaco.base.shop/"
             className={styles.footer__snsLink}
             target="_blank"
             rel="noopener noreferrer"

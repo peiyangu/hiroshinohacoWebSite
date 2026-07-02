@@ -30,6 +30,19 @@ export function Hero() {
             <p className={styles.hero__tagline}>
               Warm break with peace of mind
             </p>
+            <p className={styles.hero__description}>
+              福岡県筑紫野市の住宅街にある、
+              <br />
+              小さな自家焙煎コーヒー店です。
+              <br />
+              苦すぎず、すっと飲めるコーヒーを
+              <br />
+              ネルドリップで一杯ずつお淹れしています。
+              <br />
+              店内では、コーヒーやカフェラテのほか、
+              <br />
+              ご自宅用のコーヒー豆やドリップバッグもご用意しています。
+            </p>
           </div>
           <div className={styles.hero__action}>
             <StatusBadge />
@@ -39,7 +52,7 @@ export function Hero() {
           </div>
         </FadeInSection>
       </div>
-      <div className={styles.hero__verticalText}>since 2020 — Chikushino, Fukuoka</div>
+      <div className={styles.hero__verticalText}>since 2026.1.23 — Chikushino, Fukuoka</div>
       <div className={styles.hero__scroll}>
         <span className={styles.hero__scrollText}>SCROLL</span>
         <span className={styles.hero__scrollLine}></span>

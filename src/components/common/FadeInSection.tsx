@@ -18,7 +18,7 @@ export function FadeInSection({ children, className }: FadeInSectionProps) {
       className={className}
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.25 }}
+      viewport={{ once: true, amount: "some" }}
       transition={transition}
     >
       {children}

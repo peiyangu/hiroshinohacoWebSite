@@ -12,10 +12,4 @@ export const newsData: NewsItem[] = [
     category: "INFO",
     title: "宝満おろし・カフェインレスで水出し用加工が選べるようになりました",
   },
-  {
-    id: 2,
-    date: "2026.05.13",
-    category: "SHOP",
-    title: "グアテマラ エル・セロ 新ロット入荷しました",
-  },
 ];

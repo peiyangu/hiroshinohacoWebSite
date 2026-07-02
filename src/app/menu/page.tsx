@@ -66,7 +66,6 @@ const menuGroups: MenuGroup[] = [
             name: "オーツミルクラテ",
             description: "オーツ麦の自然な甘み。軽やかに。",
             price: "HOT / ICE ¥750",
-            note: "※カフェインレスにもできます。",
             image: "/images/menu/items/oats-milk-latte.jpg",
           },
         ],
@@ -81,7 +80,6 @@ const menuGroups: MenuGroup[] = [
             name: "エスプレッソトニック",
             description: "トニックの爽快感に、果実味の余韻。",
             price: "¥700",
-            note: "※カフェインレスにもできます。",
             image: "/images/menu/items/espresso-tonic.jpg",
           },
           {
@@ -103,7 +101,6 @@ const menuGroups: MenuGroup[] = [
             name: "エスプレッソバナナシェイク",
             description: "濃厚。追熟バナナ1.5本×バニラアイス×エスプレッソ",
             price: "¥950",
-            note: "※カフェインレスにもできます。",
             image: "/images/menu/items/espresso-banana-shake.jpg",
           },
         ],
@@ -120,7 +117,7 @@ const menuGroups: MenuGroup[] = [
             price: "¥650",
           },
           {
-            name: "ミルクコア",
+            name: "ミルクココア",
             description: "ホッと甘い時間。",
             price: "HOT / ICE ¥650",
           },
