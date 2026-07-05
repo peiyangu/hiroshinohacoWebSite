@@ -11,6 +11,7 @@ const previewItems = [
     price: "¥1,300 / 100g",
     photo: "/images/LineUP/宝満おろし.jpg",
     href: "https://hirohaco.base.shop/items/135027079",
+    highlight: "迷ったら、まずは宝満おろし",
   },
   {
     nameEn: "Ethiopia Tiere",
@@ -66,6 +67,9 @@ export function LineUpPreview() {
                   <span className={styles.tag}>{item.tag}</span>
                 </div>
                 <div className={styles.body}>
+                  {item.highlight && (
+                    <p className={styles.highlight}>{item.highlight}</p>
+                  )}
                   <p className={styles.nameEn}>{item.nameEn}</p>
                   <p className={styles.name}>{item.name}</p>
                   <p className={styles.price}>{item.price}</p>

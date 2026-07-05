@@ -5,21 +5,23 @@ import type { PropsWithChildren } from "react";
 
 type FadeInSectionProps = PropsWithChildren<{
   className?: string;
+  delay?: number;
+  distance?: number;
 }>;
 
-const transition = {
+const baseTransition = {
   duration: 0.6,
   ease: [0.25, 0.1, 0.25, 1] as const
 };
 
-export function FadeInSection({ children, className }: FadeInSectionProps) {
+export function FadeInSection({ children, className, delay = 0, distance = 18 }: FadeInSectionProps) {
   return (
     <motion.section
       className={className}
-      initial={{ opacity: 0, y: 18 }}
+      initial={{ opacity: 0, y: distance }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: "some" }}
-      transition={transition}
+      transition={{ ...baseTransition, delay }}
     >
       {children}
     </motion.section>

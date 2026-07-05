@@ -120,7 +120,7 @@ export function LineUp({ hideHeader = false }: LineUpProps) {
                       alt={item.name}
                       fill
                       className={styles.lineup__cardPhotoImg}
-                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      sizes="(min-width: 1024px) 33vw, 50vw"
                     />
                   ) : (
                     <div className={styles.lineup__cardPhotoPlaceholder} />

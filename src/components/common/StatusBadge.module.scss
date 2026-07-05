@@ -21,6 +21,11 @@
   }
 }
 
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(107, 148, 112, 0.25); }
+  50% { box-shadow: 0 0 0 6px rgba(107, 148, 112, 0.12); }
+}
+
 .dot {
   width: 6px;
   height: 6px;
@@ -28,6 +33,7 @@
   background-color: #6b9470;
   flex-shrink: 0;
   box-shadow: 0 0 0 3px rgba(107, 148, 112, 0.25);
+  animation: dotPulse 2s ease-in-out infinite;
 
   @include tablet {
     width: 8px;
@@ -38,4 +44,5 @@
 .dot__closed {
   background-color: $color-text-sub;
   box-shadow: 0 0 0 3px rgba($color-text-sub, 0.2);
+  animation: none;
 }

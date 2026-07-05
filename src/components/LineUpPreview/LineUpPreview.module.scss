@@ -163,6 +163,17 @@
   padding: 0 4px;
 }
 
+.highlight {
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+  color: $color-accent;
+  font-weight: 600;
+
+  @include tablet {
+    font-size: 0.78rem;
+  }
+}
+
 .nameEn {
   font-family: $font-heading;
   font-size: 1rem;
