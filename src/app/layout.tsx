@@ -14,8 +14,23 @@ export const metadata: Metadata = {
     url: "https://hiroshinohaco.jp",
     siteName: "ヒロシノハコ",
     locale: "ja_JP",
-    type: "website"
-  }
+    type: "website",
+    images: [
+      {
+        url: "/ogp.jpg",
+        width: 1200,
+        height: 630,
+        alt: "ヒロシノハコ",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ヒロシノハコ | 公式サイト",
+    description:
+      "苦味を抑え、豆本来の果実味を大切にしたコーヒー。ご縁でひろがるコーヒーの和。",
+    images: ["/ogp.jpg"],
+  },
 };
 
 type RootLayoutProps = {

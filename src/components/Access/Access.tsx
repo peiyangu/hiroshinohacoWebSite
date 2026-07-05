@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FadeInSection } from "@/components/common/FadeInSection";
+import { StatusBadge } from "@/components/common/StatusBadge";
 import {
   ACCESS_HOURS,
   BUSINESS_HOURS_NOTE,
@@ -79,9 +80,6 @@ export function Access() {
                 <p className={styles.access__infoLabel}>Access</p>
                 <p className={styles.access__infoText}>西鉄太宰府駅より徒歩約20分</p>
                 <p className={`${styles.access__infoText} ${styles["access__infoText--sub"]}`}>
-                  駐車場：店舗前 2台
-                </p>
-                <p className={`${styles.access__infoText} ${styles["access__infoText--sub"]}`}>
                   太宰府天満宮・九州国立博物館から車で約4〜5分。
                   <br />
                   お出かけの途中や、日々のひと休みにお立ち寄りください。
@@ -89,7 +87,31 @@ export function Access() {
               </div>
 
               <div className={styles.access__infoItem}>
+                <p className={styles.access__infoLabel}>Parking</p>
+                <p className={styles.access__infoText}>
+                  店舗敷地内に2台分の駐車スペースがございます。
+                </p>
+                <figure className={styles.access__parking}>
+                  <Image
+                    src="/images/access/parking.png"
+                    alt="店舗敷地内の駐車スペース（2台分）"
+                    width={496}
+                    height={790}
+                    sizes="(min-width: 768px) 180px, 40vw"
+                    className={styles.access__parkingImage}
+                  />
+                  <figcaption className={styles.access__parkingCaption}>
+                    写真の①②が駐車スペースです。満車の際はお近くのコインパーキングをご利用ください。
+                  </figcaption>
+                </figure>
+              </div>
+
+              <div className={styles.access__infoItem}>
                 <p className={styles.access__infoLabel}>Hours</p>
+                <div className={styles.access__today}>
+                  <span className={styles.access__todayLabel}>本日</span>
+                  <StatusBadge />
+                </div>
                 <div className={styles.access__hoursTable}>
                   {ACCESS_HOURS.map((hour) => (
                     <div key={hour.day} className={styles.access__hoursRow}>
