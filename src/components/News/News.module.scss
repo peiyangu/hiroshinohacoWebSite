@@ -81,34 +81,15 @@
 }
 
 .item {
-  display: grid;
-  grid-template-columns: 44px 1fr;
-  gap: 16px;
   padding: $space-md 0;
   border-bottom: 1px solid $color-line;
-  align-items: flex-start;
 
   &:first-child {
     border-top: 1px solid $color-line;
   }
 
   @include tablet {
-    grid-template-columns: 80px 1fr;
-    gap: 40px;
     padding: $space-lg 0;
-  }
-}
-
-.itemNumber {
-  font-family: $font-heading;
-  font-size: 2rem;
-  font-style: italic;
-  color: $color-line;
-  line-height: 1;
-  padding-top: 4px;
-
-  @include tablet {
-    font-size: 2.5rem;
   }
 }
 
@@ -143,6 +124,38 @@
   color: $color-text-main;
   line-height: 1.8;
   letter-spacing: 0.02em;
+}
+
+.pagination {
+  display: flex;
+  gap: 8px;
+  margin-top: $space-lg;
+}
+
+.pageBtn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-heading;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: $color-text-sub;
+  border: 1px solid $color-line;
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.3s ease, border-color 0.3s ease;
+
+  &:hover {
+    color: $color-text-main;
+    border-color: $color-text-sub;
+  }
+}
+
+.pageBtnActive {
+  color: $color-text-main;
+  border-color: $color-text-main;
 }
 
 .footer {

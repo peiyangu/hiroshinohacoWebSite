@@ -7,7 +7,6 @@ export const OnlineShop = () => {
     <section className={styles.onlineShop} id="online-shop">
       <FadeInSection>
         <div className={styles.inner}>
-          {/* 左: 写真枚（TODO: 商品パッケージ・豆袋の写真に差し替える） */}
           <div className={styles.imageWrapper}>
             <Image
               src="/images/coffee/coffeebeans.png"

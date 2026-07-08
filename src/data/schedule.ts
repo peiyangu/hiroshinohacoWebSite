@@ -47,7 +47,7 @@ const schedule: Record<string, DayStatus> = {
   "2026-06-19": { isOpen: true,  hours: "12:00-16:00"},
   "2026-06-25": { isOpen: true,  hours: "09:00-17:00"},
   "2026-06-27": { isOpen: true,  hours: "12:00-16:00"},
-  "2026-06-28": { isOpen: false, hours: "12:00-19:00", isEvent:true, eventName:"GetAny2026"},
+  "2026-06-28": { isOpen: true,  hours: "12:00-19:00", isEvent:true, eventName:"GetAny2026"},
 };
 
 function formatDateKey(date: Date): string {
