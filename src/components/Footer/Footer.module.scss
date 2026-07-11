@@ -142,6 +142,13 @@
   }
 }
 
+.footer__since {
+  font-size: 0.7rem;
+  color: rgba($color-ivory, 0.3);
+  letter-spacing: 0.12em;
+  margin-bottom: $space-xs;
+}
+
 .footer__copy {
   font-size: 0.85rem;
   color: rgba($color-ivory, 0.35);

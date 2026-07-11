@@ -2,43 +2,77 @@
 @use "@/styles/variables" as *;
 
 .main {
+  padding-top: 72px;
   padding-bottom: 80px;
   background-color: $color-ivory;
   min-height: 100vh;
 
   @include tablet {
+    padding-top: 100px;
     padding-bottom: 120px;
   }
 }
 
-.hero {
-  padding: 140px 20px 60px;
-  text-align: center;
+/* ---- Page Header ---- */
+.pageHeader {
+  padding: $space-xl $space-md $space-lg;
 
   @include tablet {
-    padding: 180px 40px 80px;
+    padding: $space-3xl $space-xl $space-xl;
   }
 }
 
-.hero__label {
-  display: block;
+.pageHeader__inner {
+  @include section-container;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $space-xs;
+  margin-bottom: $space-lg;
+
+  @include tablet {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: $space-lg;
+    margin-bottom: $space-xl;
+  }
+}
+
+.pageHeader__labelGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+}
+
+.pageHeader__label {
   font-size: 0.75rem;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.35em;
   color: $color-text-sub;
-  margin-bottom: 20px;
+  padding-bottom: 0.25rem;
 }
 
-.hero__title {
-  font-family: $font-heading;
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  letter-spacing: 0.05em;
-  color: $color-text-main;
-  line-height: 1;
-  margin-bottom: 16px;
-}
-
-.hero__subtitle {
+.pageHeader__subtitle {
   font-size: 0.9rem;
   letter-spacing: 0.2em;
   color: $color-text-sub;
+}
+
+.pageHeader__title {
+  font-family: $font-heading;
+  font-size: clamp(3rem, 14vw, 7rem);
+  font-style: italic;
+  font-weight: 500;
+  color: $color-text-main;
+  letter-spacing: -0.01em;
+  line-height: 0.9;
+}
+
+.pageHeader__rule {
+  display: block;
+  max-width: 960px;
+  margin: 0 auto;
+  height: 1px;
+  background-color: $color-line;
+  border: none;
 }

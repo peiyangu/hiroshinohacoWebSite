@@ -10,7 +10,7 @@ export const newsData: NewsItem[] = [
     id: 2,
     date: "2026.07.08",
     category: "INFO",
-    title: "ウェブサイトをリニューアルしました",
+    title: "公式サイトを公開しました",
   },
   {
     id: 1,

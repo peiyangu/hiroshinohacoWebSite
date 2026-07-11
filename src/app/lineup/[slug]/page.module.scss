@@ -1,0 +1,236 @@
+@use "@/styles/mixins" as *;
+
+@use "@/styles/variables" as *;
+
+.main {
+  padding-top: 88px;
+  padding-bottom: 80px;
+  background-color: $color-ivory;
+  min-height: 100vh;
+
+  @include tablet {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+}
+
+.inner {
+  @include section-container;
+  width: min(100%, 960px);
+  padding: 0 20px;
+
+  @include tablet {
+    padding: 0 40px;
+  }
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: $color-text-sub;
+  margin-bottom: $space-lg;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+/* ---- レイアウト（写真 + 情報） ---- */
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+  margin-bottom: $space-2xl;
+
+  @include tablet {
+    flex-direction: row;
+    gap: $space-xl;
+    align-items: flex-start;
+  }
+}
+
+.photoCol {
+  @include tablet {
+    width: 45%;
+    flex-shrink: 0;
+    position: sticky;
+    top: 120px;
+  }
+}
+
+.photoWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background-color: $color-line;
+}
+
+.photo {
+  object-fit: cover;
+  object-position: center;
+}
+
+.photoPlaceholder {
+  position: absolute;
+  inset: 0;
+  background-color: $color-line;
+}
+
+.photoOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.tag {
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  color: $color-ivory;
+  background-color: rgba($color-text-main, 0.65);
+  padding: 4px 8px;
+  line-height: 1.8;
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+}
+
+.soldOut {
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: $color-ivory;
+  background-color: rgba($color-text-sub, 0.72);
+  padding: 4px 8px;
+  line-height: 1.8;
+  backdrop-filter: blur(4px);
+}
+
+.infoCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $space-xs;
+}
+
+.highlight {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: $color-accent;
+  margin-bottom: $space-xs;
+}
+
+.nameEn {
+  font-family: $font-heading;
+  font-style: italic;
+  font-size: 1rem;
+  color: $color-text-sub;
+  letter-spacing: 0.02em;
+}
+
+.name {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: $color-text-main;
+  line-height: 1.4;
+  margin-bottom: $space-xs;
+}
+
+.price {
+  font-size: 1.1rem;
+  color: $color-text-main;
+  margin-bottom: $space-md;
+}
+
+.leadDesc {
+  font-size: 0.9rem;
+  line-height: 1.9;
+  color: $color-text-sub;
+  margin-top: $space-lg;
+}
+
+/* ---- 購入ボタン ---- */
+.purchaseButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background-color: $color-text-main;
+  color: $color-ivory;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  transition: opacity 0.2s ease, letter-spacing 0.2s ease;
+
+  &:hover {
+    opacity: 0.85;
+    letter-spacing: 0.16em;
+  }
+
+  &--disabled {
+    background-color: $color-line;
+    color: $color-text-sub;
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
+/* ---- 商品詳細本文 ---- */
+.detail {
+  border-top: 1px solid $color-line;
+  padding-top: $space-xl;
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+}
+
+.detailSection {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+}
+
+.detailHeading {
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: $color-text-main;
+  border-left: 3px solid $color-accent;
+  padding-left: 10px;
+}
+
+.detailParagraph {
+  font-size: 0.9rem;
+  line-height: 2;
+  color: $color-text-sub;
+  white-space: pre-line;
+}
+
+/* ---- ページ下部アクション ---- */
+.bottomAction {
+  margin-top: $space-2xl;
+  padding-top: $space-xl;
+  border-top: 1px solid $color-line;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-md;
+  text-align: center;
+}
+
+.backSecondary {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: $color-text-sub;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}

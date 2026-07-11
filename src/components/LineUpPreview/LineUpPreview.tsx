@@ -1,35 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FadeInSection } from "@/components/common/FadeInSection";
+import { lineupItems } from "@/data/lineupItems";
 import styles from "./LineUpPreview.module.scss";
 
-const previewItems = [
-  {
-    nameEn: "Original Blend",
-    name: "宝満おろし",
-    tag: "BLEND",
-    price: "¥1,300 / 100g",
-    photo: "/images/LineUP/宝満おろし.jpg",
-    href: "https://hirohaco.base.shop/items/135027079",
-    highlight: "迷ったら、まずは宝満おろし",
-  },
-  {
-    nameEn: "Ethiopia Tiere",
-    name: "エチオピア チレ｜中煎り",
-    tag: "SELECT",
-    price: "¥1,200 / 100g",
-    photo: "/images/LineUP/エチオピアチレ中煎り.jpg",
-    href: "https://hirohaco.base.shop/items/100163460",
-  },
-  {
-    nameEn: "Guatemala El Cerro",
-    name: "グアテマラ エル・セロ｜中深煎り",
-    tag: "SELECT",
-    price: "¥1,200 / 100g",
-    photo: "/images/LineUP/グアテマラエルセロ中深煎り.jpg",
-    href: "https://hirohaco.base.shop/items/115122048",
-  },
-];
+const previewSlugs = ["ethiopia-tiere", "homan-oroshi", "guatemala-el-cerro"] as const;
+
+const previewItems = previewSlugs
+  .map((slug) => lineupItems.find((item) => item.slug === slug))
+  .filter((item): item is (typeof lineupItems)[number] => Boolean(item))
+  .map((item) => ({
+    ...item,
+    featured: item.slug === "homan-oroshi",
+  }));
 
 export function LineUpPreview() {
   return (
@@ -49,21 +32,21 @@ export function LineUpPreview() {
 
         <ul className={styles.grid}>
           {previewItems.map((item) => (
-            <li key={item.nameEn} className={styles.item}>
-              <a
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.card}
-              >
+            <li
+              key={item.nameEn}
+              className={`${styles.item} ${item.featured ? styles.itemFeatured : ""}`}
+            >
+              <Link href={`/lineup/${item.slug}/`} className={styles.card}>
                 <div className={styles.photoWrapper}>
-                  <Image
-                    src={item.photo}
-                    alt={item.name}
-                    fill
-                    className={styles.photo}
-                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                  />
+                  {item.photo && (
+                    <Image
+                      src={item.photo}
+                      alt={item.name}
+                      fill
+                      className={styles.photo}
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    />
+                  )}
                   <span className={styles.tag}>{item.tag}</span>
                 </div>
                 <div className={styles.body}>
@@ -74,7 +57,7 @@ export function LineUpPreview() {
                   <p className={styles.name}>{item.name}</p>
                   <p className={styles.price}>{item.price}</p>
                 </div>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

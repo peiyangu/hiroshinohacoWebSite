@@ -77,6 +77,7 @@ export function Footer() {
       </div>
 
       <div className={styles.footer__bottom}>
+        <p className={styles.footer__since}>since 2026.1.23 — Chikushino, Fukuoka</p>
         <p className={styles.footer__copy}>© ヒロシノハコ</p>
       </div>
     </footer>

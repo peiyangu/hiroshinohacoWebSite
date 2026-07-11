@@ -13,10 +13,15 @@ export default function LineupPage() {
     <>
       <Header />
       <main className={styles.main}>
-        <div className={styles.hero}>
-          <span className={styles.hero__label}>— COFFEE BEANS</span>
-          <h1 className={styles.hero__title}>COFFEE BEANS</h1>
-          <p className={styles.hero__subtitle}>コーヒー豆 ラインナップ</p>
+        <div className={styles.pageHeader}>
+          <div className={styles.pageHeader__inner}>
+            <div className={styles.pageHeader__labelGroup}>
+              <span className={styles.pageHeader__label}>— COFFEE BEANS</span>
+              <p className={styles.pageHeader__subtitle}>コーヒー豆 ラインナップ</p>
+            </div>
+            <h1 className={styles.pageHeader__title}>Line Up</h1>
+          </div>
+          <hr className={styles.pageHeader__rule} />
         </div>
         <LineUp hideHeader />
       </main>

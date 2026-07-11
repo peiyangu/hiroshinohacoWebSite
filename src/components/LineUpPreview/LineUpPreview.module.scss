@@ -114,6 +114,29 @@
   // wrapper
 }
 
+// スマホ版のみ、宝満おろしを上段中央に単独配置して少し目立たせる
+.itemFeatured {
+  grid-column: 1 / -1;
+  order: -1;
+  width: 62%;
+  margin: 0 auto $space-xs;
+
+  .photoWrapper {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
+  }
+
+  @include tablet {
+    grid-column: auto;
+    order: 0;
+    width: auto;
+    margin: 0;
+
+    .photoWrapper {
+      box-shadow: none;
+    }
+  }
+}
+
 .card {
   display: block;
   text-decoration: none;
