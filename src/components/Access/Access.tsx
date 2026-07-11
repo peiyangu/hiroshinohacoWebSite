@@ -146,7 +146,7 @@ export function Access() {
               <div className={styles.access__links}>
                 <a
                   className={styles.access__link}
-                  href="https://www.google.com/maps?q=33.51767408340996,130.5438592910404"
+                  href="https://maps.app.goo.gl/EAmB7D5V56Pigc3p6"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
