@@ -106,13 +106,14 @@
 }
 
 .hero__logo {
-  font-family: $font-heading;
+  font-family: $font-logo;
   font-weight: 700;
-  font-size: clamp(2.6rem, 10.5vw, 3.8rem);
+  font-size: clamp(1.85rem, 11.5vw - 7px, 3.8rem);
   letter-spacing: 0.02em;
   line-height: 1.02;
-  color: $color-text-main;
-  text-shadow: 0 0 4px rgba($color-ivory, 1), 0 0 14px rgba($color-ivory, 1), 0 1px 4px rgba($color-ivory, 1);
+  color: $color-accent;
+  -webkit-text-stroke: 1px rgba($color-ivory, 0.85);
+  paint-order: stroke fill;
 }
 
 // ─── ロゴ下のアクセント線（左から引かれる） ───
@@ -121,14 +122,14 @@
   width: 52px;
   height: 2px;
   margin-top: 2px;
-  background-color: $color-accent;
+  background-color: $color-text-main;
   transform-origin: left center;
   box-shadow: 0 0 6px rgba($color-ivory, 0.9);
 }
 
 // ─── メッセージ ───
 .hero__tagline {
-  color: $color-accent;
+  color: $color-text-sub;
   letter-spacing: 0.15em;
   font-size: clamp(1.0rem, 2.5vw, 0.95rem);
   font-family: $font-heading;
@@ -167,13 +168,13 @@
   width: 100%;
   max-width: 280px;
   padding: $space-sm $space-lg;
-  background-color: $color-accent;
+  background-color: $color-text-main;
   color: $color-ivory;
   font-size: 0.8rem;
   white-space: nowrap;
   letter-spacing: 0.15em;
   text-align: center;
-  border: 1px solid $color-accent;
+  border: 1px solid $color-text-main;
   border-radius: 2px;
   transition: opacity 0.3s ease, letter-spacing 0.3s ease;
 }
@@ -237,6 +238,10 @@
     text-shadow: none;
   }
 
+  .hero__logo {
+    -webkit-text-stroke: 0;
+  }
+
   .hero__bgImage::after {
     background: linear-gradient(
       to right,
@@ -268,7 +273,7 @@
   }
 
   .hero__logo {
-    font-weight: 500;
+    font-weight: 700;
     font-size: clamp(5rem, 6.8vw, 8rem);
     letter-spacing: 0.03em;
     line-height: 1.08;

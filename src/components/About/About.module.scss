@@ -175,6 +175,9 @@
 }
 
 .about__neldripText {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
   font-size: 0.9rem;
   line-height: 2;
   letter-spacing: 0.05em;
