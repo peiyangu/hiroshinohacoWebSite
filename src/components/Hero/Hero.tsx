@@ -65,7 +65,12 @@ export function Hero() {
               <motion.p className={styles.hero__kicker} variants={item}>
                 ヒロシノハコ
               </motion.p>
-              <motion.h1 className={styles.hero__logo} variants={heading}>
+              <motion.p className={styles.hero__value} variants={heading}>
+                苦いコーヒーが苦手な店主が淹れる。
+                <br />
+                ネルドリップで、一杯ずつ丁寧に。
+              </motion.p>
+              <motion.h1 className={styles.hero__logo} variants={item}>
                 hirosHi.no.haco
               </motion.h1>
               <motion.span
@@ -82,13 +87,8 @@ export function Hero() {
             <motion.p className={styles.hero__description} variants={item}>
               <span className={styles.hero__descriptionShort}>
                 福岡県筑紫野市の住宅街にある
-                <br />小さな自家焙煎コーヒー店です。
                 <br />
-                苦いコーヒーが苦手な店主が、
-                <br />
-                苦すぎず、ちゃんとおいしいコーヒーを
-                <br />
-                ネルドリップで丁寧にお淹れしています。
+                小さな自家焙煎コーヒー店です。
                 <br />
                 <br />
                 店内では、コーヒーやカフェラテのほか、
@@ -99,10 +99,6 @@ export function Hero() {
                 福岡県筑紫野市の住宅街にある
                 <br />
                 小さな自家焙煎コーヒー店です。
-                <br />
-                苦いコーヒーが苦手な店主が、
-                <br />
-                苦すぎず、ちゃんとおいしいコーヒーをネルドリップで丁寧にお淹れしています。
                 <br />
                 <br />
                 店内では、コーヒーやカフェラテのほか、
@@ -120,10 +116,6 @@ export function Hero() {
         </motion.div>
       </div>
       <div className={styles.hero__verticalText}>since 2026.1.23 — Chikushino, Fukuoka</div>
-      <div className={styles.hero__scroll}>
-        <span className={styles.hero__scrollText}>SCROLL</span>
-        <span className={styles.hero__scrollLine}></span>
-      </div>
     </section>
   );
 }

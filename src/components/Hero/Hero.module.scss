@@ -23,6 +23,8 @@
   position: absolute;
   inset: 0;
   background:
+    // 全体を少し暗くして文字とのコントラストを確保
+    linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
     radial-gradient(
       ellipse 85% 42% at 38% 24%,
       rgba($color-ivory, 0.55) 0%,
@@ -105,15 +107,27 @@
   text-shadow: 0 0 3px rgba($color-ivory, 1), 0 0 10px rgba($color-ivory, 1), 0 1px 3px rgba($color-ivory, 1);
 }
 
+// ブランド名: 価値提案の下に添える二次的な要素として、控えめなサイズに
 .hero__logo {
   font-family: $font-logo;
   font-weight: 700;
-  font-size: clamp(1.85rem, 11.5vw - 7px, 3.8rem);
+  font-size: clamp(1rem, 4.5vw - 3px, 1.5rem);
   letter-spacing: 0.02em;
-  line-height: 1.02;
+  line-height: 1.1;
   color: $color-accent;
   -webkit-text-stroke: 1px rgba($color-ivory, 0.85);
   paint-order: stroke fill;
+}
+
+// ─── 価値提案（一番最初に伝えるべき「どんな店か」。ロゴより一回り大きくして主役にする） ───
+.hero__value {
+  font-family: $font-heading;
+  font-weight: 600;
+  font-size: clamp(1.3rem, 5.5vw, 1.7rem);
+  line-height: 1.5;
+  color: $color-text-main;
+  letter-spacing: 0.02em;
+  text-shadow: 0 0 3px rgba($color-ivory, 1), 0 0 10px rgba($color-ivory, 1), 0 1px 3px rgba($color-ivory, 1);
 }
 
 // ─── ロゴ下のアクセント線（左から引かれる） ───
@@ -129,7 +143,7 @@
 
 // ─── メッセージ ───
 .hero__tagline {
-  color: $color-text-sub;
+  color: $color-text-main;
   letter-spacing: 0.15em;
   font-size: clamp(1.0rem, 2.5vw, 0.95rem);
   font-family: $font-heading;
@@ -168,13 +182,14 @@
   width: 100%;
   max-width: 280px;
   padding: $space-sm $space-lg;
-  background-color: $color-text-main;
+  // 黒100%だと重すぎるため、少し柔らかいトーンに
+  background-color: #403b36;
   color: $color-ivory;
   font-size: 0.8rem;
   white-space: nowrap;
   letter-spacing: 0.15em;
   text-align: center;
-  border: 1px solid $color-text-main;
+  border: 1px solid #403b36;
   border-radius: 2px;
   transition: opacity 0.3s ease, letter-spacing 0.3s ease;
 }
@@ -187,38 +202,6 @@
 // ─── 縦書きテキスト（モバイルは非表示） ───
 .hero__verticalText {
   display: none;
-}
-
-// ─── スクロール誘導 ───
-.hero__scroll {
-  position: absolute;
-  bottom: 32px;
-  right: $space-md;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  z-index: 2;
-}
-
-.hero__scrollText {
-  font-size: 0.6rem;
-  letter-spacing: 0.3em;
-  color: $color-text-sub;
-}
-
-@keyframes scrollDown {
-  0% { height: 0; opacity: 0; }
-  50% { opacity: 1; }
-  100% { height: 40px; opacity: 0; }
-}
-
-.hero__scrollLine {
-  display: block;
-  width: 1px;
-  height: 0;
-  background-color: $color-text-sub;
-  animation: scrollDown 1.8s ease-in-out infinite;
 }
 
 // ─── タブレット以上 ───
@@ -234,6 +217,7 @@
 
   .hero__kicker,
   .hero__logo,
+  .hero__value,
   .hero__tagline {
     text-shadow: none;
   }
@@ -243,12 +227,14 @@
   }
 
   .hero__bgImage::after {
-    background: linear-gradient(
-      to right,
-      rgba($color-ivory, 0.92) 0%,
-      rgba($color-ivory, 0.6) 55%,
-      rgba($color-ivory, 0.15) 100%
-    );
+    background:
+      linear-gradient(rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.22)),
+      linear-gradient(
+        to right,
+        rgba($color-ivory, 0.92) 0%,
+        rgba($color-ivory, 0.6) 55%,
+        rgba($color-ivory, 0.15) 100%
+      );
   }
 
   .hero__inner {
@@ -274,9 +260,14 @@
 
   .hero__logo {
     font-weight: 700;
-    font-size: clamp(5rem, 6.8vw, 8rem);
+    font-size: clamp(1.6rem, 1.1rem + 1.4vw, 2.4rem);
     letter-spacing: 0.03em;
-    line-height: 1.08;
+    line-height: 1.1;
+  }
+
+  .hero__value {
+    font-size: clamp(2rem, 1.3rem + 2.2vw, 3.2rem);
+    line-height: 1.4;
   }
 
   .hero__accentLine {
@@ -338,22 +329,6 @@
     opacity: 0.6;
   }
 
-  .hero__scroll {
-    bottom: 40px;
-    right: auto;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .hero__scrollLine {
-    animation-name: scrollDown;
-  }
-
-  @keyframes scrollDown {
-    0% { height: 0; opacity: 0; }
-    50% { opacity: 1; }
-    100% { height: 50px; opacity: 0; }
-  }
 }
 
 @include desktop {
