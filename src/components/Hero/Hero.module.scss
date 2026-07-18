@@ -8,7 +8,8 @@
   display: flex;
   align-items: stretch;
   padding: $space-2xl $space-md;
-  padding-bottom: $space-xl;
+  padding-top: calc($space-2xl + $space-md);
+  padding-bottom: $space-md;
 }
 
 .hero__bgImage {
@@ -69,14 +70,16 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+  gap: $space-xl;
   height: 100%;
 }
 
-// タイトル・タグラインは上、説明とアクションは下に離して配置
+// タイトル・タグライン・説明文をひとつのまとまりとして下寄せ配置
 .hero__top {
   display: flex;
   flex-direction: column;
   gap: $space-md;
+  margin-top: $space-lg;
 }
 
 .hero__bottom {
@@ -96,23 +99,14 @@
   padding-left: $space-md;
 }
 
-.hero__kicker {
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.35em;
-  color: $color-text-sub;
-  display: block;
-  text-shadow: 0 0 3px rgba($color-ivory, 1), 0 0 10px rgba($color-ivory, 1), 0 1px 3px rgba($color-ivory, 1);
-}
-
 .hero__logo {
   font-family: $font-logo;
   font-weight: 700;
-  font-size: clamp(1.85rem, 11.5vw - 7px, 3.8rem);
+  font-size: clamp(2rem, 9vw, 2.6rem);
   letter-spacing: 0.02em;
   line-height: 1.02;
   color: $color-accent;
-  -webkit-text-stroke: 1px rgba($color-ivory, 0.85);
+  -webkit-text-stroke: 0.7px rgba($color-ivory, 0.85);
   paint-order: stroke fill;
 }
 
@@ -138,20 +132,11 @@
 }
 
 .hero__description {
-  font-size: clamp(0.8rem, 1.6vw, 0.9rem);
-  line-height: 1.9;
+  font-size: clamp(0.92rem, 2.2vw, 1rem);
+  line-height: 1.95;
   color: $color-text-main;
   letter-spacing: 0.04em;
   text-shadow: 0 0 3px rgba($color-ivory, 1), 0 0 8px rgba($color-ivory, 1), 0 1px 2px rgba($color-ivory, 1);
-}
-
-// モバイル: 説明文を短縮版で表示（PC/タブレットは全文）
-.hero__descriptionFull {
-  display: none;
-}
-
-.hero__descriptionShort {
-  display: inline;
 }
 
 // ─── アクション ───
@@ -187,6 +172,14 @@
 // ─── 縦書きテキスト（モバイルは非表示） ───
 .hero__verticalText {
   display: none;
+}
+
+// ─── モバイル用の発行日テキスト（タブレット以上は縦書き版に切り替え） ───
+.hero__sinceMobile {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  color: $color-text-sub;
+  text-shadow: 0 0 3px rgba($color-ivory, 1), 0 0 8px rgba($color-ivory, 1);
 }
 
 // ─── スクロール誘導 ───
@@ -232,10 +225,13 @@
     filter: none;
   }
 
-  .hero__kicker,
   .hero__logo,
   .hero__tagline {
     text-shadow: none;
+  }
+
+  .hero__sinceMobile {
+    display: none;
   }
 
   .hero__logo {
@@ -266,6 +262,7 @@
 
   .hero__top {
     gap: $space-lg;
+    margin-top: $space-2xl;
   }
 
   .hero__bottom {
@@ -274,21 +271,16 @@
 
   .hero__logo {
     font-weight: 700;
-    font-size: clamp(5rem, 6.8vw, 8rem);
-    letter-spacing: 0.03em;
+    font-size: clamp(3.2rem, 4.6vw, 4.4rem);
+    letter-spacing: 0.02em;
     line-height: 1.08;
   }
 
   .hero__accentLine {
-    width: 76px;
+    width: 64px;
     height: 2px;
     margin-top: $space-xs;
     box-shadow: none;
-  }
-
-  .hero__kicker {
-    font-size: 1.15rem;
-    letter-spacing: 0.28em;
   }
 
   .hero__tagline {
@@ -296,16 +288,9 @@
   }
 
   .hero__description {
-    font-size: clamp(0.9rem, 0.85rem + 0.2vw, 1rem);
+    font-size: clamp(1rem, 0.9rem + 0.3vw, 1.15rem);
     line-height: 2;
-  }
-
-  .hero__descriptionShort {
-    display: none;
-  }
-
-  .hero__descriptionFull {
-    display: inline;
+    max-width: 45ch;
   }
 
   .hero__action {

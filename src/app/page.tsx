@@ -15,12 +15,12 @@ export default function HomePage() {
       <Header />
       <main>
         <Hero />
-        <News />
         <About />
         <Menu />
         <LineUpPreview />
         <Schedule />
         <OnlineShop />
+        <News />
         <Access />
       </main>
       <Footer />

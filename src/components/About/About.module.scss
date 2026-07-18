@@ -129,15 +129,6 @@
   }
 }
 
-.about__title {
-  font-family: $font-heading;
-  font-size: 1.2rem;
-  letter-spacing: 0.2em;
-  color: $color-accent;
-  margin-bottom: 16px;
-  display: block;
-}
-
 .about__subtitle {
   font-family: $font-heading;
   font-size: clamp(1.7rem, 6vw, 3.2rem);
@@ -156,9 +147,36 @@
 
   @include tablet {
     font-size: 1.05rem;
-    gap: 40px;
+    gap: $space-lg;
     line-height: 2.2;
   }
+}
+
+.about__textBlock {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+
+  @include tablet {
+    gap: $space-lg;
+  }
+}
+
+.about__lead {
+  font-family: $font-heading;
+  font-style: italic;
+  color: $color-accent;
+  letter-spacing: 0.06em;
+}
+
+.about__signature {
+  font-family: $font-heading;
+  font-style: italic;
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  color: $color-text-sub;
+  text-align: right;
+  margin-top: -8px;
 }
 
 .about__neldripBlock {
@@ -202,14 +220,6 @@
   @include tablet {
     display: none;
   }
-}
-
-.about__overlayTitle {
-  font-family: $font-heading;
-  font-size: 0.8rem;
-  letter-spacing: 0.3em;
-  color: rgba($color-ivory, 0.7);
-  margin-bottom: 6px;
 }
 
 .about__overlaySubtitle {

@@ -21,7 +21,6 @@ export function LineUpPreview() {
       <FadeInSection className={styles.inner}>
         <div className={styles.header}>
           <div className={styles.headerText}>
-            <span className={styles.label}>— COFFEE BEANS</span>
             <h2 className={styles.title}>Line Up</h2>
             <p className={styles.subtitle}>コーヒー豆 ラインナップ</p>
           </div>

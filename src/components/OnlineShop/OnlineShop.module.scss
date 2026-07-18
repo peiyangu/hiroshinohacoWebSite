@@ -90,17 +90,6 @@
   gap: 32px;
 }
 
-.label {
-  font-size: 0.85rem;
-  letter-spacing: 0.3em;
-  color: rgba($color-ivory, 0.5);
-  display: none;
-
-  @include tablet {
-    display: block;
-  }
-}
-
 .title {
   font-family: $font-heading;
   font-size: clamp(2rem, 8vw, 5rem);
@@ -179,14 +168,6 @@
   @include tablet {
     display: none;
   }
-}
-
-.overlayLabel {
-  font-size: 0.8rem;
-  letter-spacing: 0.3em;
-  color: rgba($color-ivory, 0.7);
-  margin-bottom: 6px;
-  display: block;
 }
 
 .overlayTitle {

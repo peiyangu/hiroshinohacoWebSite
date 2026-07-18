@@ -16,7 +16,6 @@ export const OnlineShop = () => {
               className={styles.image}
             />
             <div className={styles.imageOverlay} aria-hidden="true">
-              <span className={styles.overlayLabel}>— ONLINE SHOP</span>
               <p className={styles.overlayTitle}>
                 Online<br />Shop
               </p>
@@ -24,7 +23,6 @@ export const OnlineShop = () => {
           </div>
           {/* 右: テキスト・ボタン */}
           <div className={styles.textSide}>
-            <span className={styles.label}>— ONLINE SHOP</span>
             <h2 className={styles.title}>Online<br />Shop</h2>
             <p className={styles.description}>
               ヒロシノハコのコーヒー豆やオリジナルグッズは、

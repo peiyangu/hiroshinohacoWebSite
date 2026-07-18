@@ -9,7 +9,6 @@ export const News = () => {
       <FadeInSection>
         <div className={styles.inner}>
           <div className={styles.header}>
-            <span className={styles.label}>— NEWS</span>
             <h2 className={styles.title}>News</h2>
             <p className={styles.subtitle}>お知らせ</p>
           </div>

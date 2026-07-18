@@ -15,7 +15,6 @@ export const Schedule = () => {
       <FadeInSection>
         <div className={styles.inner}>
           <div className={styles.titleGroup}>
-            <span className={styles.label}>— SCHEDULE</span>
             <h2 className={styles.title}>Schedule</h2>
             <p className={styles.subtitle}>今月の予定</p>
             <a

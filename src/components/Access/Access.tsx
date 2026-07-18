@@ -40,7 +40,6 @@ export function Access() {
 
           {/* ヘッダー（センタリング） */}
           <header className={styles.access__header}>
-            <span className={styles.access__label}>— ACCESS</span>
             <h2 className={styles.access__title}>Access</h2>
             <div className={styles.access__divider}>
               <span className={styles.access__dividerLine} />

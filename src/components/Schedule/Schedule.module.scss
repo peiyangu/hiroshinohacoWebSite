@@ -49,14 +49,6 @@
   width: 100%;
 }
 
-.label {
-  font-size: 0.85rem;
-  letter-spacing: 0.3em;
-  color: $color-accent;
-  display: block;
-  margin-bottom: $space-md;
-}
-
 .title {
   font-family: $font-heading;
   font-size: clamp(2.2rem, 8vw, 4rem);

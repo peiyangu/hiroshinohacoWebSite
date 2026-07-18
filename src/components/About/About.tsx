@@ -19,7 +19,6 @@ export function About() {
                 className={styles.about__image}
               />
               <div className={styles.about__imageOverlay} aria-hidden="true">
-                <p className={styles.about__overlayTitle}>ABOUT</p>
                 <p className={styles.about__overlaySubtitle}>
                   慌ただしい毎日に、<br />
                   やさしい余白を。
@@ -29,36 +28,36 @@ export function About() {
           </div>
           <div className={styles.about__textContainer}>
             <div className={styles.about__header}>
-              <h2 className={styles.about__title}>ABOUT</h2>
-              <h3 className={styles.about__subtitle}>
+              <h2 className={styles.about__subtitle}>
                 慌ただしい毎日に、<br />
                 やさしい余白を。
-              </h3>
+              </h2>
             </div>
             <div className={styles.about__text}>
-              <p>
-                苦いコーヒーが苦手な店主だからこそ、<br />
-                苦すぎず、ちゃんとおいしいと思える一杯を目指しています。
-              </p>
-              <p>
-                毎日の暮らしの中で、<br />
-                「また飲みたい」<br />と思っていただけるコーヒーを届けたくて、<br />
-                一つひとつ焙煎しています。
-              </p>
-              <p>
-                抽出には、昔ながらのネルドリップを。
-              </p>
-              <p>
-                手間はかかりますが、やわらかな口当たりと、<br />
-                コーヒー本来の甘さを大切にしています。
-              </p>
-              <p>
-                慌ただしい毎日に、ホッとひと息つける時間を。
-              </p>
-              <p>
-                コーヒーをきっかけに生まれるご縁を、<br />
-                これからも大切にしていきたいと思っています。
-              </p>
+              <div className={styles.about__textBlock}>
+                <p>
+                  <span className={styles.about__lead}>苦いコーヒーが苦手な店主</span>
+                  <br />
+                  だからこそ、苦すぎずちゃんとおいしいと思える一杯を目指しています。
+                </p>
+                <p>
+                  <span className={styles.about__lead}>毎日の暮らしの中で「また飲みたい」</span>
+                  <br />そう思っていただけるコーヒーを届けたくて、<br />
+                  一つひとつ焙煎しています。
+                </p>
+                <p>
+                  <span className={styles.about__lead}>抽出には、昔ながらのネルドリップを</span>
+                  <br />
+                  手間はかかりますが、やわらかな口当たりと、
+                  コーヒー本来の甘さを大切にしています。
+                </p>
+                <p>
+                  <span className={styles.about__lead}>慌ただしい毎日に、ホッとひと息つける時間を</span>
+                  <br />
+                  コーヒーをきっかけに生まれるご縁を、これからも大切にしていきたいと思っています。
+                </p>
+              </div>
+              <p className={styles.about__signature}>— ヒロシ（店主）</p>
             </div>
             <div className={styles.about__neldripBlock}>
               <h4 className={styles.about__neldripTitle}>ネルドリップとは</h4>

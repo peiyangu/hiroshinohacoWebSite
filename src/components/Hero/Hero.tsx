@@ -62,9 +62,6 @@ export function Hero() {
         >
           <motion.div className={styles.hero__top} variants={group}>
             <motion.div className={styles.hero__textGroup} variants={group}>
-              <motion.p className={styles.hero__kicker} variants={item}>
-                ヒロシノハコ
-              </motion.p>
               <motion.h1 className={styles.hero__logo} variants={heading}>
                 hirosHi.no.haco
               </motion.h1>
@@ -80,35 +77,19 @@ export function Hero() {
           </motion.div>
           <motion.div className={styles.hero__bottom} variants={group}>
             <motion.p className={styles.hero__description} variants={item}>
-              <span className={styles.hero__descriptionShort}>
-                福岡県筑紫野市の住宅街にある
-                <br />小さな自家焙煎コーヒー店です。
-                <br />
-                苦いコーヒーが苦手な店主が、
-                <br />
-                苦すぎず、ちゃんとおいしいコーヒーを
-                <br />
-                ネルドリップで丁寧にお淹れしています。
-                <br />
-                <br />
-                店内では、コーヒーやカフェラテのほか、
-                <br />
-                コーヒー豆やドリップバッグもご用意しています。
-              </span>
-              <span className={styles.hero__descriptionFull}>
-                福岡県筑紫野市の住宅街にある
-                <br />
-                小さな自家焙煎コーヒー店です。
-                <br />
-                苦いコーヒーが苦手な店主が、
-                <br />
-                苦すぎず、ちゃんとおいしいコーヒーをネルドリップで丁寧にお淹れしています。
-                <br />
-                <br />
-                店内では、コーヒーやカフェラテのほか、
-                <br />
-                コーヒー豆やドリップバッグもご用意しています。
-              </span>
+              福岡県筑紫野市の住宅街にある
+              <br />
+              小さな自家焙煎コーヒー店です。
+              <br />
+              <br />
+              苦いコーヒーが苦手な店主が、
+              <br />
+              苦すぎず、ちゃんとおいしいコーヒーを
+              <br />
+              ネルドリップで丁寧にお淹れしています。
+              <br />
+              店内では、コーヒーやカフェラテのほか、<br />
+              コーヒー豆やドリップバッグもご用意しています。
             </motion.p>
             <motion.div className={styles.hero__action} variants={item}>
               <StatusBadge />
@@ -116,6 +97,9 @@ export function Hero() {
                 店舗情報・アクセスを見る
               </a>
             </motion.div>
+            <motion.p className={styles.hero__sinceMobile} variants={item}>
+              since 2026.1.23 — Chikushino, Fukuoka
+            </motion.p>
           </motion.div>
         </motion.div>
       </div>
