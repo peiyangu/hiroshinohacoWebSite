@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { StatusBadge } from "@/components/common/StatusBadge";
@@ -42,6 +43,8 @@ const line = {
 };
 
 export function Hero() {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <section className={styles.hero}>
       <div className={styles.hero__bgImage}>
@@ -51,6 +54,8 @@ export function Hero() {
           fill
           priority
           sizes="100vw"
+          onLoad={() => setImageLoaded(true)}
+          className={imageLoaded ? styles["hero__bgImage--loaded"] : undefined}
         />
       </div>
       <div className={styles.hero__inner}>

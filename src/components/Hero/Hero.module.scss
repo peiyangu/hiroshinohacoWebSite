@@ -60,6 +60,14 @@
   animation: slowZoom 15s ease-out forwards;
   // モバイル: 写真を少し暗く・低彩度にして文字との同化を防ぐ
   filter: brightness(0.7) saturate(0.85);
+  // 読み込み完了までは非表示にし、完了時にふわっと表示する
+  // （読み込みが遅れた場合に写真が唐突に出現するのを防ぐ）
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.hero__bgImage--loaded {
+  opacity: 1 !important;
 }
 
 // コンテンツは画面左下
