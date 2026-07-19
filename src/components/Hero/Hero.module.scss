@@ -14,7 +14,11 @@
 
 .hero__bgImage {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  // モバイル: 下側に余分な高さを持たせて上方向に少しズームし、店主の位置を下げる
+  bottom: -90px;
 }
 
 // モバイル: 下から上にグラデーション → 写真上部がよく見える
@@ -26,21 +30,21 @@
   background:
     radial-gradient(
       ellipse 85% 42% at 38% 24%,
-      rgba($color-ivory, 0.55) 0%,
-      rgba($color-ivory, 0.28) 45%,
+      rgba($color-ivory, 0.3) 0%,
+      rgba($color-ivory, 0.14) 45%,
       rgba($color-ivory, 0) 75%
     ),
     radial-gradient(
-      ellipse 90% 32% at 48% 68%,
-      rgba($color-ivory, 0.5) 0%,
-      rgba($color-ivory, 0.25) 45%,
-      rgba($color-ivory, 0) 75%
+      ellipse 100% 42% at 45% 72%,
+      rgba($color-ivory, 0.72) 0%,
+      rgba($color-ivory, 0.45) 50%,
+      rgba($color-ivory, 0) 80%
     ),
     linear-gradient(
       to top,
-      rgba($color-ivory, 0.85) 0%,
-      rgba($color-ivory, 0.55) 40%,
-      rgba($color-ivory, 0.22) 75%,
+      rgba($color-ivory, 0.92) 0%,
+      rgba($color-ivory, 0.68) 35%,
+      rgba($color-ivory, 0.3) 70%,
       rgba($color-ivory, 0.05) 100%
     );
 }
@@ -88,6 +92,8 @@
   align-items: flex-start;
   gap: $space-md;
   width: 100%;
+  // モバイル: 説明文・ボタンをもう少し下に寄せる
+  margin-top: $space-lg;
 }
 
 // ─── ロゴ・ブランド名 ───
@@ -105,8 +111,9 @@
   font-size: clamp(2rem, 9vw, 2.6rem);
   letter-spacing: 0.02em;
   line-height: 1.02;
-  color: $color-accent;
-  -webkit-text-stroke: 0.7px rgba($color-ivory, 0.85);
+  color: #5f7042;
+  -webkit-text-stroke: 0.9px rgba($color-ivory, 0.9);
+  text-shadow: 0 1px 3px rgba($color-text-main, 0.35), 0 0 14px rgba($color-ivory, 0.55);
   paint-order: stroke fill;
 }
 
@@ -136,24 +143,31 @@
   line-height: 1.95;
   color: $color-text-main;
   letter-spacing: 0.04em;
-  text-shadow: 0 0 3px rgba($color-ivory, 1), 0 0 8px rgba($color-ivory, 1), 0 1px 2px rgba($color-ivory, 1);
+  text-shadow: 0 1px 2px rgba($color-ivory, 0.6);
 }
 
 // ─── スマホ版：短く、インパクト重視のコピー ───
 .hero__descriptionMobile {
   display: block;
-  font-size: 1.08rem;
-  line-height: 1.85;
 }
 
-.hero__highlight {
-  display: inline-block;
-  margin-top: 2px;
+.hero__descriptionMain {
   font-family: $font-heading;
-  font-size: 1.3rem;
   font-weight: 700;
-  color: $color-accent;
-  letter-spacing: 0.06em;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: $color-text-main;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 2px rgba($color-ivory, 0.6);
+}
+
+.hero__descriptionSub {
+  margin-top: $space-xs;
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: $color-text-sub;
+  letter-spacing: 0.08em;
+  text-shadow: 0 1px 2px rgba($color-ivory, 0.6);
 }
 
 // ─── PC版：詳細コピー（スマホでは非表示） ───
@@ -196,14 +210,6 @@
   display: none;
 }
 
-// ─── モバイル用の発行日テキスト（タブレット以上は縦書き版に切り替え） ───
-.hero__sinceMobile {
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
-  color: $color-text-sub;
-  text-shadow: 0 0 3px rgba($color-ivory, 1), 0 0 8px rgba($color-ivory, 1);
-}
-
 // ─── スクロール誘導 ───
 .hero__scroll {
   position: absolute;
@@ -243,17 +249,18 @@
     padding: calc($space-3xl + $space-md) $space-lg $space-3xl;
   }
 
+  .hero__bgImage {
+    inset: 0;
+  }
+
   .hero__bgImage :global(img) {
+    object-position: center 20%;
     filter: none;
   }
 
   .hero__logo,
   .hero__tagline {
     text-shadow: none;
-  }
-
-  .hero__sinceMobile {
-    display: none;
   }
 
   .hero__descriptionMobile {
@@ -297,6 +304,7 @@
 
   .hero__bottom {
     gap: $space-lg;
+    margin-top: 0;
   }
 
   .hero__logo {

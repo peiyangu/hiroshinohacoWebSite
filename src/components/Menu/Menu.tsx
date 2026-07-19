@@ -59,6 +59,10 @@ export const Menu = () => {
             ))}
           </ul>
 
+          <p className={styles.note}>
+            自家焙煎豆・ドリップバッグの店頭販売もございます。
+          </p>
+
           <div className={styles.footer}>
             <Link href="/menu" className={styles.button}>
               メニューをすべて見る

@@ -77,14 +77,22 @@ export function Hero() {
           </motion.div>
           <motion.div className={styles.hero__bottom} variants={group}>
             <motion.p
-              className={`${styles.hero__description} ${styles.hero__descriptionMobile}`}
+              className={`${styles.hero__descriptionMobile} ${styles.hero__descriptionMain}`}
               variants={item}
             >
-              苦いコーヒーが苦手な店主が仕込む、
+              苦いコーヒーが苦手な店主が
               <br />
-              <span className={styles.hero__highlight}>苦すぎず、ちゃんとおいしい。</span>
+              焙煎する、苦すぎず、
               <br />
-              ネルドリップで、一杯ずつ丁寧に。
+              また飲みたくなる一杯。
+            </motion.p>
+            <motion.p
+              className={`${styles.hero__descriptionMobile} ${styles.hero__descriptionSub}`}
+              variants={item}
+            >
+              福岡県筑紫野市の住宅街にある、
+              <br />
+              小さな自家焙煎コーヒー店です。
             </motion.p>
             <motion.p
               className={`${styles.hero__description} ${styles.hero__descriptionDesktop}`}
@@ -111,9 +119,6 @@ export function Hero() {
                 店舗情報・アクセスを見る
               </a>
             </motion.div>
-            <motion.p className={styles.hero__sinceMobile} variants={item}>
-              since 2026.1.23 — Chikushino, Fukuoka
-            </motion.p>
           </motion.div>
         </motion.div>
       </div>

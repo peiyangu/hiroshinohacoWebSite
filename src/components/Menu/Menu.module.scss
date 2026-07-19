@@ -146,6 +146,13 @@
   }
 }
 
+.note {
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  color: rgba($color-ivory, 0.5);
+  margin-bottom: $space-md;
+}
+
 .footer {
   text-align: right;
 }
