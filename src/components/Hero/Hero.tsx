@@ -82,9 +82,9 @@ export function Hero() {
             >
               苦いコーヒーが苦手な店主が
               <br />
-              焙煎する、苦すぎず、
+              焙煎する、
               <br />
-              また飲みたくなる一杯。
+              苦すぎず、また飲みたくなる一杯。
             </motion.p>
             <motion.p
               className={`${styles.hero__descriptionMobile} ${styles.hero__descriptionSub}`}
