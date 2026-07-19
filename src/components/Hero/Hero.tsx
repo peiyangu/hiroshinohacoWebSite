@@ -81,7 +81,6 @@ export function Hero() {
               variants={item}
             >
               苦いコーヒーが苦手な店主が
-              <br />
               焙煎する、
               <br />
               苦すぎず、また飲みたくなる一杯。
