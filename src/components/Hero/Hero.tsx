@@ -76,7 +76,20 @@ export function Hero() {
             </motion.p>
           </motion.div>
           <motion.div className={styles.hero__bottom} variants={group}>
-            <motion.p className={styles.hero__description} variants={item}>
+            <motion.p
+              className={`${styles.hero__description} ${styles.hero__descriptionMobile}`}
+              variants={item}
+            >
+              苦いコーヒーが苦手な店主が仕込む、
+              <br />
+              <span className={styles.hero__highlight}>苦すぎず、ちゃんとおいしい。</span>
+              <br />
+              ネルドリップで、一杯ずつ丁寧に。
+            </motion.p>
+            <motion.p
+              className={`${styles.hero__description} ${styles.hero__descriptionDesktop}`}
+              variants={item}
+            >
               福岡県筑紫野市の住宅街にある
               <br />
               小さな自家焙煎コーヒー店です。
@@ -88,12 +101,9 @@ export function Hero() {
               <br />
               ネルドリップで丁寧にお淹れしています。
               <br />
-              {/* <br className={styles.hero__descBreakDesktop} /> */}
-              {/* <span className={styles.hero__descDesktopOnly}> */}
-                店内では、コーヒーやカフェラテのほか、
-                <br />
-                コーヒー豆やドリップバッグもご用意しています。
-              {/* </span> */}
+              店内では、コーヒーやカフェラテのほか、
+              <br />
+              コーヒー豆やドリップバッグもご用意しています。
             </motion.p>
             <motion.div className={styles.hero__action} variants={item}>
               <StatusBadge />

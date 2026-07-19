@@ -139,12 +139,25 @@
   text-shadow: 0 0 3px rgba($color-ivory, 1), 0 0 8px rgba($color-ivory, 1), 0 1px 2px rgba($color-ivory, 1);
 }
 
-// ─── 店内販売の案内（PC版のみ表示） ───
-.hero__descBreakDesktop {
-  display: none;
+// ─── スマホ版：短く、インパクト重視のコピー ───
+.hero__descriptionMobile {
+  display: block;
+  font-size: 1.08rem;
+  line-height: 1.85;
 }
 
-.hero__descDesktopOnly {
+.hero__highlight {
+  display: inline-block;
+  margin-top: 2px;
+  font-family: $font-heading;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: $color-accent;
+  letter-spacing: 0.06em;
+}
+
+// ─── PC版：詳細コピー（スマホでは非表示） ───
+.hero__descriptionDesktop {
   display: none;
 }
 
@@ -243,12 +256,12 @@
     display: none;
   }
 
-  .hero__descBreakDesktop {
-    display: inline;
+  .hero__descriptionMobile {
+    display: none;
   }
 
-  .hero__descDesktopOnly {
-    display: inline;
+  .hero__descriptionDesktop {
+    display: block;
   }
 
   .hero__logo {
