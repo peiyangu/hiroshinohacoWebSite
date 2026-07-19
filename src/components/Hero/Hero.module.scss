@@ -139,6 +139,15 @@
   text-shadow: 0 0 3px rgba($color-ivory, 1), 0 0 8px rgba($color-ivory, 1), 0 1px 2px rgba($color-ivory, 1);
 }
 
+// ─── 店内販売の案内（PC版のみ表示） ───
+.hero__descBreakDesktop {
+  display: none;
+}
+
+.hero__descDesktopOnly {
+  display: none;
+}
+
 // ─── アクション ───
 .hero__action {
   display: flex;
@@ -232,6 +241,14 @@
 
   .hero__sinceMobile {
     display: none;
+  }
+
+  .hero__descBreakDesktop {
+    display: inline;
+  }
+
+  .hero__descDesktopOnly {
+    display: inline;
   }
 
   .hero__logo {

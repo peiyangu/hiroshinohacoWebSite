@@ -88,8 +88,12 @@ export function Hero() {
               <br />
               ネルドリップで丁寧にお淹れしています。
               <br />
-              店内では、コーヒーやカフェラテのほか、<br />
-              コーヒー豆やドリップバッグもご用意しています。
+              {/* <br className={styles.hero__descBreakDesktop} /> */}
+              {/* <span className={styles.hero__descDesktopOnly}> */}
+                店内では、コーヒーやカフェラテのほか、
+                <br />
+                コーヒー豆やドリップバッグもご用意しています。
+              {/* </span> */}
             </motion.p>
             <motion.div className={styles.hero__action} variants={item}>
               <StatusBadge />
