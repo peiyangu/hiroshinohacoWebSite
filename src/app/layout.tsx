@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import "@/styles/globals.scss";
 import { LoadingClient } from "@/components/Loading/LoadingClient";
 
@@ -45,19 +44,16 @@ export default function RootLayout({ children }: RootLayoutProps) {
         {/* hydration より前に実行し、2回目以降のローディング表示を CSS で即時抑制 */}
         <script dangerouslySetInnerHTML={{ __html: `try{if(sessionStorage.getItem('hasLoaded'))document.documentElement.classList.add('has-loaded')}catch(e){}` }} />
         {/* Google tag (gtag.js) */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-DQH7KYWJPM"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-DQH7KYWJPM" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
 
-            gtag('config', 'G-DQH7KYWJPM');
-          `}
-        </Script>
+gtag('config', 'G-DQH7KYWJPM');`,
+          }}
+        />
       </head>
       <body
         style={
