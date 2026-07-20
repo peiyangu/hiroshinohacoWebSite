@@ -44,7 +44,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
         {/* hydration より前に実行し、2回目以降のローディング表示を CSS で即時抑制 */}
         <script dangerouslySetInnerHTML={{ __html: `try{if(sessionStorage.getItem('hasLoaded'))document.documentElement.classList.add('has-loaded')}catch(e){}` }} />
       </head>
-      <body>
+      <body
+        style={
+          {
+            "--noise-bg": `url(${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/images/background/noise.png)`,
+          } as React.CSSProperties
+        }
+      >
         <LoadingClient />
         {children}
       </body>
