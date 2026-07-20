@@ -5,7 +5,6 @@ import { Header } from "@/components/Header/Header";
 import { Hero } from "@/components/Hero/Hero";
 import { Schedule } from "@/components/Schedule/Schedule";
 import { OnlineShop } from "@/components/OnlineShop/OnlineShop";
-import { News } from "@/components/News/News";
 import { LineUpPreview } from "@/components/LineUpPreview/LineUpPreview";
 import { Menu } from "@/components/Menu/Menu";
 
@@ -20,7 +19,6 @@ export default function HomePage() {
         <LineUpPreview />
         <Schedule />
         <OnlineShop />
-        <News />
         <Access />
       </main>
       <Footer />

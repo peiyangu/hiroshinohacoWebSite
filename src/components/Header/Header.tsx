@@ -7,7 +7,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import styles from "./Header.module.scss";
 
 const navItems = [
-  { label: "News", href: "/#news" },
   { label: "About", href: "/#about" },
   { label: "Line Up", href: "/lineup" },
   { label: "Menu", href: "/menu" },

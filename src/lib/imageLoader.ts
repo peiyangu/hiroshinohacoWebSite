@@ -5,5 +5,5 @@ export default function imageLoader({
   width: number;
   quality?: number;
 }): string {
-  return `/hiroshinohacoWebSite${src}`;
+  return src;
 }

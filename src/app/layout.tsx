@@ -3,7 +3,7 @@ import "@/styles/globals.scss";
 import { LoadingClient } from "@/components/Loading/LoadingClient";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://hiroshinohaco.jp"),
+  metadataBase: new URL("https://hiroshinohaco.com"),
   title: "ヒロシノハコ | 公式サイト",
   description:
     "果実味のあるコーヒーと、静かな時間を届けるヒロシノハコ公式サイト。",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "ヒロシノハコ | 公式サイト",
     description:
       "苦味を抑え、豆本来の果実味を大切にしたコーヒー。ご縁でひろがるコーヒーの和。",
-    url: "https://hiroshinohaco.jp",
+    url: "https://hiroshinohaco.com",
     siteName: "ヒロシノハコ",
     locale: "ja_JP",
     type: "website",

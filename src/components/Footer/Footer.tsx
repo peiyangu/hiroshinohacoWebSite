@@ -7,7 +7,6 @@ import {
 } from "@/data/site";
 
 const footerLinks = [
-  { label: "News", href: "/#news" },
   { label: "About", href: "/#about" },
   { label: "Line Up", href: "/lineup" },
   { label: "Menu", href: "/menu" },
