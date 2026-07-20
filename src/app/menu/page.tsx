@@ -3,9 +3,27 @@ import { Header } from "@/components/Header/Header";
 import { Footer } from "@/components/Footer/Footer";
 import styles from "./page.module.scss";
 
+const title = "Menu | ヒロシノハコ";
+const description = "ヒロシノハコの店舗メニュー。ネルドリップコーヒーからエスプレッソドリンクまで。";
+
 export const metadata = {
-  title: "Menu | ヒロシノハコ",
-  description: "ヒロシノハコの店舗メニュー。ネルドリップコーヒーからエスプレッソドリンクまで。",
+  title,
+  description,
+  alternates: {
+    canonical: "/menu/",
+  },
+  openGraph: {
+    title,
+    description,
+    url: "/menu/",
+    images: [{ url: "/ogp.jpg", width: 1200, height: 630, alt: "ヒロシノハコ" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/ogp.jpg"],
+  },
 };
 
 type MenuItem = {

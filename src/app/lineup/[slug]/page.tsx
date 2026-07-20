@@ -19,9 +19,26 @@ export async function generateMetadata({
   const { slug } = await params;
   const item = getLineupItemBySlug(slug);
   if (!item) return {};
+  const title = `${item.name} | ヒロシノハコ`;
+  const image = item.photo ?? "/ogp.jpg";
   return {
-    title: `${item.name} | ヒロシノハコ`,
+    title,
     description: item.desc,
+    alternates: {
+      canonical: `/lineup/${item.slug}/`,
+    },
+    openGraph: {
+      title,
+      description: item.desc,
+      url: `/lineup/${item.slug}/`,
+      images: [{ url: image, width: 1200, height: 1200, alt: item.name }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: item.desc,
+      images: [image],
+    },
   };
 }
 

@@ -2,11 +2,45 @@ import type { Metadata } from "next";
 import "@/styles/globals.scss";
 import { LoadingClient } from "@/components/Loading/LoadingClient";
 
+const JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  name: "ヒロシノハコ",
+  image: "https://hiroshinohaco.com/ogp.jpg",
+  url: "https://hiroshinohaco.com",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "原633-18",
+    addressLocality: "筑紫野市",
+    addressRegion: "福岡県",
+    postalCode: "818-0005",
+    addressCountry: "JP",
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+      opens: "12:00",
+      closes: "19:00",
+    },
+  ],
+  sameAs: ["https://www.instagram.com/hiroshi.no.haco_/"],
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://hiroshinohaco.com"),
   title: "ヒロシノハコ | 公式サイト",
   description:
     "果実味のあるコーヒーと、静かな時間を届けるヒロシノハコ公式サイト。",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "ヒロシノハコ | 公式サイト",
     description:
@@ -53,6 +87,10 @@ gtag('js', new Date());
 
 gtag('config', 'G-DQH7KYWJPM');`,
           }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
         />
       </head>
       <body

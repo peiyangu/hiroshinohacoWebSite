@@ -3,9 +3,27 @@ import { Footer } from "@/components/Footer/Footer";
 import { LineUp } from "@/components/LineUp/LineUp";
 import styles from "./page.module.scss";
 
+const title = "Coffee Beans | ヒロシノハコ";
+const description = "ヒロシノハコのコーヒー豆ラインナップ。自家焙煎のブレンド・シングルオリジンなど。";
+
 export const metadata = {
-  title: "Coffee Beans | ヒロシノハコ",
-  description: "ヒロシノハコのコーヒー豆ラインナップ。自家焙煎のブレンド・シングルオリジンなど。",
+  title,
+  description,
+  alternates: {
+    canonical: "/lineup/",
+  },
+  openGraph: {
+    title,
+    description,
+    url: "/lineup/",
+    images: [{ url: "/ogp.jpg", width: 1200, height: 630, alt: "ヒロシノハコ" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/ogp.jpg"],
+  },
 };
 
 export default function LineupPage() {
