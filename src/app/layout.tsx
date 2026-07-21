@@ -6,6 +6,8 @@ const JSON_LD = {
   "@context": "https://schema.org",
   "@type": "CafeOrCoffeeShop",
   name: "ヒロシノハコ",
+  description:
+    "福岡県筑紫野市（太宰府エリア）にある自家焙煎コーヒー店。ネルドリップで丁寧に淹れる一杯と、コーヒー豆・ドリップバッグを取り扱っています。",
   image: "https://hiroshinohaco.com/ogp.jpg",
   url: "https://hiroshinohaco.com",
   address: {
@@ -33,18 +35,20 @@ const JSON_LD = {
   sameAs: ["https://www.instagram.com/hiroshi.no.haco_/"],
 };
 
+const SEO_TITLE = "ヒロシノハコ | 福岡県筑紫野市の自家焙煎コーヒー店・ネルドリップ";
+const SEO_DESCRIPTION =
+  "福岡県筑紫野市（太宰府エリア）にある小さな自家焙煎コーヒー店、ヒロシノハコの公式サイト。苦みを抑えネルドリップで丁寧に淹れる一杯と、コーヒー豆・ドリップバッグを取り扱っています。";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://hiroshinohaco.com"),
-  title: "ヒロシノハコ | 公式サイト",
-  description:
-    "果実味のあるコーヒーと、静かな時間を届けるヒロシノハコ公式サイト。",
+  title: SEO_TITLE,
+  description: SEO_DESCRIPTION,
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "ヒロシノハコ | 公式サイト",
-    description:
-      "苦味を抑え、豆本来の果実味を大切にしたコーヒー。ご縁でひろがるコーヒーの和。",
+    title: SEO_TITLE,
+    description: SEO_DESCRIPTION,
     url: "https://hiroshinohaco.com",
     siteName: "ヒロシノハコ",
     locale: "ja_JP",
@@ -60,9 +64,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ヒロシノハコ | 公式サイト",
-    description:
-      "苦味を抑え、豆本来の果実味を大切にしたコーヒー。ご縁でひろがるコーヒーの和。",
+    title: SEO_TITLE,
+    description: SEO_DESCRIPTION,
     images: ["/ogp.jpg"],
   },
 };
