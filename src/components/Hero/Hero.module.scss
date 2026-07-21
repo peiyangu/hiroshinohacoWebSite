@@ -125,6 +125,15 @@
   paint-order: stroke fill;
 }
 
+.hero__logoKana {
+  font-family: $font-heading;
+  font-weight: 500;
+  font-size: clamp(0.85rem, 3vw, 0.95rem);
+  letter-spacing: 0.25em;
+  color: $color-text-sub;
+  text-shadow: 0 0 3px rgba($color-ivory, 1), 0 0 10px rgba($color-ivory, 1), 0 1px 3px rgba($color-ivory, 1);
+}
+
 // ─── ロゴ下のアクセント線（左から引かれる） ───
 .hero__accentLine {
   display: block;
@@ -267,6 +276,7 @@
   }
 
   .hero__logo,
+  .hero__logoKana,
   .hero__tagline {
     text-shadow: none;
   }
@@ -320,6 +330,10 @@
     font-size: clamp(3.2rem, 4.6vw, 4.4rem);
     letter-spacing: 0.02em;
     line-height: 1.08;
+  }
+
+  .hero__logoKana {
+    font-size: clamp(1rem, 0.9rem + 0.3vw, 1.15rem);
   }
 
   .hero__accentLine {

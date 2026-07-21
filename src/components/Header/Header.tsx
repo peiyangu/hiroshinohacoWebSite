@@ -40,7 +40,7 @@ export function Header() {
           <Link href="/" className={styles.header__logo} onClick={close}>
             <Image
               src="/images/logo/logo.png"
-              alt="hirosHi.no.haco"
+              alt="hirosHi.no.haco（ヒロシノハコ）"
               width={64}
               height={64}
               priority

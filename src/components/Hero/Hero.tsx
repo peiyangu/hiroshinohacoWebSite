@@ -70,6 +70,9 @@ export function Hero() {
               <motion.h1 className={styles.hero__logo} variants={heading}>
                 hirosHi.no.haco
               </motion.h1>
+              <motion.p className={styles.hero__logoKana} variants={item}>
+                ヒロシノハコ
+              </motion.p>
               <motion.span
                 className={styles.hero__accentLine}
                 variants={line}
