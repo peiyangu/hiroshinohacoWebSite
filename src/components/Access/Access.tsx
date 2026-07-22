@@ -100,7 +100,9 @@ export function Access() {
                     className={styles.access__parkingImage}
                   />
                   <figcaption className={styles.access__parkingCaption}>
-                    写真の①②が駐車スペースです。満車の際はお近くのコインパーキングをご利用ください。
+                    写真の①②が駐車スペースです。<br />
+                    満車の場合もございますので、お越しの際はお気軽にお問い合わせください。<br />
+                    状況に応じてご案内いたします。
                   </figcaption>
                 </figure>
               </div>
