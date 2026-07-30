@@ -354,6 +354,44 @@ export const lineupItems: LineupItem[] = [
       },
     ],
   },
+  {
+    id: "08",
+    slug: "drip-bag-recommend-set",
+    nameEn: "Recommended Drip Bag Set",
+    name: "店主おすすめ ドリップバッグ10個 飲み比べ（ご褒美入り）",
+    fullTitle: "【送料込み】店主おすすめ ドリップバッグ10個 飲み比べ（ご褒美入り）",
+    tag: "GIFT",
+    desc: "飲み比べたい方へ、店主が厳選する10個セット。Daily／Selectを中心に、ご褒美のSpecialが合計2個入り。送料込みで届いてすぐ楽しめます。",
+    price: "¥3,500 / 10個 送料込み",
+    href: "https://hirohaco.base.shop/items/128696437",
+    photo: "/images/LineUP/ドリップバッグ10個スペシャル入り.jpg",
+    detail: [
+      {
+        paragraphs: [
+          "苦いコーヒーが苦手な店主が、自分でも毎日飲みたいと思えるコーヒーを詰め合わせました。",
+          "まずは飲み比べたい。\nせっかくなら、ちょっといいのも飲みたいよね。\nそんなわがままを叶えます。",
+        ],
+      },
+      {
+        heading: "内容について",
+        paragraphs: [
+          "内容は、ヒロシノハコのラインナップから10個。\nDaily／Selectを中心に、普段飲みにしやすいように組みます。\nそのうち「ご褒美」として、Specialが合計2個入ります。\n（内訳は仕入や在庫状況で変わる場合があります）",
+        ],
+      },
+      {
+        heading: "ドリップバッグについて",
+        paragraphs: [
+          "1袋12gを手詰めしています。\nお湯180gを数回に分けて注ぐと、薄くなりにくくおすすめです。\n賞味期限：製造日より約2ヶ月（お届け分は、個包装に記載の期限をご確認ください）",
+        ],
+      },
+      {
+        heading: "発送について",
+        paragraphs: [
+          "送料無料（クリックポスト）\nポスト投函のため日時指定はできません。ご了承ください。",
+        ],
+      },
+    ],
+  },
 ];
 
 export function getLineupItemBySlug(slug: string) {
