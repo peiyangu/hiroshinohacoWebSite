@@ -94,9 +94,6 @@
     }
   }
 
-  &--soldout {
-    cursor: default;
-  }
 }
 
 // ─── 写真エリア ───
@@ -120,7 +117,7 @@
   background-color: $color-line;
 }
 
-// タグ + SOLD OUT バッジ（写真の上）
+// タグ（写真の上）
 .lineup__cardOverlay {
   position: absolute;
   top: 0;
@@ -141,20 +138,6 @@
   padding: 3px 7px;
   line-height: 1.8;
   white-space: nowrap;
-  backdrop-filter: blur(4px);
-
-  @include tablet {
-    font-size: 0.6rem;
-  }
-}
-
-.lineup__soldOut {
-  font-size: 0.55rem;
-  letter-spacing: 0.18em;
-  color: $color-ivory;
-  background-color: rgba($color-text-sub, 0.72);
-  padding: 3px 7px;
-  line-height: 1.8;
   backdrop-filter: blur(4px);
 
   @include tablet {

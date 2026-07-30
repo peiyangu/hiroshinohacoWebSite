@@ -22,7 +22,7 @@ export function LineUp({ hideHeader = false }: LineUpProps) {
           <li key={item.id} className={styles.lineup__item}>
             <Link
               href={`/lineup/${item.slug}/`}
-              className={`${styles.lineup__card}${item.soldOut ? ` ${styles["lineup__card--soldout"]}` : ""}`}
+              className={styles.lineup__card}
               aria-label={`${item.nameEn} — ${item.name}`}
             >
               {/* 商品写真 */}
@@ -40,9 +40,6 @@ export function LineUp({ hideHeader = false }: LineUpProps) {
                 )}
                 <div className={styles.lineup__cardOverlay}>
                   <span className={styles.lineup__itemTag}>{item.tag}</span>
-                  {item.soldOut && (
-                    <span className={styles.lineup__soldOut}>SOLD OUT</span>
-                  )}
                 </div>
               </div>
 

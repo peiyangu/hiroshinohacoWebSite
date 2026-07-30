@@ -80,7 +80,6 @@ export default async function LineupDetailPage({
                 )}
                 <div className={styles.photoOverlay}>
                   <span className={styles.tag}>{item.tag}</span>
-                  {item.soldOut && <span className={styles.soldOut}>SOLD OUT</span>}
                 </div>
               </div>
             </div>
@@ -93,21 +92,15 @@ export default async function LineupDetailPage({
               <h1 className={styles.name}>{item.name}</h1>
               <p className={styles.price}>{item.price}</p>
 
-              {item.soldOut ? (
-                <span className={`${styles.purchaseButton} ${styles["purchaseButton--disabled"]}`}>
-                  SOLD OUT
-                </span>
-              ) : (
-                <a
-                  className={styles.purchaseButton}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  BASE で購入する
-                  <span aria-hidden="true">→</span>
-                </a>
-              )}
+              <a
+                className={styles.purchaseButton}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                BASE で購入する
+                <span aria-hidden="true">→</span>
+              </a>
 
               <p className={styles.leadDesc}>{item.desc}</p>
             </div>
@@ -134,21 +127,15 @@ export default async function LineupDetailPage({
           </div>
 
           <div className={styles.bottomAction}>
-            {item.soldOut ? (
-              <span className={`${styles.purchaseButton} ${styles["purchaseButton--disabled"]}`}>
-                SOLD OUT
-              </span>
-            ) : (
-              <a
-                className={styles.purchaseButton}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                BASE で購入する
-                <span aria-hidden="true">→</span>
-              </a>
-            )}
+            <a
+              className={styles.purchaseButton}
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              BASE で購入する
+              <span aria-hidden="true">→</span>
+            </a>
             <Link href="/lineup" className={styles.backSecondary}>
               他のコーヒー豆を見る
             </Link>

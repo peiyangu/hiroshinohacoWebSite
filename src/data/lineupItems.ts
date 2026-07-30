@@ -13,7 +13,6 @@ export type LineupItem = {
   desc: string;
   price: string;
   href: string;
-  soldOut?: boolean;
   photo?: string;
   highlight?: string;
   detail: LineupDetailSection[];
@@ -181,7 +180,6 @@ export const lineupItems: LineupItem[] = [
     price: "¥1,200 / 100g",
     href: "https://hirohaco.base.shop/items/115122048",
     photo: "/images/LineUP/グアテマラエルセロ中深煎り.jpg",
-    soldOut: true,
     detail: [
       {
         paragraphs: [
@@ -328,7 +326,6 @@ export const lineupItems: LineupItem[] = [
     price: "¥3,000 / 10個 送料無料",
     href: "https://hirohaco.base.shop/items/128695835",
     photo: "/images/LineUP/ドリップバッグ10個.jpg",
-    soldOut: true,
     detail: [
       {
         paragraphs: [

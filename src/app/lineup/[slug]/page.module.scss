@@ -104,16 +104,6 @@
   backdrop-filter: blur(4px);
 }
 
-.soldOut {
-  font-size: 0.62rem;
-  letter-spacing: 0.18em;
-  color: $color-ivory;
-  background-color: rgba($color-text-sub, 0.72);
-  padding: 4px 8px;
-  line-height: 1.8;
-  backdrop-filter: blur(4px);
-}
-
 .infoCol {
   display: flex;
   flex-direction: column;
@@ -171,13 +161,6 @@
   &:hover {
     opacity: 0.85;
     letter-spacing: 0.16em;
-  }
-
-  &--disabled {
-    background-color: $color-line;
-    color: $color-text-sub;
-    cursor: default;
-    pointer-events: none;
   }
 }
 
