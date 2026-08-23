@@ -164,34 +164,32 @@
   }
 }
 
-/* ---- 商品詳細本文 ---- */
+/* ---- 商品詳細本文（microCMSのリッチエディタから取得したHTML） ---- */
 .detail {
   border-top: 1px solid $color-line;
   padding-top: $space-xl;
   display: flex;
   flex-direction: column;
-  gap: $space-lg;
-}
-
-.detailSection {
-  display: flex;
-  flex-direction: column;
   gap: $space-sm;
-}
 
-.detailHeading {
-  font-size: 0.95rem;
-  letter-spacing: 0.08em;
-  color: $color-text-main;
-  border-left: 3px solid $color-accent;
-  padding-left: 10px;
-}
+  :global(h2) {
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    color: $color-text-main;
+    border-left: 3px solid $color-accent;
+    padding-left: 10px;
+    margin-top: $space-md;
 
-.detailParagraph {
-  font-size: 0.9rem;
-  line-height: 2;
-  color: $color-text-sub;
-  white-space: pre-line;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  :global(p) {
+    font-size: 0.9rem;
+    line-height: 2;
+    color: $color-text-sub;
+  }
 }
 
 /* ---- ページ下部アクション ---- */

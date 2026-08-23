@@ -2,22 +2,13 @@
  * 月次営業スケジュール
  * ────────────────────────────────────────────
  * 基本営業時間は週次ルールで自動判定します。
- * 祝日の月曜営業、臨時休業、イベント出店などの例外だけを
- * このファイルに "YYYY-MM-DD" 形式で登録してください。
- *
- * 【通常営業の上書き】
- *   "2026-03-20": { isOpen: true, hours: "12:00-19:00" },
- *
- * 【メモ付き営業】
- *   "2026-04-05": { isOpen: true, note: "パン販売日！" },
- *
- * 【イベント出店】
- *   "2026-03-08": { isOpen: true, hours: "10:00-16:00", isEvent: true, eventName: "筑紫野マルシェ" },
- *
- * 【休業日】
- *   "2026-03-09": { isOpen: false },
+ * 祝日の月曜営業、臨時休業、イベント出店などの例外は
+ * microCMS（スケジュールAPI）で管理し、ビルド時に
+ * scripts/fetch-cms-data.mjs が取得してJSON化したものを
+ * ここで読み込みます。
  * ────────────────────────────────────────────
  */
+import generatedSchedule from "./generated/schedule.json";
 
 export type DayStatus = {
   isOpen: boolean;
@@ -38,46 +29,7 @@ const defaultStatusByDay: Record<number, DayStatus> = {
   6: { isOpen: true,  hours: "9:30-17:00" }, // 土
 };
 
-const schedule: Record<string, DayStatus> = {
-  // ── 2026年7月 ──────────────────────────────────
-  "2026-07-30": { isOpen: true,  hours: "12:00-19:00", note: "パン販売" },
-
-  // ── 2026年8月 ──────────────────────────────────
-  "2026-08-01": { isOpen: true,  hours: "12:00-16:00" },
-  "2026-08-02": { isOpen: true,  hours: "8:00-11:30", isEvent: true, eventName: "夢ロマン軽トラ市", eventLocation: "吉野ケ里公園" },
-  "2026-08-03": { isOpen: false },
-  "2026-08-04": { isOpen: false },
-  "2026-08-05": { isOpen: true,  hours: "12:00-19:00" },
-  "2026-08-06": { isOpen: true,  hours: "12:00-19:00" },
-  "2026-08-07": { isOpen: true,  hours: "12:00-19:00" },
-  "2026-08-08": { isOpen: true,  hours: "12:00-19:00" },
-  "2026-08-09": { isOpen: true,  hours: "12:00-19:00" },
-  "2026-08-10": { isOpen: false },
-  "2026-08-11": { isOpen: true,  hours: "12:00-19:00" },
-  "2026-08-12": { isOpen: true,  hours: "12:00-19:00" },
-  "2026-08-13": { isOpen: true,  hours: "12:00-19:00", note: "パン〆切" },
-  "2026-08-14": { isOpen: true,  hours: "12:00-19:00" },
-  "2026-08-15": { isOpen: true,  hours: "12:00-19:00" },
-  "2026-08-16": { isOpen: true,  hours: "12:00-19:00", note: "パンの日" },
-  "2026-08-17": { isOpen: false },
-  "2026-08-18": { isOpen: true,  hours: "12:00-19:00" },
-  "2026-08-19": { isOpen: true,  hours: "12:00-19:00" },
-  "2026-08-20": { isOpen: false },
-  "2026-08-21": { isOpen: true,  hours: "12:00-19:00" },
-  "2026-08-22": { isOpen: true,  hours: "12:00-19:00" },
-  "2026-08-23": { isOpen: true,  hours: "12:00-19:00", note: "パン〆切" },
-  "2026-08-24": { isOpen: false },
-  "2026-08-25": { isOpen: false },
-  "2026-08-26": { isOpen: true,  hours: "12:00-19:00", note: "パンの日" },
-  "2026-08-27": { isOpen: true,  hours: "12:00-19:00" },
-  "2026-08-28": { isOpen: true,  hours: "12:00-16:00" },
-  "2026-08-29": { isOpen: true,  hours: "10:00-20:00", isEvent: true, eventName: "九州アジアコーヒーフェスティバル", eventLocation: "博多阪急" },
-  "2026-08-30": { isOpen: true,  hours: "12:00-19:00" },
-  "2026-08-31": { isOpen: false },
-
-  // ── 2026年9月 ──────────────────────────────────
-  "2026-09-01": { isOpen: false },
-};
+const schedule: Record<string, DayStatus> = generatedSchedule;
 
 function formatDateKey(date: Date): string {
   return date.toLocaleDateString("sv-SE");

@@ -18,8 +18,8 @@ export function LineUp({ hideHeader = false }: LineUpProps) {
         </div>
       )}
       <ul className={styles.lineup__grid}>
-        {lineupItems.map((item) => (
-          <li key={item.id} className={styles.lineup__item}>
+        {lineupItems.map((item, index) => (
+          <li key={item.slug} className={styles.lineup__item}>
             <Link
               href={`/lineup/${item.slug}/`}
               className={styles.lineup__card}
@@ -45,7 +45,9 @@ export function LineUp({ hideHeader = false }: LineUpProps) {
 
               {/* テキスト */}
               <div className={styles.lineup__cardBody}>
-                <span className={styles.lineup__cardNumber}>{item.id}</span>
+                <span className={styles.lineup__cardNumber}>
+                  {String(index + 1).padStart(2, "0")}
+                </span>
                 {item.highlight && (
                   <span className={styles.lineup__highlight}>{item.highlight}</span>
                 )}

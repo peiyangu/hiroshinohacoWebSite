@@ -1,0 +1,305 @@
+// 既存のハードコードデータ（このスクリプト実行前のコード内容）をmicroCMSへ一括投入する。
+// 一度だけ実行する想定。画像フィールドは対象外（あとで管理画面から手動で添付する）。
+import { existsSync, readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const ROOT = path.resolve(__dirname, "..");
+
+loadEnvLocal();
+
+const SERVICE_DOMAIN = process.env.MICROCMS_SERVICE_DOMAIN;
+const API_KEY = process.env.MICROCMS_API_KEY;
+
+if (!SERVICE_DOMAIN || !API_KEY) {
+  console.error("[migrate] MICROCMS_SERVICE_DOMAIN / MICROCMS_API_KEY が未設定です");
+  process.exit(1);
+}
+
+async function createContent(endpoint, body) {
+  const res = await fetch(`https://${SERVICE_DOMAIN}.microcms.io/api/v1/${endpoint}`, {
+    method: "POST",
+    headers: {
+      "X-MICROCMS-API-KEY": API_KEY,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+  const json = await res.json();
+  if (!res.ok) {
+    throw new Error(`POST ${endpoint} failed: ${res.status} ${JSON.stringify(json)}`);
+  }
+  return json;
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function escapeHtml(str) {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function sectionsToHtml(sections) {
+  return sections
+    .map((s) => {
+      const heading = s.heading ? `<h2>${escapeHtml(s.heading)}</h2>` : "";
+      const paragraphs = s.paragraphs
+        .map((p) => `<p>${escapeHtml(p).replace(/\n/g, "<br>")}</p>`)
+        .join("");
+      return heading + paragraphs;
+    })
+    .join("");
+}
+
+// ── スケジュール（既存 src/data/schedule.ts の内容） ─────────────
+const SCHEDULE_SEED = {
+  "2026-07-30": { isOpen: true, hours: "12:00-19:00", note: "パン販売" },
+  "2026-08-01": { isOpen: true, hours: "12:00-16:00" },
+  "2026-08-02": { isOpen: true, hours: "8:00-11:30", isEvent: true, eventName: "夢ロマン軽トラ市", eventLocation: "吉野ケ里公園" },
+  "2026-08-03": { isOpen: false },
+  "2026-08-04": { isOpen: false },
+  "2026-08-05": { isOpen: true, hours: "12:00-19:00" },
+  "2026-08-06": { isOpen: true, hours: "12:00-19:00" },
+  "2026-08-07": { isOpen: true, hours: "12:00-19:00" },
+  "2026-08-08": { isOpen: true, hours: "12:00-19:00" },
+  "2026-08-09": { isOpen: true, hours: "12:00-19:00" },
+  "2026-08-10": { isOpen: false },
+  "2026-08-11": { isOpen: true, hours: "12:00-19:00" },
+  "2026-08-12": { isOpen: true, hours: "12:00-19:00" },
+  "2026-08-13": { isOpen: true, hours: "12:00-19:00", note: "パン〆切" },
+  "2026-08-14": { isOpen: true, hours: "12:00-19:00" },
+  "2026-08-15": { isOpen: true, hours: "12:00-19:00" },
+  "2026-08-16": { isOpen: true, hours: "12:00-19:00", note: "パンの日" },
+  "2026-08-17": { isOpen: false },
+  "2026-08-18": { isOpen: true, hours: "12:00-19:00" },
+  "2026-08-19": { isOpen: true, hours: "12:00-19:00" },
+  "2026-08-20": { isOpen: false },
+  "2026-08-21": { isOpen: true, hours: "12:00-19:00" },
+  "2026-08-22": { isOpen: true, hours: "12:00-19:00" },
+  "2026-08-23": { isOpen: true, hours: "12:00-19:00", note: "パン〆切" },
+  "2026-08-24": { isOpen: false },
+  "2026-08-25": { isOpen: false },
+  "2026-08-26": { isOpen: true, hours: "12:00-19:00", note: "パンの日" },
+  "2026-08-27": { isOpen: true, hours: "12:00-19:00" },
+  "2026-08-28": { isOpen: true, hours: "12:00-16:00" },
+  "2026-08-29": { isOpen: true, hours: "10:00-20:00", isEvent: true, eventName: "九州アジアコーヒーフェスティバル", eventLocation: "博多阪急" },
+  "2026-08-30": { isOpen: true, hours: "12:00-19:00" },
+  "2026-08-31": { isOpen: false },
+  "2026-09-01": { isOpen: false },
+};
+
+// ── ラインナップ（既存 src/data/lineupItems.ts の内容。photoは対象外＝手動添付） ──
+const LINEUP_SEED = [
+  {
+    slug: "homan-oroshi", nameEn: "Original Blend", name: "宝満おろし",
+    fullTitle: "迷ったらこれ！｜宝満おろし｜ブレンド｜100g", tag: "BLEND",
+    desc: "ローズマリー、明るい果実、黒糖の甘さ、カカオの余韻。すっと抜けるクリーンな後味が特徴のヒロシノハコ看板ブレンド。",
+    price: "¥1,300 / 100g", href: "https://hirohaco.base.shop/items/135027079",
+    highlight: "迷ったら、まずは宝満おろし",
+    photoFile: "宝満おろし.jpg",
+    detail: [
+      { paragraphs: ["浅煎りから中深煎りのブレンド。\n苦すぎず、すっと飲みやすい。\nヒロシノハコの看板ブレンドです。\n朝の一杯にも、午後の切り替えにも。", "福岡県筑紫野市のつくしちゃんブランド認定"] },
+      { heading: "コンセプト", paragraphs: ["宝満山のふもと。\n焙煎所の窓から見える稜線と、空の抜ける感じ。\nその”風”を、\nすっと抜けるクリーンな余韻で表現しました。"] },
+      { heading: "テイスト", paragraphs: ["ローズマリー、明るい果実、黒糖の甘さ、カカオの余韻、クリーンに抜ける風"] },
+      { heading: "HOW TO ENJOY", paragraphs: ["・ネルドリップ／ハンドドリップで、”すっと澄む後味”が出やすいです。\n・少し冷めた頃に、香りと甘さが整います。\n・朝の一杯にも、午後の切り替えにも。"] },
+      { heading: "BLEND", paragraphs: ["ブラジル／エチオピア／グアテマラ"] },
+      { paragraphs: ["※直射日光・高温多湿を避け、保存してください。\n※賞味期限：豆のまま保管する場合は２ヶ月程度、挽いた場合は２週間程度、おいしくお楽しみいただけます。\nまた、時間による変化も併せてお楽しみください。"] },
+    ],
+  },
+  {
+    slug: "ethiopia-kaffa-bonga-shishinda", nameEn: "Ethiopia Kaffa Bonga Shishinda", name: "エチオピア カッファ ボンガ シシンダ｜浅煎り",
+    fullTitle: "エチオピア カッファ ボンガ シシンダ｜浅煎り｜100g", tag: "SPECIAL",
+    desc: "ピンクグアバ、スイカ、レモングラス。果実感がありながら後味はきれいで、シルキーな口当たりが続く複雑な一杯。",
+    price: "¥1,700 / 100g", href: "https://hirohaco.base.shop/items/135038555",
+    photoFile: "エチオピアカッファボンがシシンダ浅煎り.jpg",
+    detail: [
+      { paragraphs: ["浅煎り。果実感がありながら、後味はきれい。\n少し特別な気分で飲みたい日に。\n華やかさはあるけれど、派手すぎない一杯です。", "テイスト：ピンクグアバ、スイカ、レモングラス、シルキーな口当たり、複雑な味わい"] },
+      { heading: "ヒロシのコメント", paragraphs: ["果実が濃いのに、後味はきれい。\nひと口で、気持ちの温度が整う。\n果実の清涼感が、頭の中をスッと晴らします。\nいつもの朝に、上質な一日にしたい時に。"] },
+      { heading: "おすすめペアリング", paragraphs: ["チーズケーキ\n・乳脂肪×果実感で「ベリーソースかけたみたい」になりやすい。", "チョコ（ビター～ミルク）\n・カカオと果実感が”チョコフルーツ”になる。満足感が強い。", "クロッフル\n・甘い香り同士で相乗。香りが”デザートの完成形”に寄る。", "スパイス少し効いたもの（シナモン、カルダモンなど）\n・果実の輪郭が締まって、派手さが上品になる。"] },
+      { heading: "豆情報（商社ページより抜粋）", paragraphs: ["エリア：エチオピア南西部・諸民族州 カファ ボンガ シシンダ村\n生産者：Ashebir Getinet\n標高：2,100m\n品種：Heirloom（原生種）\n精製方法：Anaerobic Natural"] },
+      { heading: "新しい地でスペシャルティコーヒーの精製プロジェクト", paragraphs: ["エチオピア南西部・諸民族州に位置する カファ（Kaffa） は、アラビカコーヒー発祥の地として知られる特別な地域です。\n数世紀前にコーヒーが最初に発見されたとされる カファの森 に広がるこの地では、豊かな原生林の樹冠が自然の木陰をつくり、火山性の肥沃な土壌と涼しい気候が相まって、チェリーがゆっくりと成熟し、複雑で奥行きのある風味が育まれます。\nカファでは長らくスペシャルティコーヒーの生産がほとんど行われていませんでしたが、代表のダウィットは「この地域の持つ可能性を活かし、これまであまり紹介されてこなかった味わいを届けたい」という思いから、この地で新たなスペシャルティコーヒーの精製プロジェクトを立ち上げました。"] },
+      { paragraphs: ["※直射日光・高温多湿を避け、保存してください。\n※賞味期限：豆のまま保管する場合は２ヶ月程度、挽いた場合は２～３週間程度、おいしくお楽しみいただけます。\nまた、時間による変化も併せてお楽しみください。"] },
+    ],
+  },
+  {
+    slug: "ethiopia-tiere", nameEn: "Ethiopia Tiere", name: "エチオピア チレ｜中煎り",
+    fullTitle: "エチオピア チレ｜中煎り｜100g", tag: "SELECT",
+    desc: "タンジェリン、ベルガモット、ダージリン。すっきり飲みやすく、まるい甘みが広がるウォッシュト。忙しい日のリセットに。",
+    price: "¥1,200 / 100g", href: "https://hirohaco.base.shop/items/100163460",
+    photoFile: "エチオピアチレ中煎り.jpg",
+    detail: [
+      { paragraphs: ["中煎り。すっきり飲みやすく、やわらかい甘さ。\n忙しい日のリセットにもおすすめです。\n軽やかさと飲みやすさのバランスが良い豆です。", "テイスト：タンジェリン、ベルガモット、ダージリン、フローラル、ソフト、まるい甘み"] },
+      { heading: "ヒロシのコメント", paragraphs: ["スッキリと飲みやすく、心のノイズまで洗い流してくれるような一杯。\n忙しい日々のリセットボタンとして、軽やかな気分を取り戻したい時におすすめです。"] },
+      { heading: "おすすめペアリング", paragraphs: ["レモン系の焼き菓子／柑橘タルト\n・柑橘×柑橘で香りが増えて、後口がさらにスッとする。", "バター強めのサブレ／ショートブレッド\n・バターのコクを”ベルガモット感”が切ってくれて、上品にまとまる。", "白あん、栗系（和菓子寄り）\n・まるい甘み+紅茶っぽさが相性良くて、華やかさが出る。", "ハムチーズ系の軽いホットサンド\n・油分をさっぱり洗って、最後が軽い。朝のメニュー向き。"] },
+      { heading: "豆情報（商社ページより抜粋）", paragraphs: ["エリア：エチオピア シダマ チレ\n生産者：ニグセ ゲメダ ムゲ氏、地域の小規模生産者\n標高：1,860～1,990m\n品種：74112、エチオピア在来種\n精製方法：ウォッシュト"] },
+      { heading: "Story", paragraphs: ["本商品は2020年 Cup of Excellenceで優勝したニグセ ゲメダ ムゲ氏が手掛けるロットです。\nチレ ウォッシングステーション(以下、WS)は同氏の所有する最大規模の施設で、ナチュラルに加えてウォッシュドも生産できる精製設備を備えています。\n品質基準は厳しく設定されているWSです。年々、地域の小規模生産者たちは品質に対する理解を深めています。完熟したチェリーのみを手摘みで収穫し、時間をかけずに収集するよう努めています。\nシトリックな酸質と柔らかい質感が秀逸なウォッシュドです。"] },
+      { paragraphs: ["※直射日光・高温多湿を避け、保存してください。\n※賞味期限：豆のまま保管する場合は２ヶ月程度、挽いた場合は２～３週間程度、おいしくお楽しみいただけます。\nまた、時間による変化も併せてお楽しみください。"] },
+    ],
+  },
+  {
+    slug: "guatemala-el-cerro", nameEn: "Guatemala El Cerro", name: "グアテマラ エル・セロ｜中深煎り",
+    fullTitle: "グアテマラ エル・セロ｜中深煎り｜100g", tag: "SELECT",
+    desc: "レーズン、黒糖、チョコレート、アーモンド。ゆっくり飲むほど良さが見えてくる、甘い余韻が続く一杯。",
+    price: "¥1,200 / 100g", href: "https://hirohaco.base.shop/items/115122048",
+    photoFile: "グアテマラエルセロ中深煎り.jpg",
+    detail: [
+      { paragraphs: ["中深煎り。\n甘さに落ち着きがあり、やわらかな余韻が続きます。\n派手すぎず、でもちゃんと印象が残る一杯です。\nゆっくり飲みたい日や、甘いものと合わせたい時にもおすすめです。", "テイスト：レーズン、黒糖、チョコレート、アーモンド、ピーチ、クローブ、甘い余韻"] },
+      { heading: "ヒロシのコメント", paragraphs: ["ひと口で黒糖とレーズンを溶かしたチョコの甘み。\n少し時が経つとピーチの瑞々しさにほのかなクローブが重なり、ラストはアーモンドと黒糖の澄んだ余韻が長く続きます。", "派手に目立つというより、\nゆっくり飲むほど良さが見えてくるタイプです。\n甘いものと合わせたい時にもよく合います。", "今回もグッドコーヒーファームズさんの豆です。\n前回に続いて、またご案内できるのがうれしい一袋です。"] },
+      { heading: "豆情報（商社ページより抜粋）", paragraphs: ["エリア：ニューオリエンテ ハラパ\n生産者：エリアス・モラレス氏\n標高：1800～2000m\n品種：パチェ100％\n精製方法：ドライウォッシュト"] },
+      { heading: "STORY", paragraphs: ["グアテマラの高地、標高約2000メートルに位置するEl Cerroは、長くGOOD COFFEE FARMSの一員としてブランドの歴史に貢献してきましたが、近年、その管理はGCFに初期から深く関わるエリアス・モラレスに引き継がれました。グアテマラのコーヒー生産全般にわたる豊富な経験を活かし、農園の品質と持続可能性の向上に努めています。カティモールから地域に根付く土着品種パチェへの植え替えを進め、日陰樹や地元の果樹を植えて土地に命を取り戻す取り組みを行っています。\nこうした健康的な環境は豊かな生態系を育み、ミツバチが多く集まる場所となっています。エリアスは近隣で養蜂箱も管理していますが、農園の丁寧な管理こそが、これらの重要な花粉媒介者を育て、美味しいコーヒーの味わいにもつながると考えています。"] },
+      { paragraphs: ["※直射日光・高温多湿を避け、保存してください。\n※賞味期限：豆のまま保管する場合は２ヶ月程度、挽いた場合は２～３週間程度、おいしくお楽しみいただけます。\nまた、時間による変化も併せてお楽しみください。"] },
+    ],
+  },
+  {
+    slug: "decaf-ethiopia", nameEn: "Decaf Ethiopia", name: "カフェインレス エチオピア｜中深煎り",
+    fullTitle: "カフェインレス（デカフェ）エチオピア｜中深煎り｜100g", tag: "DECAF",
+    desc: "焼いも、干しブドウ、シナモン、甘い余韻。カフェインレスとは思えない満足感。夜でも安心して飲める一杯。",
+    price: "¥1,200 / 100g", href: "https://hirohaco.base.shop/items/104576401",
+    photoFile: "カフェインレスエチオピア中深煎り.jpg",
+    detail: [
+      { paragraphs: ["中深煎り。\nカフェインを控えたい方へ。\n夜にも飲みやすい、デカフェのコーヒーです。", "テイスト：焼いも、干しブドウ、シナモン、甘い余韻"] },
+      { heading: "ヒロシのコメント", paragraphs: ["「デカフェは物足りない」そんなイメージを覆す、しっかりとした甘さと奥行きのある味わい。\n焼きいものような優しい甘み、シナモンのようなスパイス感、そして干しブドウのような凝縮された果実味が特徴です。\n冷めるほどに濃密な甘さが際立ち、まろやかでシロップのような口当たりも魅力です。\nほんのりと香るバニラのようなフレグランスも心地よく、デカフェとは思えない満足感があります。\n「夜のリラックスタイムに」「カフェインを控えたいけど美味しいコーヒーが飲みたい」そんな方にぜひおすすめしたい一杯です。"] },
+      { heading: "おすすめペアリング", paragraphs: ["シナモンロール、スイートポテト、レーズン入りのパウンドケーキ、ピーカンナッツ、ベイクドチーズケーキなどと相性抜群！\n焼きいもや黒糖まんじゅうと合わせても、深みのある甘さが楽しめます。\nデカフェだからこそ、しっかり美味しく。\nぜひ一度、お試しください！"] },
+      { heading: "豆情報（商社ページより抜粋）", paragraphs: ["エリア：グジ ハンベラ ワメナ\n生産者：ダリ周辺約450の農家さん\n標高：1,900～2,200m\n品種：Dega, Wolisho\n精製方法：ナチュラル\nデカフェ処理：マウンテンウォータープロセス"] },
+      { heading: "この豆について", paragraphs: ["ハンベラはゲデブとセントラルグジとの間に位置し、火山性土壌かつ有機の栄養価の高い土壌でコーヒーの栽培に非常に適したエリアの一つです。ハンベラの特徴として、平均的なグジの他のエリアの標高より高く、はっきりと分かれた2度の季節性降雨を持っています。\nこの地域のコーヒーの傾向として、厳しい気候故のゆっくりとした成熟でやや丸く小ぶりな実が多いと言われます。\nハンベラのカップの特徴としてはシロップのようなボディ感とフレグランスにかすかなバニラを感じられると言われています。"] },
+      { heading: "カフェインレス処理", paragraphs: ["メキシコで最も標高が高いオリサバ山（5,636m）に湛えられた氷河の綺麗な水のみを使用して、薬品を一切使わずにデカフェイン処理を行っています。\n・デカフェ処理を行うデスカメックス社はメキシコ産コーヒーの有名な輸出港があるベラクルス州にデカフェイン工場を保有し、コーヒーの適切な管理と迅速な輸出手続きでコーヒーの鮮度を守ります。"] },
+      { paragraphs: ["※直射日光・高温多湿を避け、保存してください。\n※賞味期限：豆のまま保管する場合は２ヶ月程度、挽いた場合は２週間程度、おいしくお楽しみいただけます。\nまた、時間による変化も併せてお楽しみください。"] },
+    ],
+  },
+  {
+    slug: "kenya-nyanja-washed", nameEn: "Kenya Nyanja Washed", name: "ケニア ニャンジャ ウォッシュト｜浅煎り",
+    fullTitle: "ケニア ニャンジャ ウォッシュト｜浅煎り｜100g", tag: "SELECT",
+    desc: "カシス、プラム、ブラッドオレンジ。きゅんとする酸味と紅茶のような余韻が続く、華やかな浅煎りケニア。",
+    price: "¥1,200 / 100g", href: "https://hirohaco.base.shop/items/148076786",
+    photoFile: "ケニアニンジャウォッシュト浅煎り.jpg",
+    detail: [
+      { paragraphs: ["カシスやプラムを思わせる果実感に、\nブラッドオレンジのような明るい酸。", "あと口には紅茶のような余韻と、\nはちみつを思わせる甘さが静かに残ります。", "ケニアらしい、きゅんとするような酸味。\nただ酸っぱいだけではなく、\n果実感と甘さがちゃんと支えてくれる一杯です。\n暑い季節に、\n気分を少し切り替えたい時に。", "アイスでも、ホットでもおすすめです。\n普段は宝満おろしのような飲みやすいブレンドを選ばれる方にも、\n「少し印象の違うコーヒーを飲んでみたい」\nという時に楽しんでいただけると思います。", "テイスト：カシス、プラム、ブラッドオレンジ、紅茶、エルダーフラワー、はちみつのような甘さ"] },
+      { heading: "ヒロシのコメント", paragraphs: ["夏になると、ケニアの浅煎りが飲みたくなります。\n僕自身、スペシャルティコーヒーに出会って衝撃を受けた豆のひとつがケニアでした。\nそれまで思っていた「コーヒー」のイメージとは違う、\nきゅんとするような酸味。\n果実のような明るさ。\n飲んだあとに、気分が少しすっとするような余韻。\n今回のケニアも、そんな魅力を感じる一杯です。\n朝に飲むと、少し背筋が伸びる。\nアイスにすると、すっと気分が切り替わる。\nいつもの宝満おろしとは少し違う、\n果実感のあるコーヒーを飲みたい時におすすめです。"] },
+      { heading: "豆情報（商社ページより抜粋）", paragraphs: ["エリア：ケニア キリニャガカウンティ\n生産者：ニャンジャ ファクトリー\n組合：Baragwi FCS\n標高：1,600〜1,800m\n品種：SL28、SL34、バティアン、ルイル11\n精製方法：ウォッシュト\n規格：AB"] },
+      { heading: "Story", paragraphs: ["ニャンジャファクトリーは、ケニア山麓に位置するキリニャガカウンティで稼働しています。\n運営しているのは、ケニアでも大きな規模を持つバラグウィ組合です。\nこの組合では、ファクトリーの責任者が2年ごとに別のファクトリーへ異動する仕組みがあり、生産メソッドを複数のファクトリーで共有しながら、高い品質基準でコーヒーづくりを行っています。\nカシスやプラム、ブラッドオレンジのような甘さと、ジューシーな酸。\nエルダーフラワーのような華やかな香りも感じられる、上品な印象のケニアです。"] },
+      { paragraphs: ["※直射日光・高温多湿を避け、保存してください。\n※賞味期限：豆のまま保管する場合は2ヶ月程度、挽いた場合は2〜3週間程度、おいしくお楽しみいただけます。\nまた、時間による変化も併せてお楽しみください。"] },
+    ],
+  },
+  {
+    slug: "drip-bag-set", nameEn: "Drip Bag", name: "ドリップバッグ 10個セット",
+    fullTitle: "【送料無料】ドリップバッグ10個 おまかせ（カフェインレス選択可）", tag: "GIFT",
+    desc: "飲み比べセットやギフトにもぴったりな10個入り。Daily／Selectを中心に、ご褒美のSpecial・Premiumも2個入り。送料無料。",
+    price: "¥3,000 / 10個 送料無料", href: "https://hirohaco.base.shop/items/128695835",
+    photoFile: "ドリップバッグ10個.jpg",
+    detail: [
+      { paragraphs: ["ヒロシノハコのドリップバッグを、気軽に楽しめる10個セットにしました。", "内容は、その時期のラインナップ（Daily／Select）から、こちらでお選びしてお届けします。\n送料込みで、届いたらすぐ楽しめるセットにしました。\n酸味が強すぎないもの、香りが華やかなもの、コクがあるもの。\n飲む日や気分で選べるように組みます。", "このセットは、カフェインレスの個数だけ選べます。\n0個／2個／4個からお選びください。\n夜の一杯や、カフェインを控えたい日にもどうぞ。"] },
+      { heading: "カフェインレスについて", paragraphs: ["カフェインを99％以上カットしたコーヒーです。\nマウンテンウォーター製法（化学溶媒不使用）で処理しています。\n香りや味わいは、しっかりコーヒーらしく楽しめます。"] },
+      { heading: "ドリップバッグについて", paragraphs: ["1袋12gを手詰めしています。\nお湯180gを数回に分けて注ぐと、薄くなりにくくおすすめです。\n賞味期限：製造日より約2ヶ月（お届け分は、個包装に記載の期限をご確認ください）"] },
+      { heading: "発送について", paragraphs: ["クリックポストでお届けします。\nポスト投函のため日時指定はできません。ご了承ください。"] },
+    ],
+  },
+  {
+    slug: "drip-bag-recommend-set", nameEn: "Recommended Drip Bag Set", name: "店主おすすめ ドリップバッグ10個 飲み比べ（ご褒美入り）",
+    fullTitle: "【送料込み】店主おすすめ ドリップバッグ10個 飲み比べ（ご褒美入り）", tag: "GIFT",
+    desc: "飲み比べたい方へ、店主が厳選する10個セット。Daily／Selectを中心に、ご褒美のSpecialが合計2個入り。送料込みで届いてすぐ楽しめます。",
+    price: "¥3,500 / 10個 送料込み", href: "https://hirohaco.base.shop/items/128696437",
+    photoFile: "ドリップバッグ10個スペシャル入り.jpg",
+    detail: [
+      { paragraphs: ["苦いコーヒーが苦手な店主が、自分でも毎日飲みたいと思えるコーヒーを詰め合わせました。", "まずは飲み比べたい。\nせっかくなら、ちょっといいのも飲みたいよね。\nそんなわがままを叶えます。"] },
+      { heading: "内容について", paragraphs: ["内容は、ヒロシノハコのラインナップから10個。\nDaily／Selectを中心に、普段飲みにしやすいように組みます。\nそのうち「ご褒美」として、Specialが合計2個入ります。\n（内訳は仕入や在庫状況で変わる場合があります）"] },
+      { heading: "ドリップバッグについて", paragraphs: ["1袋12gを手詰めしています。\nお湯180gを数回に分けて注ぐと、薄くなりにくくおすすめです。\n賞味期限：製造日より約2ヶ月（お届け分は、個包装に記載の期限をご確認ください）"] },
+      { heading: "発送について", paragraphs: ["送料無料（クリックポスト）\nポスト投函のため日時指定はできません。ご了承ください。"] },
+    ],
+  },
+];
+
+// ── メニュー（既存 src/app/menu/page.tsx の menuGroups の内容。imageは対象外＝手動添付） ──
+const MENU_SEED = [
+  { group: "DRINK", section: "コーヒー", sectionEn: "Coffee", name: "ネルドリップコーヒー", description: "苦くない / 澄んだ一杯。豆を選べます。", price: "HOT ¥600 / ICE ¥650", note: "※豆表からお選びください。", imageFile: "nel-drip-coffee.jpg" },
+  { group: "DRINK", section: "ミルク", sectionEn: "Milk", name: "カフェラテ", description: "手しぼりエスプレッソ。やさしいコク。", price: "HOT / ICE ¥700", imageFile: "cafe-latte.jpg" },
+  { group: "DRINK", section: "ミルク", sectionEn: "Milk", name: "オーツミルクラテ", description: "オーツ麦の自然な甘み。軽やかに。", price: "HOT / ICE ¥750", imageFile: "oats-milk-latte.jpg" },
+  { group: "DRINK", section: "トニック（炭酸・ノンアル）", sectionEn: "Tonic", name: "エスプレッソトニック", description: "トニックの爽快感に、果実味の余韻。", price: "¥700", imageFile: "espresso-tonic.jpg" },
+  { group: "DRINK", section: "トニック（炭酸・ノンアル）", sectionEn: "Tonic", name: "はちみつレモントニック", description: "自家製はちみつレモンで、シュワっと。", price: "¥700", note: "※アルコールは入っていません。", imageFile: "honey-lemon-tonic.jpg" },
+  { group: "DRINK", section: "スペシャル", sectionEn: "Specials", name: "エスプレッソバナナシェイク", description: "濃厚。追熟バナナ1.5本×バニラアイス×エスプレッソ", price: "¥950", imageFile: "espresso-banana-shake.jpg" },
+  { group: "DRINK", section: "ノンコーヒー", sectionEn: "Non Coffee", name: "ホットはちみつレモン", description: "あたたかい、甘酸っぱい一息。", price: "¥650" },
+  { group: "DRINK", section: "ノンコーヒー", sectionEn: "Non Coffee", name: "ミルクココア", description: "ホッと甘い時間。", price: "HOT / ICE ¥650" },
+  { group: "FOOD", section: "サンドウィッチ", sectionEn: "Sandwich", name: "ホットサンド", description: "手焼きの厚焼き玉子を、自家製ソースで。焼きたてを、コーヒーと一緒に。", price: "¥650", imageFile: "hot-sand.jpg" },
+  { group: "FOOD", section: "スイーツ", sectionEn: "Sweets", name: "おやつしろ（スノーボール）", description: "ミルキーでほろほろ。コーヒーの合間に、ひとつ、ふたつ。", price: "3ツブ ¥250 / 5ツブ ¥420", imageFile: "oyatsu-shiro.jpg" },
+  { group: "FOOD", section: "スイーツ", sectionEn: "Sweets", name: "チーズケーキ", description: "コーヒーの横に置きたくて焼きました。濃厚だけど、ひと口でほどけるチーズケーキ。", price: "¥700", imageFile: "cheesecake.jpg" },
+];
+
+async function migrateSchedule() {
+  const entries = Object.entries(SCHEDULE_SEED);
+  console.log(`[migrate] schedule: ${entries.length}件を投入します`);
+  for (const [date, status] of entries) {
+    try {
+      await createContent("schedule", { date, ...status });
+      process.stdout.write(".");
+    } catch (err) {
+      console.error(`\n[migrate] schedule ${date} 失敗:`, err.message);
+    }
+  }
+  console.log("\n[migrate] schedule 完了");
+}
+
+async function migrateLineup() {
+  console.log(`[migrate] lineup: ${LINEUP_SEED.length}件を投入します`);
+  for (const item of LINEUP_SEED) {
+    const { photoFile, detail, tag, ...rest } = item;
+    try {
+      await createContent("lineup", { ...rest, tag: [tag], detail: sectionsToHtml(detail) });
+      console.log(`  - ${item.name} 作成OK（画像は手動で "${photoFile}" を添付してください）`);
+    } catch (err) {
+      console.error(`  - ${item.name} 失敗:`, err.message);
+    }
+    await sleep(300);
+  }
+  console.log("[migrate] lineup 完了");
+}
+
+async function migrateMenu() {
+  console.log(`[migrate] menu: ${MENU_SEED.length}件を投入します`);
+  let order = 1;
+  for (const item of MENU_SEED) {
+    const { imageFile, sectionEn, group, ...rest } = item;
+    try {
+      await createContent("menu", { ...rest, group: [group], order: order++ });
+      console.log(`  - ${item.name} 作成OK${imageFile ? `（画像は手動で "${imageFile}" を添付してください）` : ""}`);
+    } catch (err) {
+      console.error(`  - ${item.name} 失敗:`, err.message);
+    }
+    await sleep(300);
+  }
+  console.log("[migrate] menu 完了");
+}
+
+function loadEnvLocal() {
+  const envPath = path.join(ROOT, ".env.local");
+  if (!existsSync(envPath)) return;
+  const lines = readFileSync(envPath, "utf-8").split("\n");
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) continue;
+    const eq = trimmed.indexOf("=");
+    if (eq === -1) continue;
+    const key = trimmed.slice(0, eq).trim();
+    const value = trimmed.slice(eq + 1).trim();
+    if (!(key in process.env)) process.env[key] = value;
+  }
+}
+
+async function main() {
+  if (!process.env.SKIP_SCHEDULE) {
+    await migrateSchedule();
+  }
+  if (!process.env.SKIP_LINEUP) {
+    await migrateLineup();
+  }
+  await migrateMenu();
+  console.log("\n[migrate] すべて完了しました。画像は管理画面から手動で添付してください。");
+}
+
+main().catch((err) => {
+  console.error("[migrate] 失敗しました:", err);
+  process.exit(1);
+});

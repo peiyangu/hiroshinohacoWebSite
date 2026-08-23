@@ -4,7 +4,10 @@ import { useState } from "react";
 import Image from "next/image";
 import { FadeInSection } from "../common/FadeInSection";
 import { INSTAGRAM_URL } from "@/data/site";
+import scheduleImage from "@/data/generated/schedule-image.json";
 import styles from "./Schedule.module.scss";
+
+const SCHEDULE_IMAGE_URL = scheduleImage.url ?? "/images/schedule/schedule.png";
 
 export const Schedule = () => {
   const [expanded, setExpanded] = useState(false);
@@ -33,10 +36,10 @@ export const Schedule = () => {
               aria-label="スケジュールを拡大表示"
             >
               <Image
-                src="/images/schedule/schedule.png"
+                src={SCHEDULE_IMAGE_URL}
                 alt="今月の予定表"
-                width={800}
-                height={800}
+                width={scheduleImage.width}
+                height={scheduleImage.height}
                 className={styles.image}
               />
               <span className={styles.imageHint}>タップして拡大</span>
@@ -68,10 +71,10 @@ export const Schedule = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <Image
-              src="/images/schedule/schedule.png"
+              src={SCHEDULE_IMAGE_URL}
               alt="今月の予定表"
-              width={1200}
-              height={1200}
+              width={scheduleImage.width}
+              height={scheduleImage.height}
               className={styles.lightbox__image}
             />
           </div>

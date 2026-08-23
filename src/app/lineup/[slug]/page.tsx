@@ -106,25 +106,10 @@ export default async function LineupDetailPage({
             </div>
           </div>
 
-          <div className={styles.detail}>
-            {item.detail.map((section, index) => (
-              <div className={styles.detailSection} key={index}>
-                {section.heading && (
-                  <h2 className={styles.detailHeading}>{section.heading}</h2>
-                )}
-                {section.paragraphs.map((paragraph, pIndex) => (
-                  <p className={styles.detailParagraph} key={pIndex}>
-                    {paragraph.split("\n").map((line, lIndex, arr) => (
-                      <span key={lIndex}>
-                        {line}
-                        {lIndex < arr.length - 1 && <br />}
-                      </span>
-                    ))}
-                  </p>
-                ))}
-              </div>
-            ))}
-          </div>
+          <div
+            className={styles.detail}
+            dangerouslySetInnerHTML={{ __html: item.detail }}
+          />
 
           <div className={styles.bottomAction}>
             <a

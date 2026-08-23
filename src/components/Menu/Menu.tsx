@@ -1,31 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FadeInSection } from "../common/FadeInSection";
+import { getAllMenuItems } from "@/data/menu";
 import styles from "./Menu.module.scss";
 
-const featuredItems = [
-  {
-    name: "ネルドリップコーヒー",
-    nameEn: "Nel Drip Coffee",
-    price: "HOT ¥600 / ICE ¥650",
-    description: "苦くない、澄んだ一杯。豆を選べます。",
-    image: "/images/menu/items/nel-drip-coffee.jpg",
-  },
-  {
-    name: "カフェラテ",
-    nameEn: "Café Latte",
-    price: "HOT / ICE ¥700",
-    description: "手しぼりエスプレッソ。やさしいコク。",
-    image: "/images/menu/items/cafe-latte.jpg",
-  },
-  {
-    name: "ホットサンド",
-    nameEn: "Hot Sand",
-    price: "¥650",
-    description: "手焼きの厚焼き玉子を、自家製ソースで。",
-    image: "/images/menu/items/hot-sand.jpg",
-  },
-];
+const featuredNameEn: Record<string, string> = {
+  "ネルドリップコーヒー": "Nel Drip Coffee",
+  "カフェラテ": "Café Latte",
+  "ホットサンド": "Hot Sand",
+};
+
+const allMenuItems = getAllMenuItems();
+const featuredItems = Object.keys(featuredNameEn)
+  .map((name) => allMenuItems.find((item) => item.name === name))
+  .filter((item): item is NonNullable<typeof item> => Boolean(item))
+  .map((item) => ({ ...item, nameEn: featuredNameEn[item.name] }));
 
 export const Menu = () => {
   return (
@@ -40,15 +29,17 @@ export const Menu = () => {
           <ul className={styles.grid}>
             {featuredItems.map((item) => (
               <li key={item.name} className={styles.item}>
-                <div className={styles.imageWrapper}>
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    className={styles.image}
-                    sizes="(min-width: 768px) 33vw, 88px"
-                  />
-                </div>
+                {item.image && (
+                  <div className={styles.imageWrapper}>
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      className={styles.image}
+                      sizes="(min-width: 768px) 33vw, 88px"
+                    />
+                  </div>
+                )}
                 <div className={styles.body}>
                   <p className={styles.nameEn}>{item.nameEn}</p>
                   <p className={styles.name}>{item.name}</p>

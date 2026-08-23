@@ -6,3 +6,6 @@ dist/
 *.log
 .claude/
 .agents/
+.env.local
+.env*.local
+src/data/generated/

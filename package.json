@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "fetch-cms-data": "node scripts/fetch-cms-data.mjs",
+    "predev": "npm run fetch-cms-data",
     "dev": "next dev -H 0.0.0.0",
+    "prebuild": "npm run fetch-cms-data",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
