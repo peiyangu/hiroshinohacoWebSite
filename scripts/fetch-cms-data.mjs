@@ -60,11 +60,6 @@ async function getList(endpoint) {
   return all;
 }
 
-function toDateKey(value) {
-  if (!value) return null;
-  return String(value).slice(0, 10);
-}
-
 // rawText: 1行1日、"日付,open|close,営業時間,メモ,イベント名,イベント場所" のCSV形式
 function parseRawTextSchedule(rawText) {
   const schedule = {};
@@ -95,19 +90,7 @@ async function main() {
   for (const c of scheduleContents) {
     if (c.rawText) {
       Object.assign(schedule, parseRawTextSchedule(c.rawText));
-      continue;
     }
-    // 互換: 過去の1日1件形式のデータが残っていた場合も読み取る
-    const key = toDateKey(c.date);
-    if (!key) continue;
-    schedule[key] = {
-      isOpen: Boolean(c.isOpen),
-      ...(c.hours ? { hours: c.hours } : {}),
-      ...(c.isEvent ? { isEvent: true } : {}),
-      ...(c.eventName ? { eventName: c.eventName } : {}),
-      ...(c.eventLocation ? { eventLocation: c.eventLocation } : {}),
-      ...(c.note ? { note: c.note } : {}),
-    };
   }
   writeFileSync(path.join(outDir, "schedule.json"), JSON.stringify(schedule, null, 2));
 
