@@ -65,14 +65,39 @@ function toDateKey(value) {
   return String(value).slice(0, 10);
 }
 
+// rawText: 1行1日、"日付,open|close,営業時間,メモ,イベント名,イベント場所" のCSV形式
+function parseRawTextSchedule(rawText) {
+  const schedule = {};
+  const lines = rawText.split("\n").map((l) => l.trim()).filter(Boolean);
+  for (const line of lines) {
+    const [date, status, hours, note, eventName, eventLocation] = line
+      .split(",")
+      .map((v) => v.trim());
+    if (!date) continue;
+    schedule[date] = {
+      isOpen: status === "open",
+      ...(hours ? { hours } : {}),
+      ...(eventName ? { isEvent: true, eventName } : {}),
+      ...(eventLocation ? { eventLocation } : {}),
+      ...(note ? { note } : {}),
+    };
+  }
+  return schedule;
+}
+
 async function main() {
   const outDir = path.join(ROOT, "src", "data", "generated");
   mkdirSync(outDir, { recursive: true });
 
-  // ── スケジュール ──────────────────────────
+  // ── スケジュール（月ごとにまとめたrawTextを結合） ─────
   const scheduleContents = await getList("schedule");
   const schedule = {};
   for (const c of scheduleContents) {
+    if (c.rawText) {
+      Object.assign(schedule, parseRawTextSchedule(c.rawText));
+      continue;
+    }
+    // 互換: 過去の1日1件形式のデータが残っていた場合も読み取る
     const key = toDateKey(c.date);
     if (!key) continue;
     schedule[key] = {
