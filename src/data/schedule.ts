@@ -29,13 +29,13 @@ export type DayStatus = {
 };
 
 const defaultStatusByDay: Record<number, DayStatus> = {
-  0: { isOpen: true,  hours: "9:30-17:00" }, // 日
-  1: { isOpen: false },                         // 月
-  2: { isOpen: false },                         // 火
-  3: { isOpen: true,  hours: "9:30-17:00" }, // 水
-  4: { isOpen: true,  hours: "9:30-17:00" }, // 木
-  5: { isOpen: true,  hours: "9:30-17:00" }, // 金
-  6: { isOpen: true,  hours: "9:30-17:00" }, // 土
+  0: { isOpen: true,  hours: "12:00-19:00" }, // 日
+  1: { isOpen: false },                          // 月
+  2: { isOpen: false },                          // 火
+  3: { isOpen: true,  hours: "12:00-19:00" }, // 水
+  4: { isOpen: true,  hours: "12:00-19:00" }, // 木
+  5: { isOpen: true,  hours: "12:00-19:00" }, // 金
+  6: { isOpen: true,  hours: "12:00-19:00" }, // 土
 };
 
 const schedule: Record<string, DayStatus> = {
@@ -76,7 +76,20 @@ const schedule: Record<string, DayStatus> = {
   "2026-08-31": { isOpen: false },
 
   // ── 2026年9月 ──────────────────────────────────
-  "2026-09-01": { isOpen: false },
+  "2026-09-02": { isOpen: true,  hours: "12:00-19:00" },
+  "2026-09-05": { isOpen: true,  hours: "12:00-16:00" },
+  "2026-09-06": { isOpen: true,  hours: "8:00-11:30", isEvent: true, eventName: "夢ロマン軽トラ市", eventLocation: "吉野ケ里公園", note: "パン〆切" },
+  "2026-09-09": { isOpen: true,  hours: "12:00-19:00", note: "パンの日" },
+  "2026-09-11": { isOpen: true,  hours: "12:00-16:00" },
+  "2026-09-12": { isOpen: true,  hours: "10:00-16:00", isEvent: true, eventName: "台浮縁日", eventLocation: "にじの耳納の里" },
+  "2026-09-13": { isOpen: true,  hours: "10:00-16:00", isEvent: true, eventName: "台浮縁日", eventLocation: "にじの耳納の里" },
+  "2026-09-20": { isOpen: true,  hours: "12:00-19:00", note: "パン〆切" },
+  "2026-09-21": { isOpen: true,  hours: "12:00-16:00" },
+  "2026-09-22": { isOpen: true,  hours: "9:00-16:00", isEvent: true, eventName: "護国神社蚤の市", eventLocation: "福岡県護国神社" },
+  "2026-09-23": { isOpen: true,  hours: "12:00-19:00", note: "パンの日" },
+  "2026-09-24": { isOpen: false, note: "振替店休日" },
+  "2026-09-26": { isOpen: true,  hours: "12:00-16:00" },
+  "2026-09-27": { isOpen: true,  hours: "10:00-16:00", isEvent: true, eventName: "福岡グリーンパーティ", eventLocation: "志摩中央公園" },
 };
 
 function formatDateKey(date: Date): string {
