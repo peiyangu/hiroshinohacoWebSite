@@ -103,8 +103,10 @@
     aspect-ratio: 2 / 3;
   }
 
-  .about__imageWrapper:hover & {
-    transform: scale(1.03);
+  @include hover-only {
+    .about__imageWrapper:hover & {
+      transform: scale(1.03);
+    }
   }
 }
 

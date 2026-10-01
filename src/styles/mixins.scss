@@ -16,3 +16,11 @@
     @content;
   }
 }
+
+// マウス等でのホバーが可能な環境でのみ適用（タッチ端末でのスクロール時に
+// :hover が誤発火して画像が拡大されたまま残る問題を防ぐ）
+@mixin hover-only {
+  @media (hover: hover) and (pointer: fine) {
+    @content;
+  }
+}

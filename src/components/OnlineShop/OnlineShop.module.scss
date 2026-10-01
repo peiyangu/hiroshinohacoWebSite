@@ -73,8 +73,10 @@
   display: block;
   transition: transform 0.8s ease;
 
-  .imageWrapper:hover & {
-    transform: scale(1.03);
+  @include hover-only {
+    .imageWrapper:hover & {
+      transform: scale(1.03);
+    }
   }
 
   @include tablet {

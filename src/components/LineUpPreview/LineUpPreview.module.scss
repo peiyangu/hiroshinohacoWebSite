@@ -136,12 +136,14 @@
   text-decoration: none;
   color: inherit;
 
-  &:hover .photo {
-    transform: scale(1.05);
-  }
+  @include hover-only {
+    &:hover .photo {
+      transform: scale(1.05);
+    }
 
-  &:hover .nameEn {
-    opacity: 0.7;
+    &:hover .nameEn {
+      opacity: 0.7;
+    }
   }
 }
 
