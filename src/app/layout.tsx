@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "@/styles/globals.scss";
 import { LoadingClient } from "@/components/Loading/LoadingClient";
+import { ClickTracker } from "@/components/common/ClickTracker";
 
 const JSON_LD = {
   "@context": "https://schema.org",
@@ -104,6 +105,7 @@ gtag('config', 'G-DQH7KYWJPM');`,
         }
       >
         <LoadingClient />
+        <ClickTracker />
         {children}
       </body>
     </html>
